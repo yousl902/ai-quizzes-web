@@ -1,0 +1,8 @@
+model Question {
+    id           String        @id @default(uuid())
+    question     String
+    quiz_id      String
+    image        String?
+    quiz         Quiz          @relation(fields: [quiz_id], references: [id])
+    alternatives Alternative[]
+}
