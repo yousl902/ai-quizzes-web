@@ -16,6 +16,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner"; // Sonner i stället för useToast
 import { LogIn } from "lucide-react";
+import { login } from "./actions";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -99,7 +100,7 @@ export default function Login() {
                 </Link>
               </div>
               
-              <Button type="submit" className="w-full bg-mindswarm-500 hover:bg-mindswarm-600 text-white">
+              <Button formAction={login} className="w-full bg-mindswarm-500 hover:bg-mindswarm-600 text-white">
                 <LogIn className="mr-2 h-4 w-4" />
                 Log in
               </Button>

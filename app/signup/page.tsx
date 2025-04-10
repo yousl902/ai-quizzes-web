@@ -16,30 +16,13 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
 import { UserPlus } from "lucide-react";
+import { signup } from "./actions";
 
 export default function Signup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [termsAccepted, setTermsAccepted] = useState(false);
-
-  const handleSignup = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    // Demo signup
-    if (name && email && password && termsAccepted) {
-      toast.success("Account created", {
-        description: "Your account has been created successfully.",
-      });
-      setTimeout(() => {
-        window.location.href = "/login";
-      }, 1500);
-    } else {
-      toast.error("Signup failed", {
-        description: "Please fill in all fields and accept the terms.",
-      });
-    }
-  };
   
   return (
     <div className="page-container bg-gradient-to-br from-yellow-100 via-yellow-50 to-white">
@@ -57,7 +40,7 @@ export default function Signup() {
           </CardHeader>
 
           <CardContent>
-            <form onSubmit={handleSignup} className="space-y-4">
+            <form className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="name">Full Name</Label>
                 <Input
@@ -74,6 +57,7 @@ export default function Signup() {
                 <Label htmlFor="email">Email</Label>
                 <Input
                   id="email"
+                  name="email"
                   type="email"
                   placeholder="name@example.com"
                   value={email}
@@ -86,6 +70,7 @@ export default function Signup() {
                 <Label htmlFor="password">Password</Label>
                 <Input
                   id="password"
+                  name="password"
                   type="password"
                   placeholder="Create a password"
                   value={password}
@@ -117,10 +102,10 @@ export default function Signup() {
               </div>
 
               <Button
-                type="submit"
-                className="w-full bg-mindswarm-500 hover:bg-mindswarm-600 text-white"
+              formAction={signup}
+                className="w-full bg-mindswarm-500 hover:bg-mindswarm-600 text-black"
               >
-                <UserPlus className="mr-2 h-4 w-4" />
+                <UserPlus className="mr-2 h-4 w-4"/>
                 Sign up
               </Button>
             </form>
