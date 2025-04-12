@@ -78,6 +78,7 @@ web_modules/
 .env.test.local
 .env.production.local
 .env.local
+.env.*
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
@@ -169,3 +170,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# prisma
+prisma/migrations
+
+# vim
+
