@@ -26,9 +26,8 @@ export default function Signup() {
   
   return (
     <div className="page-container bg-gradient-to-br from-yellow-100 via-yellow-50 to-white">
-      <Navbar />
 
-      <main className="flex-1 flex flex-col items-center justify-center py-16 px-4">
+      <main className="flex-1 flex flex-col h-screen items-center justify-center py-16 px-4">
         <Card className="max-w-md w-full shadow-xl">
           <CardHeader className="space-y-1">
             <CardTitle className="text-2xl font-bold text-center text-mindswarm-700">
@@ -45,6 +44,7 @@ export default function Signup() {
                 <Label htmlFor="name">Full Name</Label>
                 <Input
                   id="name"
+                  name="name"
                   type="text"
                   placeholder="younes"
                   value={name}
@@ -103,7 +103,7 @@ export default function Signup() {
 
               <Button
               formAction={signup}
-                className="w-full bg-mindswarm-500 hover:bg-mindswarm-600 text-black"
+                className="w-full bg-mindswarm-500 hover:bg-mindswarm-600 text-white bg-black"
               >
                 <UserPlus className="mr-2 h-4 w-4"/>
                 Sign up

@@ -25,7 +25,7 @@ export default function Login() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Demo login
     if (email && password) {
       toast.success("Login successful", {
@@ -41,12 +41,11 @@ export default function Login() {
       });
     }
   };
-  
+
   return (
     <div className="page-container bg-gradient-to-br from-yellow-100 via-yellow-50 to-white">
-      <Navbar />
 
-      <main className="flex-1 flex flex-col items-center justify-center py-16 px-4">
+      <main className="flex-1 flex flex-col items-center h-screen justify-center py-16 px-4">
         <Card className="max-w-md w-full shadow-xl">
           <CardHeader className="space-y-1">
             <CardTitle className="text-2xl font-bold text-center text-mindswarm-700">
@@ -70,7 +69,7 @@ export default function Login() {
                   required
                 />
               </div>
-              
+
               <div className="space-y-2">
                 <Label htmlFor="password">Password</Label>
                 <Input
@@ -82,7 +81,7 @@ export default function Login() {
                   required
                 />
               </div>
-              
+
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-2">
                   <Checkbox
@@ -99,14 +98,14 @@ export default function Login() {
                   Forgot password?
                 </Link>
               </div>
-              
-              <Button formAction={login} className="w-full bg-mindswarm-500 hover:bg-mindswarm-600 text-white">
+
+              <Button formAction={login} className="w-full bg-mindswarm-500 hover:bg-mindswarm-600 text-white bg-black">
                 <LogIn className="mr-2 h-4 w-4" />
                 Log in
               </Button>
             </form>
           </CardContent>
-          
+
           <CardFooter className="flex flex-col space-y-4">
             <div className="text-center text-sm">
               Don&apos;t have an account?{" "}
