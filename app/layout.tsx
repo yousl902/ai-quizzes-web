@@ -4,6 +4,7 @@ import "./globals.css";
 
 // 1. Importera Toaster från sonner
 import { Toaster } from "sonner";
+import NavBar from "@/components/Navbar";
 
 // Dina valfria Google-fonts
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
@@ -23,6 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Toaster position="bottom-right" />
+        <NavBar />
         {children}
       </body>
     </html>
