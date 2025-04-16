@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -16,31 +15,29 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner"; // Sonner i stället för useToast
 import { LogIn } from "lucide-react";
-import { login } from "./actions";
+import { login } from "../actions/auth";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
+  // const handleLogin = (e: React.FormEvent) => {
+  //   e.preventDefault();
 
-    // Demo login
-    if (email && password) {
-      toast.success("Login successful", {
-        description: "You have been logged in.",
-      });
-      // Redirect
-      setTimeout(() => {
-        window.location.href = "/";
-      }, 1500);
-    } else {
-      toast.error("Login failed", {
-        description: "Please enter both email and password.",
-      });
-    }
-  };
+  //   // Demo login
+  //   if (email && password) {
+  //     toast.success("Login successful", {
+  //       description: "You have been logged in.",
+  //     });
+  //     // Redirect
+  //     setTimeout(() => {
+  //       window.location.href = "/";
+  //     }, 1500);
+  //   } else {
+  //     toast.error("Login failed", {
+  //       description: "Please enter both email and password.",
+  //     });
+  //   }
+  // };
 
   return (
     <div className="page-container bg-gradient-to-br from-yellow-100 via-yellow-50 to-white">
@@ -57,15 +54,14 @@ export default function Login() {
           </CardHeader>
 
           <CardContent>
-            <form onSubmit={handleLogin} className="space-y-4">
+            <form className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
                   id="email"
+                  name="email"
                   type="email"
                   placeholder="name@example.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
                   required
                 />
               </div>
@@ -75,9 +71,8 @@ export default function Login() {
                 <Input
                   id="password"
                   type="password"
+                  name="password"
                   placeholder="••••••••"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
                   required
                 />
               </div>
