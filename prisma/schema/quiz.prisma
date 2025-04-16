@@ -1,0 +1,7 @@
+model Quiz {
+    id        String     @id @default(uuid())
+    title     String
+    category  String
+    questions Question[]
+    user_quiz UserQuiz[]
+}
