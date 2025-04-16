@@ -175,4 +175,7 @@ next-env.d.ts
 prisma/migrations
 
 # vim
+*~
+*.un
+*.swp
 
