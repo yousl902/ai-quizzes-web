@@ -154,8 +154,6 @@ dist
 # misc
 .DS_Store
 *.pem
-*.un
-*~
 
 # debug
 npm-debug.log*
