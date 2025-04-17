@@ -154,6 +154,8 @@ dist
 # misc
 .DS_Store
 *.pem
+*.un
+*~
 
 # debug
 npm-debug.log*
@@ -175,4 +177,7 @@ next-env.d.ts
 prisma/migrations
 
 # vim
+*~
+*.un
+*.swp
 
