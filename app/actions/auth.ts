@@ -2,7 +2,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { syncUser } from "@/lib/auth/syncUser";
-import { getClientAuthProvider } from "@/lib/auth/factory/getServerProvider";
+import { getServerAuthProvider } from "@/lib/auth/factory/getServerProvider";
 
 export async function login(formData: FormData) {
   const data = {
@@ -12,7 +12,7 @@ export async function login(formData: FormData) {
 
   console.log("Login data:", data);
 
-    const auth = getClientAuthProvider();
+    const auth = getServerAuthProvider();
     const result = await auth.signIn(data.email, data.password);
   console.log("result", result);
   if (!result) {
@@ -24,7 +24,7 @@ export async function login(formData: FormData) {
 }
 
 export async function logout() {
-    const auth = getClientAuthProvider();
+    const auth = getServerAuthProvider();
   const result = await auth.signOut();
   console.log("result", result);
 
@@ -33,7 +33,7 @@ export async function logout() {
 }
 
 export async function signup(formData: FormData) {
-    const auth = getClientAuthProvider();
+    const auth = getServerAuthProvider();
   const data = {
     email: formData.get("email") as string,
     password: formData.get("password") as string,
