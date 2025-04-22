@@ -37,6 +37,7 @@ export default function QuizMeny() {
       return (
         <div className="flex space-x-4">
           {/* Main Accordion */}
+          <h2 className="text-xl font-semibold text-center">Title</h2>
           <Accordion
             type="single"
             collapsible
@@ -45,15 +46,11 @@ export default function QuizMeny() {
           >
             <AccordionItem value="item-1">
               <AccordionTrigger>Is it accessible?</AccordionTrigger>
-              <AccordionContent>
-                Yes. It adheres to the WAI-ARIA design pattern.
-              </AccordionContent>
+            
             </AccordionItem>
             <AccordionItem value="item-2">
               <AccordionTrigger>What is it?</AccordionTrigger>
-              <AccordionContent>
-                It’s a UI component library built with Radix primitives.
-              </AccordionContent>
+              
             </AccordionItem>
           </Accordion>
     
