@@ -4,14 +4,24 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { LogIn, UserPlus } from "lucide-react";
 
-const NavBar = () => {
+const NavBar = (
+  { title, logo, user }: { title: string; logo: string; user: any | null }
+) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm bg-opacity-90 border-b shadow-sm">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         <Link href="/" className="text-2xl font-bold">
-          MindSwarm Quizes
+          {
+            logo && logo.trim() !== "" && (
+              <img
+                src={logo}
+                alt="Logo"
+                className="h-8 w-8 inline-block mr-2"
+              />
+            )}
+          {title}
         </Link>
 
         {/* Mobile menu button */}
@@ -45,16 +55,26 @@ const NavBar = () => {
 
         {/* Desktop navigation */}
         <div className="hidden md:flex md:items-center md:space-x-4">
-          <Link href="/login">
-            <Button variant="outline">
-              <LogIn className="h-4 w-4" /> Login
-            </Button>
-          </Link>
-          <Link href="/signup">
-            <Button>
-              <UserPlus className="h-4 w-4" /> Sign Up
-            </Button>
-          </Link>
+          {user ? (
+            <Link href="/profile">
+              <Button variant="outline">
+                <span className="text-sm">Profile</span>
+              </Button>
+            </Link>
+          ) : (
+            <>
+              <Link href="/login">
+                <Button variant="outline">
+                  <LogIn className="h-4 w-4" /> Login
+                </Button>
+              </Link>
+              <Link href="/signup">
+                <Button>
+                  <UserPlus className="h-4 w-4" /> Sign Up
+                </Button>
+              </Link>
+            </>
+          )}
         </div>
       </div>
 
