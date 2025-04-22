@@ -16,7 +16,7 @@ export async function login(formData: FormData) {
     const result = await auth.signIn(data.email, data.password);
   console.log("result", result);
   if (!result) {
-    redirect("/error");
+    redirect("/login/error");
   }
 
   revalidatePath("/", "layout");
@@ -43,7 +43,7 @@ export async function signup(formData: FormData) {
   console.log("error", null);
   console.log("Sign-up data:", data);
   if (!result) {
-    redirect("/error");
+    redirect("/signup/error");
   }
 
   const name = formData.get("name")
