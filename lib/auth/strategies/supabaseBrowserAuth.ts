@@ -65,7 +65,6 @@ export const supabaseClientAuth: AuthProvider = {
     async getCurrentUser() {
         const supabase = await createClient();
         const { data, error } = await supabase.auth.getUser();
-        console.log('supabase.auth.getUser response:', { data, error });
         if (error) {
             // TODO: handle this
             return null;
