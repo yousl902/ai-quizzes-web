@@ -6,7 +6,6 @@ import siteInfo from "@/siteConfig";
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-gray-50 to-gray-100">
-
       <main className="flex-grow flex flex-col items-center justify-center px-4 pt-16 pb-8">
         <div className="max-w-5xl w-full mx-auto flex flex-col items-center">
           <h1 className="text-5xl mt-10 md:text-7xl font-bold text-center mb-2 tracking-tight">
@@ -16,11 +15,11 @@ export default function Home() {
             powered by Mindswarm
           </p>
 
-          {/* Länk till /start-now (ex) */}
+          {/* "Start Now"-cirkelknapp */}
           <Link
             href="/start-now"
-            className="mb-16 bg-yellow-500 hover:scale-110 transition-transform duration-500
-                      text-white rounded-full flex items-center justify-center w-40 h-40 md:w-56 md:h-56"
+            className="mb-16 bg-yellow-500 text-white rounded-full flex items-center justify-center w-40 h-40 md:w-56 md:h-56
+                       hover:scale-110 transition-transform duration-300"
           >
             <div className="flex flex-col items-center justify-center">
               <CirclePlay className="h-16 w-16 md:h-24 md:w-24" />
@@ -31,26 +30,41 @@ export default function Home() {
           </Link>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-4xl">
-            <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
-              <h3 className="text-xl font-semibold mb-2">Upload PDFs</h3>
+            {/* Kontakt */}
+            <Link
+              href="/info#kontakt"
+              className="bg-white rounded-xl p-6 shadow-md 
+                         hover:shadow-lg hover:scale-105 transition-all duration-300 block"
+            >
+              <h3 className="text-xl font-semibold mb-2">Kontakt</h3>
               <p className="text-gray-600">
-                Easy upload of your study materials in PDF format.
+                Tveka inte att höra av dig till oss om du har frågor eller funderingar.
               </p>
-            </div>
+            </Link>
 
-            <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
-              <h3 className="text-xl font-semibold mb-2">Generate Quizzes</h3>
+            {/* FAQ */}
+            <Link
+              href="/info#faq"
+              className="bg-white rounded-xl p-6 shadow-md 
+                         hover:shadow-lg hover:scale-105 transition-all duration-300 block"
+            >
+              <h3 className="text-xl font-semibold mb-2">FAQ</h3>
               <p className="text-gray-600">
-                Our AI creates customized quizzes from your content.
+                Kolla in vår FAQ-sektion för svar på vanliga frågor och funderingar.
               </p>
-            </div>
+            </Link>
 
-            <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
-              <h3 className="text-xl font-semibold mb-2">Learn Efficiently</h3>
+            {/* Om oss */}
+            <Link
+              href="/info#om-oss"
+              className="bg-white rounded-xl p-6 shadow-md 
+                         hover:shadow-lg hover:scale-105 transition-all duration-300 block"
+            >
+              <h3 className="text-xl font-semibold mb-2">Om oss</h3>
               <p className="text-gray-600">
-                Test your knowledge and improve your retention.
+                Vi är ett team av passionerade individer som gör lärande roligt och effektivt.
               </p>
-            </div>
+            </Link>
           </div>
         </div>
       </main>
