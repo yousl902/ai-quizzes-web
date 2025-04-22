@@ -1,5 +1,3 @@
-"use client";
-
 import { motion } from "framer-motion";
 import { HelpCircle } from "lucide-react";
 
@@ -10,22 +8,12 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const faqItems = [
-  {
-    question: "Kan jag använda era quiz offline?",
-    answer: "Just nu är våra quizer enbart tillgängliga online."
-  },
-  {
-    question: "Vad kostar tjänsten?",
-    answer: "Tjänsten är kostnadsfri."
-  },
-  {
-    question: "Har ni olika delarfrån Högskoleprovet?",
-    answer: "Ja, vi har quizer från alla delar av Högskoleprovet."
-  }
-];
 
-export const FAQSection = () => {
+export const FAQSection = (
+  { faq }: {
+    faq: { question: string; answer: string }[];
+  }
+) => {
   return (
     <motion.section
       initial={{ opacity: 0, y: 20 }}
@@ -40,7 +28,7 @@ export const FAQSection = () => {
       </h2>
       <div className="bg-white/80 backdrop-blur-lg rounded-2xl p-6 shadow-lg">
         <Accordion type="single" collapsible className="w-full">
-          {faqItems.map((item, index) => (
+          {faq.map((item, index) => (
             <AccordionItem key={index} value={`item-${index}`}>
               <AccordionTrigger className="text-left">
                 {item.question}

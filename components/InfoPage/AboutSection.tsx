@@ -1,9 +1,11 @@
-"use client";
-
 import { Users } from "lucide-react";
 import { motion } from "framer-motion";
 
-export const AboutSection = () => {
+export const AboutSection = (
+  { about }: {
+    about: string[];
+  }
+) => {
   return (
     <motion.section
       initial={{ opacity: 0, y: 20 }}
@@ -18,21 +20,14 @@ export const AboutSection = () => {
       </h2>
       <div className="bg-white/80 backdrop-blur-lg rounded-2xl p-6 shadow-lg">
         <div className="prose max-w-none">
-          <p className="text-gray-800">
-            Vi är ett team av passionerade individer som strävar efter att göra
-            lärande roligt och effektivt. Vår resa började i ett litet studentrum,
-            där vi insåg att studier ibland kan vara monotona.
-          </p>
-          <p className="text-gray-800 mt-4">
-            Därför skapade vi en plattform som kombinerar interaktivt lärande med 
-            den senaste AI-tekniken för att generera quizfrågor.
-          </p>
-          <p className="text-gray-800 mt-4">
-            Vår ambition är att låta varje användare personifiera sin studieupplevelse,
-            dela material med andra och tillsammans göra lärandet mer dynamiskt.
-            Med ett starkt community i ryggen fortsätter vi att utveckla nya funktioner 
-            och förbättra vår tjänst.
-          </p>
+          {about.map((item, index) => (
+            <p
+              key={index}
+              className={`text-gray-800 ${index !== 0 ? 'mt-4' : ''}`}
+            >
+              {item}
+            </p>
+          ))}
         </div>
       </div>
     </motion.section>

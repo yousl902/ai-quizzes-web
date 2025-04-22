@@ -1,7 +1,8 @@
-import NavBar from "@/components/Navbar";
 import Link from "next/link";
 import { CirclePlay } from "lucide-react";
+import siteInfo from "@/siteConfig";
 
+// this comp should take as props the title and description of the app and the logo
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-gray-50 to-gray-100">
@@ -9,7 +10,7 @@ export default function Home() {
       <main className="flex-grow flex flex-col items-center justify-center px-4 pt-16 pb-8">
         <div className="max-w-5xl w-full mx-auto flex flex-col items-center">
           <h1 className="text-5xl mt-10 md:text-7xl font-bold text-center mb-2 tracking-tight">
-            HögskoleprovetQuizes
+            {siteInfo.title}
           </h1>
           <p className="text-sm text-center text-gray-500 mb-12">
             powered by Mindswarm
@@ -53,10 +54,6 @@ export default function Home() {
           </div>
         </div>
       </main>
-
-      <footer className="py-6 text-center text-gray-600 bg-white border-t">
-        <p>© 2025 MindSwarm. All rights reserved.</p>
-      </footer>
     </div>
   );
 }

@@ -4,6 +4,7 @@ import { ContactSection } from "@/components/InfoPage/ContactSection";
 import { FAQSection } from "@/components/InfoPage/FAQSection";
 import { AboutSection } from "@/components/InfoPage/AboutSection";
 import { motion } from "framer-motion";
+import siteInfo from "@/siteConfig";
 
 export default function InfoPage() {
   return (
@@ -30,17 +31,26 @@ export default function InfoPage() {
           {/* Kontakt */}
           {/* scroll-mt-28 => när vi navigerar till #kontakt hamnar rubriken nedanför nav-baren */}
           <section id="kontakt" className="scroll-mt-28">
-            <ContactSection />
+            <ContactSection
+              email={siteInfo.info.contact.email}
+              telephoneTimes={siteInfo.info.contact.telephoneTimes}
+              timeStamp={siteInfo.info.contact.timeStamp}
+              more={siteInfo.info.contact.more}
+            />
           </section>
 
           {/* FAQ */}
           <section id="faq" className="scroll-mt-24">
-            <FAQSection />
+            <FAQSection
+              faq={siteInfo.info.FAQ.faqItems}
+            />
           </section>
 
           {/* Om oss */}
           <section id="om-oss" className="scroll-mt-20">
-            <AboutSection />
+            <AboutSection
+              about={siteInfo.info.about}
+            />
           </section>
         </div>
       </div>

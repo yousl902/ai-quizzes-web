@@ -1,9 +1,14 @@
-"use client";
-
 import { motion } from "framer-motion";
 import { Mail, Phone, Clock } from "lucide-react";
 
-export const ContactSection = () => {
+export const ContactSection = (
+  { email, telephoneTimes, timeStamp, more }: {
+    email: string;
+    telephoneTimes: string;
+    timeStamp: string;
+    more: string;
+  }
+) => {
   return (
     <motion.section
       initial={{ opacity: 0, y: 20 }}
@@ -24,20 +29,19 @@ export const ContactSection = () => {
               href="mailto:info@studycomb.se"
               className="text-yellow-600 hover:text-yellow-800 transition-colors"
             >
-              info@studycomb.se
+              {email}
             </a>
           </p>
           <p className="flex items-center gap-2 text-gray-800">
             <Phone className="w-5 h-5 text-yellow-600" />
-            <span>Telefontid vardagar</span>
+            <span>{telephoneTimes}</span>
           </p>
           <p className="flex items-center gap-2 text-gray-800">
             <Clock className="w-5 h-5 text-yellow-600" />
-            <span>09:00 - 17:00</span>
+            <span>{timeStamp}</span>
           </p>
           <p className="mt-4 text-gray-800">
-            Vi strävar efter att besvara alla förfrågningar inom 24 timmar. 
-            Tveka inte att höra av dig om du har några frågor eller funderingar.
+            {more}
           </p>
         </div>
       </div>
