@@ -1,5 +1,5 @@
 "use client"
-
+import { motion } from "framer-motion";
 import { useState } from "react"
 import {
     Accordion,
@@ -8,56 +8,61 @@ import {
     AccordionTrigger,
   } from "@/components/ui/accordion";
 
-export default function QuizMeny() {
+type QuizMenuContent = {
+    [key: string]: {
+        label: string;
+        items: {
+            title: string;
+            content: string;
+        }[];   
+    };
+};
+
+// For convenience
+type QuizMenuProps = {
+    quizMenuContent: QuizMenuContent;
+};
+/*
+            {Object.keys(quizMenuContent).map((key) => (
+                <AccordionItem key={key} value={key}>
+                    <AccordionTrigger>{key}</AccordionTrigger>
+                </AccordionItem>
+            ))}
+*/
+
+export default function QuizMeny({ quizMenuContent } : QuizMenuProps) {
     const [activeItem, setActiveItem] = useState<string | null>(null);
     
-    const nestedContentMap: Record<string, { title: string; content: string }[]> = {
-        "item-1": [
-          {
-            title: "Accessibility Details",
-            content: "It follows the WAI-ARIA guidelines and works well with screen readers.",
-          },
-          {
-            title: "Keyboard Support",
-            content: "Users can navigate using Tab and arrow keys.",
-          },
-        ],
-        "item-2": [
-          {
-            title: "Tech Stack",
-            content: "Built using Radix UI primitives under the hood.",
-          },
-          {
-            title: "Customization",
-            content: "You can style it with Tailwind or any CSS framework.",
-          },
-        ],
-      };
+    
 
       return (
-        <div className="flex space-x-4">
+        <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-20 w-full lg:w-2/3 lg:ml-auto"
+        >
           {/* Main Accordion */}
           <h2 className="text-xl font-semibold text-center">Title</h2>
+          <div className="bg-white/80 backdrop-blur-lg rounded-2xl p-6 shadow-lg">
           <Accordion
             type="single"
             collapsible
             onValueChange={(value: string | undefined) => setActiveItem(value ?? null)}
             className="w-1/2"
           >
-            <AccordionItem value="item-1">
-              <AccordionTrigger>Is it accessible?</AccordionTrigger>
-            
-            </AccordionItem>
-            <AccordionItem value="item-2">
-              <AccordionTrigger>What is it?</AccordionTrigger>
-              
-            </AccordionItem>
+            {Object.entries(quizMenuContent).map(([key, section]) => (
+                <AccordionItem key={key} value={key}>
+                    <AccordionTrigger>{section.label}</AccordionTrigger>
+                </AccordionItem>
+            ))}
           </Accordion>
     
           {/* Nested Accordion based on selected item */}
-          {activeItem && nestedContentMap[activeItem] && (
+          {activeItem && quizMenuContent[activeItem]?.items && (
             <Accordion type="single" collapsible className="w-1/2">
-              {nestedContentMap[activeItem].map((item, index) => (
+              {quizMenuContent[activeItem].items.map((item, index) => (
                 <AccordionItem key={index} value={`nested-${index}`}>
                   <AccordionTrigger>{item.title}</AccordionTrigger>
                   <AccordionContent>{item.content}</AccordionContent>
@@ -65,6 +70,7 @@ export default function QuizMeny() {
               ))}
             </Accordion>
           )}
-        </div>
+          </div>
+        </motion.section>
       );
 }
