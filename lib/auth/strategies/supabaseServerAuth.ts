@@ -20,7 +20,7 @@ export const supabaseServerAuth: AuthProvider = {
         }
         if (!data.user) {
             // TODO: handle this
-            throw new Error('No user returned from Supabase.');
+            return null;
         }
 
         return {
