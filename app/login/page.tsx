@@ -88,8 +88,8 @@ export default function Login() {
                     Remember me
                   </Label>
                 </div>
-                {/* Du måste skapa en forgot-password-sida om du länkar dit */}
-                <Link href="/forgot-password" className="text-sm text-mindswarm-600 hover:underline">
+       
+                <Link href="/auth/forgot-password" className="text-sm text-mindswarm-600 hover:underline">
                   Forgot password?
                 </Link>
               </div>

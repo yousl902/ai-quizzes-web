@@ -62,3 +62,25 @@ export async function signup(formData: FormData) {
   revalidatePath("/", "layout");
   redirect("/");
 }
+
+export async function resetPassword(formData: FormData) {
+  const email = formData.get("email") as string;
+  if (!email) {
+    return false;
+  }
+
+  const auth = getServerAuthProvider();
+  return await auth.resetPassword(email);
+}
+
+export async function updatePassword(formData: FormData) {
+  const password = formData.get("password") as string;
+  const code = formData.get("code") as string;
+  
+  if (!password || !code) {
+    return false;
+  }
+
+  const auth = getServerAuthProvider();
+  return await auth.updatePassword(code, password);
+}
