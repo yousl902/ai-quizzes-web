@@ -178,4 +178,5 @@ prisma/migrations
 *~
 *.un
 *.swp
+*.vim
 
