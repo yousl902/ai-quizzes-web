@@ -29,9 +29,55 @@ const siteInfo = {
             "Därför skapade vi en plattform som kombinerar interaktivt lärande med den senaste AI-tekniken för att generera quizfrågor.",
             "Vår ambition är att låta varje användare personifiera sin studieupplevelse, dela material med andra och tillsammans göra lärandet mer dynamiskt. Med ett starkt community i ryggen fortsätter vi att utveckla nya funktioner och förbättra vår tjänst.",
             // Add more paragraphs as needed
-        ]              
+        ],
+        quizMenuContent: {
+            verbala: {
+                label: "Verbala Uppgifter",
+                items: [
+                    {
+                        title: "ORD, ordförståelse",
+                        content: "Filler",
+                    },
+                    {
+                        title: "LÄS, svensk läsförståelse",
+                        content: "Filler",
+                    },
+                    {
+                        title: "MEK, meningskomplettering",
+                        content: "Filler"
+                    },
+                    {
+                        title: "ELF, Engelsk läsförståelse",
+                        content: "Filler",
+                    },
+                ],
+            },
+            kvantitativa: {
+                label: "Kvantitativa Uppgifter",
+                items: [
+                    {
+                        title: "XYZ, matematisk problemlösning",
+                        content: "Filler",
+                    },
+                    {
+                        title: "KVA, kvantitativa jämförelser",
+                        content: "Filler",
+                    },
+                    {
+                        title: "NOG, kvantitativa resonemang",
+                        content: "Filler",
+                    },
+                    {
+                        title: "DTK, diagram, tabeller och kartor",
+                        content: "Filler",
+                    },
+                ],
+            },
+        },              
     },
     footerText: "© 2025 MindSwarm. All rights reserved.",
   }
+
+  
   
   export default siteInfo
