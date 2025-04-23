@@ -3,7 +3,6 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { syncUser } from "@/lib/auth/syncUser";
 import { getServerAuthProvider } from "@/lib/auth/factory/getServerProvider";
-import createClient from "@/lib/supabase/server";
 
 export async function login(formData: FormData) {
   const data = {
@@ -82,25 +81,6 @@ export async function updatePassword(formData: FormData) {
     return false;
   }
 
-  const supabase = await createClient();
-  
-  // First verify the code
-  const { error: verifyError } = await supabase.auth.exchangeCodeForSession(code);
-
-  if (verifyError) {
-    console.error('Error verifying code:', verifyError.message);
-    return false;
-  }
-
-  // Then update the password
-  const { error } = await supabase.auth.updateUser({
-    password: password
-  });
-
-  if (error) {
-    console.error('Error updating password:', error.message);
-    return false;
-  }
-
-  return true;
+  const auth = getServerAuthProvider();
+  return await auth.updatePassword(code, password);
 }

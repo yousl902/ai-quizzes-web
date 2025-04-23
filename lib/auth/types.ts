@@ -13,4 +13,6 @@ export interface AuthProvider {
     signOut: () => Promise<void>;
     getCurrentUser: () => Promise<AuthUser | null>;
     resetPassword: (email: string) => Promise<boolean>;
+    updatePassword: (code: string, password: string) => Promise<boolean>;
+    verifyCode: (code: string) => Promise<boolean>;
 }
