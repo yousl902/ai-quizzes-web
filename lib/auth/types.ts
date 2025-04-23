@@ -12,4 +12,5 @@ export interface AuthProvider {
     signUp: (email: string, password: string, data?: Partial<AuthUser>) => Promise<AuthUser | null>;
     signOut: () => Promise<void>;
     getCurrentUser: () => Promise<AuthUser | null>;
+    resetPassword: (email: string) => Promise<boolean>;
 }
