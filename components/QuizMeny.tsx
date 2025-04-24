@@ -1,5 +1,5 @@
 "use client"
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react"
 import {
     Accordion,
@@ -22,18 +22,11 @@ type QuizMenuContent = {
 type QuizMenuProps = {
     quizMenuContent: QuizMenuContent;
 };
-/*
-            {Object.keys(quizMenuContent).map((key) => (
-                <AccordionItem key={key} value={key}>
-                    <AccordionTrigger>{key}</AccordionTrigger>
-                </AccordionItem>
-            ))}
-*/
 
 export default function QuizMeny({ quizMenuContent } : QuizMenuProps) {
     const [activeItem, setActiveItem] = useState<string | null>(null);
     
-    
+    const showNested = !!(activeItem && quizMenuContent[activeItem]?.items);
 
       return (
         <motion.section
@@ -43,34 +36,53 @@ export default function QuizMeny({ quizMenuContent } : QuizMenuProps) {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mb-20 w-full lg:w-2/3 lg:ml-auto"
         >
-          {/* Main Accordion */}
+          
           <h2 className="text-xl font-semibold text-center">Title</h2>
-          <div className="bg-white/80 backdrop-blur-lg rounded-2xl p-6 shadow-lg">
-          <Accordion
-            type="single"
-            collapsible
-            onValueChange={(value: string | undefined) => setActiveItem(value ?? null)}
-            className="w-1/2"
+
+          <motion.div
+            layout
+            className="flex gap-4 bg-white/80 backdrop-blur-lg rounded-2xl p-6 shadow-lg overflow-hidden"
+            transition={{duration: 0.4, ease: "easeInOut"}}
           >
-            {Object.entries(quizMenuContent).map(([key, section]) => (
-                <AccordionItem key={key} value={key}>
-                    <AccordionTrigger>{section.label}</AccordionTrigger>
-                </AccordionItem>
-            ))}
-          </Accordion>
-    
-          {/* Nested Accordion based on selected item */}
-          {activeItem && quizMenuContent[activeItem]?.items && (
-            <Accordion type="single" collapsible className="w-1/2">
-              {quizMenuContent[activeItem].items.map((item, index) => (
-                <AccordionItem key={index} value={`nested-${index}`}>
-                  <AccordionTrigger>{item.title}</AccordionTrigger>
-                  <AccordionContent>{item.content}</AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          )}
-          </div>
+            {/* Main Accordion */}
+            <div className="w-full lg:w-auto">
+              <Accordion
+                type="single"
+                collapsible
+                onValueChange={(value: string | undefined) => setActiveItem(value ?? null)}
+
+              >
+                {Object.entries(quizMenuContent).map(([key, section]) => (
+                    <AccordionItem key={key} value={key}>
+                        <AccordionTrigger>{section.label}</AccordionTrigger>
+                    </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+
+            {/* Nested Accordion based on selected item */}
+            <AnimatePresence>
+              {showNested && (
+                <motion.div
+                  key="nested"
+                  initial={{ width: 0, opacity: 0 }}
+                  animate={{ width: "100%", opacity: 1 }}
+                  exit={{ width: 0, opacity: 0 }}
+                  transition={{ duration: 0.4, ease: "easeInOut" }}
+                  className="ml-4 overflow-hidden"
+                >
+                  <Accordion type="single" collapsible>
+                    {quizMenuContent[activeItem].items.map((item, index) => (
+                      <AccordionItem key={index} value={`nested-${index}`}>
+                        <AccordionTrigger>{item.title}</AccordionTrigger>
+                        <AccordionContent>{item.content}</AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
+                </motion.div>
+              )}             
+            </AnimatePresence>
+          </motion.div>
         </motion.section>
       );
 }
