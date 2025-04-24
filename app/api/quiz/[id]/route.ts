@@ -2,7 +2,8 @@ import { prisma } from "@/lib/prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import { AuthProvider } from "@/lib/auth/types";
 import { getServerAuthProvider } from "@/lib/auth/factory/getServerProvider";
-import { Quiz, UserQuiz } from "@prisma/client";
+import { UserQuiz } from "@prisma/client";
+import { QuizWithQuestionsAndAlternatives } from "@/lib/prismaTypes";
 
 export async function GET(
     _req: NextRequest,
@@ -19,7 +20,7 @@ export async function GET(
     const routeParams: { id: string } = await params;
     const quizId: string = routeParams.id;
 
-    const quiz: Quiz | null = await prisma.quiz.findUnique({
+    const quiz: QuizWithQuestionsAndAlternatives | null = await prisma.quiz.findUnique({
         where: { id: quizId },
         include: {
             questions: {
