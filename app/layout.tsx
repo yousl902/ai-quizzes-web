@@ -35,7 +35,7 @@ export default async function RootLayout({
           user={user}
         />
         {children}
-        <Footer title={siteConfig.footerText} />
+        <Footer title={siteConfig.title} />
       </body>
     </html>
   );
