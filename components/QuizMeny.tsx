@@ -1,4 +1,5 @@
 "use client"
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react"
 import {
@@ -36,7 +37,22 @@ export default function QuizMeny({ quizMenuContent } : QuizMenuProps) {
       transition={{ duration: 0.6, delay: 0.2 }}
       className="mb-20 w-full"
     >
-      <h2 className="text-xl font-semibold text-center mb-4">Quizmeny</h2>
+      <AnimatePresence mode="wait">
+        <motion.h2 
+          key={activeItem ?? "default"}
+          initial={{ opacity: 0, y: -1 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 10 }}
+          transition={{duration: 0.3 }}
+          className="text-xl font-semibold text-center mb-4"
+        >
+        {/* Header texten måste ändras efter för att matcha vilken meny som är öppen */}
+        {activeItem && quizMenuContent[activeItem] 
+          ? `${quizMenuContent[activeItem].label}, välj ett quiz`
+          : "Välj Quiz-kategori"}
+        </motion.h2>
+      </AnimatePresence>
+      
 
       <motion.div
         layout
