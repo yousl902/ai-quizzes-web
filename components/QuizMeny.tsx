@@ -9,6 +9,7 @@ import {
     AccordionTrigger,
   } from "@/components/ui/accordion";
 
+// The format of the input from the config file
 type QuizMenuContent = {
     [key: string]: {
         label: string;
@@ -97,10 +98,24 @@ export default function QuizMeny({ quizMenuContent } : QuizMenuProps) {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.05 }}
                   >
-                    <AccordionItem value={`nested-${index}`}>
-                      <AccordionTrigger>{item.title}</AccordionTrigger>
-                      <AccordionContent>{item.content}</AccordionContent>
-                    </AccordionItem>
+                    {/* Länken skall endast visas om link finns i siteConfig */}
+                    {item.link ? (
+                      <div
+                        key={index}
+                        className="border-b hover:bg-yellow-100 rounded-lg transition"
+                      >
+                        <Link href={item.link} className="py-2 text-left w-full block text-sm font-medium">
+                          {item.title}
+                        </Link>
+                      </div>
+                    ) : (
+                      <AccordionItem key={index} value={`nested-${index}`}>
+                        <AccordionTrigger>{item.title}</AccordionTrigger>
+                        <AccordionContent>
+                          {item.content ? item.content: "Error: inget content givet"}
+                        </AccordionContent>
+                      </AccordionItem>                     
+                    )}
                   </motion.div>
                 ))}
               </Accordion>

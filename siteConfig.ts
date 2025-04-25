@@ -37,7 +37,7 @@ const siteInfo = {
             items: [
                 {
                     title: "ORD, ordförståelse",
-                    link: "/app/info",
+                    link: "/info",
                 },
                 {
                     title: "LÄS, svensk läsförståelse",
@@ -45,7 +45,7 @@ const siteInfo = {
                 },
                 {
                     title: "MEK, meningskomplettering",
-                    content: "Tyvärr ej tillgänglig för tillfället"
+                    content: "Tyvärr ej tillgänglig för tillfället",
                 },
                 {
                     title: "ELF, Engelsk läsförståelse",
