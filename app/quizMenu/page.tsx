@@ -27,7 +27,7 @@ export default function QuizMenuPage() {
 
         <div>
           <QuizMeny
-            quizMenuContent={siteInfo.info.quizMenuContent}
+            quizMenuContent={siteInfo.quizMenuContent}
           />
         </div>
       </div>
