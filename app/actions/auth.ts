@@ -16,7 +16,7 @@ export async function login(formData: FormData) {
     const result = await auth.signIn(data.email, data.password);
   console.log("result", result);
   if (!result) {
-    redirect("/error");
+    redirect("/login/error");
   }
 
   revalidatePath("/", "layout");
@@ -43,7 +43,7 @@ export async function signup(formData: FormData) {
   console.log("error", null);
   console.log("Sign-up data:", data);
   if (!result) {
-    redirect("/error");
+    redirect("/signup/error");
   }
 
   const name = formData.get("name")
@@ -61,4 +61,26 @@ export async function signup(formData: FormData) {
 
   revalidatePath("/", "layout");
   redirect("/");
+}
+
+export async function resetPassword(formData: FormData) {
+  const email = formData.get("email") as string;
+  if (!email) {
+    return false;
+  }
+
+  const auth = getServerAuthProvider();
+  return await auth.resetPassword(email);
+}
+
+export async function updatePassword(formData: FormData) {
+  const password = formData.get("password") as string;
+  const code = formData.get("code") as string;
+  
+  if (!password || !code) {
+    return false;
+  }
+
+  const auth = getServerAuthProvider();
+  return await auth.updatePassword(code, password);
 }

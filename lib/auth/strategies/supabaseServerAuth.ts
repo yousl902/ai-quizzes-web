@@ -20,7 +20,7 @@ export const supabaseServerAuth: AuthProvider = {
         }
         if (!data.user) {
             // TODO: handle this
-            throw new Error('No user returned from Supabase.');
+            return null;
         }
 
         return {
@@ -57,6 +57,20 @@ export const supabaseServerAuth: AuthProvider = {
         };
     },
 
+    async resetPassword(email: string) {
+        const supabase = await createClient();
+        const { error } = await supabase.auth.resetPasswordForEmail(email, {
+            redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/reset-password`,
+        });
+        
+        if (error) {
+            console.error('Error sending reset password email:', error.message);
+            return false;
+        }
+        
+        return true;
+    },
+
     async signOut() {
         const supabase = await createClient();
         await supabase.auth.signOut();
@@ -82,5 +96,34 @@ export const supabaseServerAuth: AuthProvider = {
             telephone: data.user.user_metadata?.telephone,
             password: undefined,
         };
+    },
+
+    async updatePassword(code: string, password: string) {
+        const supabase = await createClient();
+        
+        // First verify the code and establish session
+        const { error: verifyError } = await supabase.auth.exchangeCodeForSession(code);
+        if (verifyError) {
+            console.error('Error verifying code:', verifyError.message);
+            return false;
+        }
+
+        // Then update the password
+        const { error } = await supabase.auth.updateUser({
+            password: password
+        });
+
+        if (error) {
+            console.error('Error updating password:', error.message);
+            return false;
+        }
+
+        return true;
+    },
+
+    async verifyCode(code: string) {
+        const supabase = await createClient();
+        const { error } = await supabase.auth.exchangeCodeForSession(code);
+        return error ? false : true;
     }
 };
