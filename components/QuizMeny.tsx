@@ -55,22 +55,29 @@ export default function QuizMeny({ quizMenuContent } : QuizMenuProps) {
         </div>
 
         {/* Nested Accordion */}
-        <AnimatePresence>
+        <AnimatePresence mode="wait">
           {nestedItems && (
             <motion.div
               key="nested"
-              initial={{ opacity: 0, width: 0 }}
-              animate={{ opacity: 1, width: "50%" }}
-              exit={{ opacity: 0, width: 0 }}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
               transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="overflow-hidden"
+              className="w-1/2 overflow-hidden"
             >
               <Accordion type="single" collapsible>
                 {nestedItems.map((item, index) => (
-                  <AccordionItem key={index} value={`nested-${index}`}>
-                    <AccordionTrigger>{item.title}</AccordionTrigger>
-                    <AccordionContent>{item.content}</AccordionContent>
-                  </AccordionItem>
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.05 }}
+                  >
+                    <AccordionItem value={`nested-${index}`}>
+                      <AccordionTrigger>{item.title}</AccordionTrigger>
+                      <AccordionContent>{item.content}</AccordionContent>
+                    </AccordionItem>
+                  </motion.div>
                 ))}
               </Accordion>
             </motion.div>
