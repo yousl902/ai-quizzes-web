@@ -36,19 +36,19 @@ const siteInfo = {
                 items: [
                     {
                         title: "ORD, ordförståelse",
-                        content: "Filler",
+                        link: "/app/info",
                     },
                     {
                         title: "LÄS, svensk läsförståelse",
-                        content: "Filler",
+                        content: "Tyvärr ej tillgänglig för tillfället",
                     },
                     {
                         title: "MEK, meningskomplettering",
-                        content: "Filler"
+                        content: "Tyvärr ej tillgänglig för tillfället"
                     },
                     {
                         title: "ELF, Engelsk läsförståelse",
-                        content: "Filler",
+                        content: "Tyvärr ej tillgänglig för tillfället",
                     },
                 ],
             },
@@ -57,19 +57,19 @@ const siteInfo = {
                 items: [
                     {
                         title: "XYZ, matematisk problemlösning",
-                        content: "Filler",
+                        content: "Tyvärr ej tillgänglig för tillfället",
                     },
                     {
                         title: "KVA, kvantitativa jämförelser",
-                        content: "Filler",
+                        content: "Tyvärr ej tillgänglig för tillfället",
                     },
                     {
                         title: "NOG, kvantitativa resonemang",
-                        content: "Filler",
+                        content: "Tyvärr ej tillgänglig för tillfället",
                     },
                     {
                         title: "DTK, diagram, tabeller och kartor",
-                        content: "Filler",
+                        content: "Tyvärr ej tillgänglig för tillfället",
                     },
                 ],
             },

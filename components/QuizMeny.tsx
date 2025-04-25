@@ -14,7 +14,8 @@ type QuizMenuContent = {
         label: string;
         items: {
             title: string;
-            content: string;
+            content?: string;
+            link?: string
         }[];   
     };
 };
