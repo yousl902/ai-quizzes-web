@@ -37,6 +37,17 @@ const siteInfo = {
         ]              
     },
     footerText: "© 2025 MindSwarm. All rights reserved.",
+    
+    chart: {
+        label: "Antal rätt",
+        data: [2, 4, 3, 14, 13, 8, 20, 8, 18], 
+        colorScale: [
+          { max: 4, color: "hsl(15, 100%, 55%)" },
+          { max: 14, color: "hsl(30, 100%, 50%)" },
+          { max: Infinity, color: "hsl(45, 100%, 50%)" },
+        ]
+      }
+      
   }
   
   export default siteInfo
