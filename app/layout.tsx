@@ -7,6 +7,7 @@ import "./globals.css";
 import { Toaster } from "sonner";
 import NavBar from "@/components/Navbar";
 import { getServerAuthProvider } from "@/lib/auth/factory/getServerProvider";
+import Footer from "@/components/Footer";
 
 // Dina valfria Google-fonts
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
@@ -34,11 +35,7 @@ export default async function RootLayout({
           user={user}
         />
         {children}
-        <footer className="bg-gray-100 text-center py-4">
-          <p className="text-sm text-gray-500">
-            &copy; {new Date().getFullYear()} {siteConfig.title}. All rights reserved.
-          </p>
-        </footer>
+        <Footer title={siteConfig.footerText} />
       </body>
     </html>
   );
