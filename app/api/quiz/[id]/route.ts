@@ -35,16 +35,5 @@ export async function GET(
         return NextResponse.json({ error: "Quiz not found" }, { status: 404 });
     }
 
-    const userQuizRelation: UserQuiz | null = await prisma.userQuiz.findFirst({
-        where: {
-            user_id: userId,
-            quiz_id: quizId,
-        },
-    });
-
-    if (!userQuizRelation) {
-        return NextResponse.json({ error: "No relation exists between the user and the quiz" }, { status: 404 });
-    }
-
     return NextResponse.json(quiz, { status: 200 });
 }
