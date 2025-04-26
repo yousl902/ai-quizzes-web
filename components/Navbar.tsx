@@ -1,30 +1,37 @@
 "use client";
+
 import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { LogIn, UserPlus } from "lucide-react";
+import { ProfileButton } from "@/components/ProfileButton";
 
-const NavBar = (
-  { title, logo, user }: { title: string; logo: string; user: any | null }
-) => {
+const NavBar = ({
+  title,
+  logo,
+  user,
+}: {
+  title: string;
+  logo?: string;
+  user: {
+    email: string;
+    first_name: string;
+    last_name: string;
+  };
+}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm bg-opacity-90 border-b shadow-sm">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-        <Link href="/" className="text-2xl font-bold">
-          {
-            logo && logo.trim() !== "" && (
-              <img
-                src={logo}
-                alt="Logo"
-                className="h-8 w-8 inline-block mr-2"
-              />
-            )}
+        <Link href="/" className="text-2xl font-bold flex items-center gap-2">
+          {logo && logo.trim() !== "" && (
+            <img src={logo} alt="Logo" className="h-8 w-8 inline-block" />
+          )}
           {title}
         </Link>
 
-        {/* Mobile menu button */}
+        {/* Mobilmeny-knapp */}
         <div className="md:hidden">
           <Button
             variant="ghost"
@@ -53,24 +60,24 @@ const NavBar = (
           </Button>
         </div>
 
-        {/* Desktop navigation */}
+        {/* Desktop */}
         <div className="hidden md:flex md:items-center md:space-x-4">
           {user ? (
-            <Link href="/profile">
-              <Button variant="outline">
-                <span className="text-sm">Profile</span>
-              </Button>
-            </Link>
+            <ProfileButton
+              firstName={user.first_name}
+              lastName={user.last_name}
+              email={user.email}
+            />
           ) : (
             <>
               <Link href="/login">
                 <Button variant="outline">
-                  <LogIn className="h-4 w-4" /> Login
+                  <LogIn className="h-4 w-4 mr-1" /> Login
                 </Button>
               </Link>
               <Link href="/signup">
                 <Button>
-                  <UserPlus className="h-4 w-4" /> Sign Up
+                  <UserPlus className="h-4 w-4 mr-1" /> Sign Up
                 </Button>
               </Link>
             </>
@@ -78,20 +85,30 @@ const NavBar = (
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobilmeny */}
       {isMenuOpen && (
         <div className="md:hidden bg-white border-b px-4 py-3 shadow-md">
           <div className="flex flex-col space-y-3">
-            <Link href="/login">
-              <Button variant="outline" className="w-full">
-                <LogIn className="mr-2 h-4 w-4" /> Login
-              </Button>
-            </Link>
-            <Link href="/signup">
-              <Button className="w-full">
-                <UserPlus className="mr-2 h-4 w-4" /> Sign Up
-              </Button>
-            </Link>
+            {user ? (
+              <ProfileButton
+                firstName={user.first_name}
+                lastName={user.last_name}
+                email={user.email}
+              />
+            ) : (
+              <>
+                <Link href="/login">
+                  <Button variant="outline" className="w-full">
+                    <LogIn className="mr-2 h-4 w-4" /> Login
+                  </Button>
+                </Link>
+                <Link href="/signup">
+                  <Button className="w-full">
+                    <UserPlus className="mr-2 h-4 w-4" /> Sign Up
+                  </Button>
+                </Link>
+              </>
+            )}
           </div>
         </div>
       )}
