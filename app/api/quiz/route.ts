@@ -12,15 +12,7 @@ export async function GET() {
         return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
     }
 
-    const quizzes: Quiz[] = await prisma.quiz.findMany({
-        where: {
-            user_quiz: {
-                some: {
-                    user_id: user.id,
-                },
-            },
-        },
-    });
+    const quizzes: Quiz[] = await prisma.quiz.findMany();
 
     if (quizzes.length === 0) {
         return NextResponse.json({ error: "No quiz available" }, { status: 200 });
