@@ -67,12 +67,12 @@ const NavBar = ({
             />
           ) : (
             <>
-              <Link href="/login">
+              <Link href="/auth/login">
                 <Button variant="outline">
                   <LogIn className="h-4 w-4 mr-1" /> Login
                 </Button>
               </Link>
-              <Link href="/signup">
+              <Link href="/auth/signup">
                 <Button>
                   <UserPlus className="h-4 w-4 mr-1" /> Sign Up
                 </Button>
@@ -94,12 +94,12 @@ const NavBar = ({
               />
             ) : (
               <>
-                <Link href="/login">
+                <Link href="/auth/login">
                   <Button variant="outline" className="w-full">
                     <LogIn className="mr-2 h-4 w-4" /> Login
                   </Button>
                 </Link>
-                <Link href="/signup">
+                <Link href="/auth/signup">
                   <Button className="w-full">
                     <UserPlus className="mr-2 h-4 w-4" /> Sign Up
                   </Button>
