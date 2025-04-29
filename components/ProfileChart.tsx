@@ -35,12 +35,12 @@ export function ProfileChart() {
   };
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-5">
       <h4 className="text-sm font-medium text-muted-foreground">
         Resultat från dina senaste 10 quiz
       </h4>
       <ChartContainer config={chartConfig}>
-        <BarChart data={chartData} margin={{ top: 20 }}>
+        <BarChart data={chartData} margin={{ top: 30 }}>
           <CartesianGrid vertical={false} />
           <XAxis dataKey="id" tick={false} axisLine={false} />
           <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
