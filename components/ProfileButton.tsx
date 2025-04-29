@@ -32,7 +32,7 @@ export function ProfileButton({
       <PopoverTrigger asChild>
         <Button variant="ghost" className="relative h-10 w-10 rounded-full">
           <Avatar className="h-10 w-10 border-2 border-orange-300 hover:border-orange-400 transition-colors">
-            <AvatarFallback className="bg-yellow-100 text-mindswarm-700">
+            <AvatarFallback className="bg-yellow-100">
               {getInitials(fullName)}
             </AvatarFallback>
           </Avatar>
@@ -41,7 +41,7 @@ export function ProfileButton({
       <PopoverContent className="w-80 backdrop-blur-sm bg-white/90 border border-orange-200">
         <div className="space-y-4">
           <div className="space-y-2">
-            <h4 className="font-medium leading-none text-mindswarm-700">
+            <h4 className="font-medium leading-none">
               {fullName}
             </h4>
             <p className="text-sm text-muted-foreground">{email}</p>
