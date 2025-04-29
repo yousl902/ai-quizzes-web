@@ -1,5 +1,4 @@
 "use client"
-
 import siteInfo from "@/siteConfig";
 import QuizMeny from "@/components/QuizMeny";
 import { motion } from "framer-motion";

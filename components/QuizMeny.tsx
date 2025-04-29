@@ -37,7 +37,7 @@ export default function QuizMeny({ quizMenuContent } : QuizMenuProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: 0.2 }}
-      className="mb-20 w-full"
+      className="mb-20 w-full px-4"
     >
       <AnimatePresence mode="wait">
         <motion.h2 
@@ -59,13 +59,13 @@ export default function QuizMeny({ quizMenuContent } : QuizMenuProps) {
       <motion.div
         layout
         transition={{ type: "spring", duration: 0.6 }}
-        className={`bg-white/80 backdrop-blur-lg rounded-2xl p-6 shadow-lg flex flex-row space-x-4`}
+        className="bg-white/80 backdrop-blur-lg rounded-2xl p-4 sm:p-6 shadow-lg flex flex-col lg:flex-row lg:space-x-4"
       >
         {/* Main Accordion */}
         <motion.div 
           layout 
-          className={`transition-all duration-500 
-                    ${nestedItems ? 'w-1/2' : 'w-full'}
+          className={`transition-all duration-500 mb-4 lg:mb-0
+                    ${nestedItems ? 'lg:w-1/2' : 'w-full'}
                      flex flex-col justify-start min-h-0`}
         >
           <Accordion
@@ -95,7 +95,7 @@ export default function QuizMeny({ quizMenuContent } : QuizMenuProps) {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 20 }}
               transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="w-1/2 pl-2 flex flex-col justify-start min-h-0"
+              className="lg:w-1/2 lg:pl-2 flex flex-col justify-start min-h-0"
             >
               <Accordion type="single" collapsible>
                 {nestedItems.map((item, index) => (
