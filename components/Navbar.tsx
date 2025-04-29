@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { LogIn, UserPlus } from "lucide-react";
 import { ProfileButton } from "@/components/ProfileButton";
+import { PrismaUser } from "@/lib/auth/types";
 
 const NavBar = ({
   title,
@@ -13,11 +14,7 @@ const NavBar = ({
 }: {
   title: string;
   logo?: string;
-  user: {
-    email: string;
-    first_name: string;
-    last_name: string;
-  };
+  user: PrismaUser | null;
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
