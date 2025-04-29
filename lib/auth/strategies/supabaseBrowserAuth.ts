@@ -1,5 +1,6 @@
 import createClient from '../../supabase/client';
 import { AuthProvider, AuthUser } from '../types';
+import { prisma } from "@/lib/prisma/client";
 
 export const supabaseClientAuth: AuthProvider = {
     async signIn(email: string, password: string) {
@@ -74,13 +75,32 @@ export const supabaseClientAuth: AuthProvider = {
             console.log('No user found in session');
             return null;
         }
+
+        const prismaUser = await prisma.user.findUnique({
+            where: {
+                id: data.user.id,
+            },
+        });
         return {
             id: data.user.id,
             email: data.user.email ?? '',
-            first_name: data.user.user_metadata?.first_name,
-            last_name: data.user.user_metadata?.last_name,
-            telephone: data.user.user_metadata?.telephone,
-            password: undefined,
+            first_name: prismaUser?.first_name ?? undefined,
+            last_name: prismaUser?.last_name ?? undefined,
         };
-    }
+    },
+
+    async updatePassword(code: string, password: string) {
+        console.error('updatePassword is not implemented for a Browser client');
+        return false;
+    },
+
+    async verifyCode(code: string) {
+        console.error('verifyCode is not implemented for a Browser client');
+        return false;
+    },
+
+    async resetPassword(email: string) {
+        console.error('resetPassword is not implemented for a Browser client');
+        return false;
+    },
 };
