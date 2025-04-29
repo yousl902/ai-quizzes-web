@@ -9,11 +9,10 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import { toast } from "sonner";
 import { UserPlus } from "lucide-react";
 import { signup } from "../actions/auth";
 
@@ -22,10 +21,23 @@ export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [termsAccepted, setTermsAccepted] = useState(false);
-  
+
+  const isEmailValid = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  const isPasswordValid = (password: string) => {
+    return (
+      password.length >= 8 &&
+      /[A-Z]/.test(password) &&
+      /[a-z]/.test(password) &&
+      /[0-9]/.test(password) &&
+      /[^A-Za-z0-9]/.test(password)
+    );
+  };
+
   return (
     <div className="page-container bg-gradient-to-br from-yellow-100 via-yellow-50 to-white">
-
       <main className="flex-1 flex flex-col h-screen items-center justify-center py-16 px-4">
         <Card className="max-w-md w-full shadow-xl">
           <CardHeader className="space-y-1">
@@ -51,7 +63,7 @@ export default function Signup() {
                   required
                 />
               </div>
-              
+
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
@@ -63,8 +75,13 @@ export default function Signup() {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                 />
+                {email.length > 0 && !isEmailValid(email) && (
+                  <p className="text-xs text-red-500">
+                    Please enter a valid email address.
+                  </p>
+                )}
               </div>
-              
+
               <div className="space-y-2">
                 <Label htmlFor="password">Password</Label>
                 <Input
@@ -76,11 +93,21 @@ export default function Signup() {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                 />
-                <p className="text-xs text-muted-foreground">
-                  Must be at least 8 characters
-                </p>
+                {password.length > 0 && (
+                  <p
+                    className={`text-xs ${
+                      isPasswordValid(password)
+                        ? "text-green-500"
+                        : "text-red-500"
+                    }`}
+                  >
+                    {isPasswordValid(password)
+                      ? "Strong password!"
+                      : "Use at least 8 characters, uppercase, lowercase, numbers, and symbols."}
+                  </p>
+                )}
               </div>
-              
+
               <div className="flex items-center space-x-2">
                 <Checkbox
                   id="terms"
@@ -90,21 +117,32 @@ export default function Signup() {
                 />
                 <Label htmlFor="terms" className="text-sm cursor-pointer">
                   I agree to the{" "}
-                  <Link href="/terms" className="text-mindswarm-600 hover:underline">
+                  <Link
+                    href="/terms"
+                    className="text-mindswarm-600 hover:underline"
+                  >
                     Terms of Service
-                  </Link>
-                  {" "}and{" "}
-                  <Link href="/privacy" className="text-mindswarm-600 hover:underline">
+                  </Link>{" "}
+                  and{" "}
+                  <Link
+                    href="/privacy"
+                    className="text-mindswarm-600 hover:underline"
+                  >
                     Privacy Policy
                   </Link>
                 </Label>
               </div>
 
               <Button
-              formAction={signup}
-                className="w-full bg-mindswarm-500 hover:bg-mindswarm-600 text-white bg-black"
+                formAction={signup}
+                className="w-full bg-black hover:bg-mindswarm-600 text-white transition-colors"
+                disabled={
+                  !isEmailValid(email) ||
+                  !isPasswordValid(password) ||
+                  !termsAccepted
+                }
               >
-                <UserPlus className="mr-2 h-4 w-4"/>
+                <UserPlus className="mr-2 h-4 w-4" />
                 Sign up
               </Button>
             </form>
@@ -113,7 +151,10 @@ export default function Signup() {
           <CardFooter className="flex flex-col space-y-4">
             <div className="text-center text-sm">
               Already have an account?{" "}
-              <Link href="/login" className="text-mindswarm-600 hover:underline">
+              <Link
+                href="/login"
+                className="text-mindswarm-600 hover:underline"
+              >
                 Log in
               </Link>
             </div>

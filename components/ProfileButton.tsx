@@ -1,4 +1,5 @@
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { logout } from "@/app/actions/auth";
 import { Button } from "@/components/ui/button";
 import {
   Popover,
@@ -10,7 +11,6 @@ import { ProfileChart } from "@/components/ProfileChart";
 interface ProfileButtonProps {
   email: string;
   firstName?: string;
-
   lastName?: string;
 }
 
@@ -52,12 +52,17 @@ export function ProfileButton({
             <ProfileChart />
           </div>
 
-          {/* Delete-knapp */}
-          <div className="border-t border-orange-200 pt-4">
-            <Button variant="destructive" className="w-full">
-              Delete Account
-            </Button>
-          </div>
+          {/* Log-out */}
+          <form>
+            <div className="flex justify-center">
+              <Button
+                formAction={logout}
+                className="mt-5 bg-black text-white hover:bg-gray-800 hover:scale-105 transition-colors duration-200"
+              >
+                Logga ut
+              </Button>
+            </div>
+          </form>
         </div>
       </PopoverContent>
     </Popover>
