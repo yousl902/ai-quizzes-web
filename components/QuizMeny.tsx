@@ -59,12 +59,15 @@ export default function QuizMeny({ quizMenuContent } : QuizMenuProps) {
       <motion.div
         layout
         transition={{ type: "spring", duration: 0.6 }}
-        className={`bg-white/80 backdrop-blur-lg rounded-2xl p-6 shadow-lg flex ${
-          nestedItems ? "flex-row space-x-4" : "flex-col"
-        }`}
+        className={`bg-white/80 backdrop-blur-lg rounded-2xl p-6 shadow-lg flex flex-row space-x-4`}
       >
         {/* Main Accordion */}
-        <motion.div layout className={nestedItems ? 'w-1/2' : 'w-full'}>
+        <motion.div 
+          layout 
+          className={`transition-all duration-500 
+                    ${nestedItems ? 'w-1/2' : 'w-full'}
+                     flex flex-col justify-start min-h-0`}
+        >
           <Accordion
             type="single"
             collapsible
@@ -72,7 +75,11 @@ export default function QuizMeny({ quizMenuContent } : QuizMenuProps) {
           >
             {Object.entries(quizMenuContent).map(([key, section]) => (
               <AccordionItem key={key} value={key}>
-                <AccordionTrigger>{section.label}</AccordionTrigger>
+                <AccordionTrigger
+                  className="py-2 min-h-[unset] text-left text-sm font-medium truncate"
+                >
+                  {section.label}
+                </AccordionTrigger>
               </AccordionItem>
             ))}
           </Accordion>
@@ -88,14 +95,15 @@ export default function QuizMeny({ quizMenuContent } : QuizMenuProps) {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 20 }}
               transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="w-1/2"
+              className="w-1/2 pl-2 flex flex-col justify-start min-h-0"
             >
               <Accordion type="single" collapsible>
                 {nestedItems.map((item, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 20 }}
                     transition={{ delay: index * 0.05 }}
                   >
                     {/* Länken skall endast visas om link finns i siteConfig */}
@@ -104,13 +112,19 @@ export default function QuizMeny({ quizMenuContent } : QuizMenuProps) {
                         key={index}
                         className="border-b hover:bg-yellow-100 rounded-lg transition"
                       >
-                        <Link href={item.link} className="py-2 text-left w-full block text-sm font-medium">
+                        <Link 
+                          href={item.link} 
+                          className="py-2 px-1 text-left w-full block text-sm font-medium truncate">
                           {item.title}
                         </Link>
                       </div>
                     ) : (
                       <AccordionItem key={index} value={`nested-${index}`}>
-                        <AccordionTrigger>{item.title}</AccordionTrigger>
+                        <AccordionTrigger
+                          className="py-2 min-h-[unset] text-left text-sm font-medium truncate"
+                        >
+                          {item.title}
+                        </AccordionTrigger>
                         <AccordionContent>
                           {item.content ? item.content: "Error: inget content givet"}
                         </AccordionContent>
