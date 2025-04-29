@@ -26,7 +26,7 @@ type QuizMenuProps = {
   quizMenuContent: QuizMenuContent;
 };
 
-export default function QuizMeny({ quizMenuContent }: QuizMenuProps) {
+export default function QuizMenu({ quizMenuContent }: QuizMenuProps) {
   const [activeItem, setActiveItem] = useState<string | null>(null);
 
   const nestedItems = activeItem ? quizMenuContent[activeItem]?.items : null;

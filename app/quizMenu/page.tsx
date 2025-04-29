@@ -1,6 +1,6 @@
 "use client";
 import siteInfo from "@/siteConfig";
-import QuizMeny from "@/components/QuizMeny";
+import QuizMenu from "@/components/QuizMenu";
 import { motion } from "framer-motion";
 
 export default function QuizMenuPage() {
@@ -25,7 +25,7 @@ export default function QuizMenuPage() {
         </motion.h1>
 
         <div>
-          <QuizMeny quizMenuContent={siteInfo.quizMenuContent} />
+          <QuizMenu quizMenuContent={siteInfo.quizMenuContent} />
         </div>
       </div>
     </div>
