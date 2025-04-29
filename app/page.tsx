@@ -15,17 +15,18 @@ export default function Home() {
             powered by Mindswarm
           </p>
 
-          {/* "Start Now"-cirkelknapp */}
           <Link
             href="/start-now"
-            className="mb-16 bg-yellow-500 text-white rounded-full flex items-center justify-center w-40 h-40 md:w-56 md:h-56
-                       hover:scale-110 transition-transform duration-300"
+            className="mb-16 bg-yellow-500 text-orange-50 rounded-full flex items-center justify-center w-40 h-40 md:w-56 md:h-56
+             hover:scale-110 transition-transform duration-300 border-4 border-orange-200 hover:border-orange-50 shadow-md"
           >
             <div className="flex flex-col items-center justify-center">
               <CirclePlay className="h-16 w-16 md:h-24 md:w-24" />
-              <span className="font-semibold text-lg md:text-xl mt-2">
-                Start Now
-              </span>
+              {siteInfo.startButton.showText && (
+                <span className="font-semibold text-lg md:text-xl mt-2">
+                  {siteInfo.startButton.text}
+                </span>
+              )}
             </div>
           </Link>
 
@@ -38,7 +39,8 @@ export default function Home() {
             >
               <h3 className="text-xl font-semibold mb-2">Kontakt</h3>
               <p className="text-gray-600">
-                Tveka inte att höra av dig till oss om du har frågor eller funderingar.
+                Tveka inte att höra av dig till oss om du har frågor eller
+                funderingar.
               </p>
             </Link>
 
@@ -50,7 +52,8 @@ export default function Home() {
             >
               <h3 className="text-xl font-semibold mb-2">FAQ</h3>
               <p className="text-gray-600">
-                Kolla in vår FAQ-sektion för svar på vanliga frågor och funderingar.
+                Kolla in vår FAQ-sektion för svar på vanliga frågor och
+                funderingar.
               </p>
             </Link>
 
@@ -62,7 +65,8 @@ export default function Home() {
             >
               <h3 className="text-xl font-semibold mb-2">Om oss</h3>
               <p className="text-gray-600">
-                Vi är ett team av passionerade individer som gör lärande roligt och effektivt.
+                Vi är ett team av passionerade individer som gör lärande roligt
+                och effektivt.
               </p>
             </Link>
           </div>
