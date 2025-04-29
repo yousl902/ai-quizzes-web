@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export default function QuizMenuPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-yellow-100 to-yellow-200 pt-16 pb-12 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-yellow-100 to-yellow-200 pt-16 pb-12 relative">
       {/* Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-24 -left-24 w-96 h-96 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob" />
@@ -19,7 +19,7 @@ export default function QuizMenuPage() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl font-bold mb-16 text-center bg-clip-text text-transparent 
+          className="text-4xl font-bold leading-relaxed mb-16 text-center bg-clip-text text-transparent 
                      bg-gradient-to-r from-amber-600 to-yellow-600"
         >
           Quiz meny
