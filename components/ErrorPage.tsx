@@ -28,7 +28,7 @@ export default function ErrorPage({
           )}
         </div>
         <div className="space-y-4">
-          <h1 className="text-4xl font-bold text-mindswarm-700">{title}</h1>
+          <h1 className="text-4xl font-bold">{title}</h1>
           <p className="text-lg text-gray-600">{description}</p>
         </div>
         <div className="space-x-4">
