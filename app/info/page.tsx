@@ -1,3 +1,5 @@
+"use client";
+
 import { ContactSection } from "@/components/InfoPage/ContactSection";
 import { FAQSection } from "@/components/InfoPage/FAQSection";
 import { AboutSection } from "@/components/InfoPage/AboutSection";
