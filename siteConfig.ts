@@ -5,6 +5,10 @@ const siteInfo = {
         src: "https://media.giphy.com/media/1NQ7m0gqsah1XS4vG1/giphy.gif",
         alt: "Animated bee",
     },
+    startButton: {
+        text: "", // Kan lämnas som "" om man vill ha en tom knapp
+        showText: false
+      },
     colors: {},
     info: {
         contact: {
@@ -24,7 +28,7 @@ const siteInfo = {
                 answer: "Tjänsten är kostnadsfri."
                 },
                 {
-                question: "Har ni olika delarfrån Högskoleprovet?",
+                question: "Har ni olika delar från Högskoleprovet?",
                 answer: "Ja, vi har quizer från alla delar av Högskoleprovet."
                 }
           ]
