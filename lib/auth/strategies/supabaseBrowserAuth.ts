@@ -1,6 +1,5 @@
 import createClient from '../../supabase/client';
 import { AuthProvider, AuthUser } from '../types';
-import { prisma } from "@/lib/prisma/client";
 
 export const supabaseClientAuth: AuthProvider = {
     async signIn(email: string, password: string) {
@@ -76,16 +75,9 @@ export const supabaseClientAuth: AuthProvider = {
             return null;
         }
 
-        const prismaUser = await prisma.user.findUnique({
-            where: {
-                id: data.user.id,
-            },
-        });
         return {
             id: data.user.id,
             email: data.user.email ?? '',
-            first_name: prismaUser?.first_name ?? undefined,
-            last_name: prismaUser?.last_name ?? undefined,
         };
     },
 
