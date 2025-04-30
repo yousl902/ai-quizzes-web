@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
 import { Quiz, Alternative } from "@prisma/client";
 import { QuizWithQuestionsAndAlternatives } from "@/lib/prismaTypes";
+import { useRouter } from "next/navigation";
 
 export function useQuizData() {
   const [quizzes, setQuizzes] = useState<Quiz[] | null>(null);
   const [quiz, setQuiz] = useState<QuizWithQuestionsAndAlternatives | null>(
     null
   );
+  const [numberCorrectAnswers, setNumberCorrectAnswers] = useState(0);
   const [pickedAnswer, setPickedAnswer] = useState<Alternative | null>(null);
   const [questionNumber, setQuestionNumber] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,16 +50,42 @@ export function useQuizData() {
     setPickedAnswer(answer);
   };
 
+  const saveResults = async () => {
+    if (!quiz) return;
+    const score = {
+      numberCorrectAnswers,
+    };
+    try {
+      const res = await fetch(`/api/quiz/${quiz.id}/result`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(score),
+      });
+      if (!res.ok) {
+        throw new Error("Failed to save results");
+      }
+    } catch (error) {
+      console.error("Error saving results:", error);
+    }
+  };
+
   const handleNext = () => {
-    // TODO: save answer to database when user
+    if (!pickedAnswer) {
+      alert("Please select an answer before proceeding.");
+      return;
+    }
+    if (pickedAnswer.is_correct) {
+      setNumberCorrectAnswers((prev) => prev + 1);
+    }
     // clicks next before setting pickedAnswer to null
     setPickedAnswer(null);
     if (questionNumber >= totalQuestionNumber - 1) {
-      setQuestionNumber(0);
-      return;
+      saveResults();
+      //router.push("/quiz/result");
+      router.push("/");
     }
-    // TODO: save answer to database when user clicks next and there is no more questions
-    // next line is to be removed when saving to database
     setQuestionNumber((prev) => prev + 1);
   };
 
