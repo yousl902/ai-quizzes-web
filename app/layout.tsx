@@ -5,7 +5,7 @@ import "./globals.css";
 
 // 1. Importera Toaster från sonner
 import { Toaster } from "sonner";
-import NavBar from "@/components/Navbar";
+import NavBar from "@/components/navbar/Navbar";
 import { getServerAuthProvider } from "@/lib/auth/factory/getServerProvider";
 import Footer from "@/components/Footer";
 

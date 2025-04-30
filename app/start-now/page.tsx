@@ -1,4 +1,4 @@
-import QuizCard from "@/components/QuizCard";
+import QuizCard from "@/components/quizPage/QuizCard";
 
 export default function StartNow() {
   return (
