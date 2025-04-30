@@ -1,10 +1,10 @@
-import ResetPasswordForm from "@/components/ResetPasswordForm";
+import ForgotPasswordForm from "@/components/forms/ForgatPasswordForm";
 
-export default function ResetPassword() {
+export default function ForgotPassword() {
   return (
     <div className="page-container bg-gradient-to-br from-yellow-100 via-yellow-50 to-white">
       <main className="flex-1 flex flex-col items-center h-screen justify-center py-16 px-4">
-        <ResetPasswordForm />
+        <ForgotPasswordForm />
       </main>
     </div>
   );
