@@ -13,7 +13,7 @@ export async function login(formData: FormData) {
   const auth = getServerAuthProvider();
   const result = await auth.signIn(data.email, data.password);
   if (!result) {
-    redirect("/auth/login/error");
+    redirect("/login/error");
   }
 
   revalidatePath("/", "layout");
@@ -37,7 +37,7 @@ export async function signup(formData: FormData) {
 
   const result = await auth.signUp(data.email, data.password);
   if (!result) {
-    redirect("/auth/signup/error");
+    redirect("/signup/error");
   }
 
   const name = formData.get("name");
