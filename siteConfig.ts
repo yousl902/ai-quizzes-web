@@ -88,7 +88,6 @@ const siteInfo = {
     
     chart: {
         label: "Antal rätt",
-        data: [2, 4, 3, 14, 13, 8, 20, 8, 18], 
         colorScale: [
           { max: 4, color: "hsl(15, 100%, 55%)" },
           { max: 14, color: "hsl(30, 100%, 50%)" },
