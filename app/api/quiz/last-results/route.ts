@@ -1,9 +1,9 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { AuthProvider } from "@/lib/auth/types";
 import { getServerAuthProvider } from "@/lib/auth/factory/getServerProvider";
 import { prisma } from "@/lib/prisma/client";
 
-export async function GET() {
+export async function GET(req: NextRequest) {
   const authProvider: AuthProvider = getServerAuthProvider();
   const user = await authProvider.getCurrentUser();
 
@@ -12,8 +12,13 @@ export async function GET() {
   }
 
   const userId: string = user.id;
-  // get the number of how many quizzes we want to fetch from json
-  
+  let quizzesToFetch = 10;
+  const url = new URL(req.url);
+  const queryParams = url.searchParams;
+  const quizzesParam = queryParams.get("numberOfQuizzes");
+  if (quizzesParam) {
+    quizzesToFetch = parseInt(quizzesParam, 10) || quizzesToFetch;
+  }
 
   const scores = await prisma.userQuiz.findMany({
     where: {
@@ -22,11 +27,12 @@ export async function GET() {
     orderBy: {
       id: "desc",
     },
-    take: 10,
+    take: quizzesToFetch,
     select: {
       score: true,
     },
   });
+  console.log("scores", scores);
 
   if (!scores) {
     return NextResponse.json({ error: "Quiz not found" }, { status: 404 });
