@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 import { Alternative } from "@prisma/client";
 import { QuizWithQuestionsAndAlternatives } from "@/lib/prismaTypes";
-import { useRouter } from "next/navigation";
-import { useParams } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 
 export function useQuizData() {
   const { id: quizId } = useParams(); // getting the id from the URL
-  const [quiz, setQuiz] = useState<QuizWithQuestionsAndAlternatives | null>(
-    null
-  );
+  const [quiz, setQuiz] = useState<QuizWithQuestionsAndAlternatives | null>(null);
   const [numberCorrectAnswers, setNumberCorrectAnswers] = useState(0);
+  const [pickedAnswers, setPickedAnswers] = useState<Alternative[]>([]);
   const [pickedAnswer, setPickedAnswer] = useState<Alternative | null>(null);
   const [questionNumber, setQuestionNumber] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
@@ -27,9 +25,12 @@ export function useQuizData() {
       }
     };
     fetchQuiz();
-  }, []);
+  }, [quizId]);
 
   const handleAnswerSelect = (answer: Alternative) => {
+    const updatedAnswers = [...pickedAnswers];
+    updatedAnswers[questionNumber] = answer;
+    setPickedAnswers(updatedAnswers);
     setPickedAnswer(answer);
   };
 
@@ -59,17 +60,29 @@ export function useQuizData() {
       alert("Please select an answer before proceeding.");
       return;
     }
+
     if (pickedAnswer.is_correct) {
       setNumberCorrectAnswers((prev) => prev + 1);
     }
-    // clicks next before setting pickedAnswer to null
-    setPickedAnswer(null);
-    if (questionNumber >= totalQuestionNumber - 1) {
+
+    const nextQuestionNumber = questionNumber + 1;
+
+    if (nextQuestionNumber >= totalQuestionNumber) {
       saveResults();
-      //router.push("/quiz/result");
       router.push("/");
+      return;
     }
-    setQuestionNumber((prev) => prev + 1);
+
+    setQuestionNumber(nextQuestionNumber);
+    setPickedAnswer(pickedAnswers[nextQuestionNumber] || null);
+  };
+
+  const handlePrev = () => {
+    if (questionNumber > 0) {
+      const prevQuestionNumber = questionNumber - 1;
+      setQuestionNumber(prevQuestionNumber);
+      setPickedAnswer(pickedAnswers[prevQuestionNumber] || null);
+    }
   };
 
   const currentQuestion = quiz?.questions?.[questionNumber];
@@ -83,7 +96,8 @@ export function useQuizData() {
     pickedAnswer,
     handleAnswerSelect,
     handleNext,
-    quizCategory: quizCategory,
+    handlePrev,
+    quizCategory,
     isLoading,
   };
 }
