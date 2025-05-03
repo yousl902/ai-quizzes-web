@@ -64,6 +64,7 @@ export default function QuizCard() {
         <div className="space-y-3">
           {currentQuestion?.alternatives?.map((alt: Alternative) => (
             <AnswerOption
+              key={alt.id}
               answer={alt}
               isSelected={pickedAnswer?.id === alt.id}
               onClick={() => handleAnswerSelect(alt)}
