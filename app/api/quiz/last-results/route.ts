@@ -29,14 +29,40 @@ export async function GET(req: NextRequest) {
     },
     take: quizzesToFetch,
     select: {
+      quiz_id: true,
       score: true,
     },
   });
-  console.log("scores", scores);
 
   if (!scores) {
     return NextResponse.json({ error: "Quiz not found" }, { status: 404 });
   }
 
-  return NextResponse.json(scores, { status: 200 });
+  const quizIds = scores.map((score) => score.quiz_id);
+  const quizzes = await prisma.quiz.findMany({
+    where: {
+      id: {
+        in: quizIds,
+      },
+    },
+    select: {
+      id: true,
+      title: true,
+    },
+  });
+
+    if (!quizzes) {
+        return NextResponse.json({ error: "Quizzes not found" }, { status: 404 });
+    }
+
+  // map quiz title to scores
+  const scoresWithTitles = scores.map((score) => {
+    const quiz = quizzes.find((quiz) => quiz.id === score.quiz_id);
+    return {
+      ...score,
+      title: quiz ? quiz.title : "Unknown Quiz",
+    };
+  });
+
+  return NextResponse.json(scoresWithTitles, { status: 200 });
 }
