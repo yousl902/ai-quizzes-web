@@ -3,13 +3,15 @@
 import {
   ChartContainer,
   ChartTooltip,
-  ChartTooltipContent,
 } from "@/components/ui/chart";
-import { BarChart, Bar, CartesianGrid, XAxis, LabelList, Cell } from "recharts";
+import { BarChart, Bar, CartesianGrid, XAxis, LabelList, Cell, TooltipProps } from "recharts";
+import { ValueType, NameType } from "recharts/types/component/DefaultTooltipContent";
 
 import siteInfo from "@/siteConfig";
 
-export function ProfileChart({ scores }: { scores: { score: number }[] }) {
+type QuizResult = { quizId: string; score: number; title: string };
+
+export function ProfileChart({ quizResults }: { quizResults: QuizResult[] }) {
   const { chart } = siteInfo;
   const chartLabel = chart.label;
   const colorScale = chart.colorScale;
@@ -28,27 +30,48 @@ export function ProfileChart({ scores }: { scores: { score: number }[] }) {
     return "#ccc";
   };
 
+  // Add index for display
+  const data = quizResults.map((item, index) => ({
+    ...item,
+    index,
+  }));
+
+  // Custom tooltip
+  const CustomTooltip = ({
+    active,
+    payload,
+  }: TooltipProps<ValueType, NameType>) => {
+    if (active && payload && payload.length) {
+      const { title, score } = payload[0].payload;
+      return (
+        <div className="rounded-md border bg-background px-3 py-2 shadow-sm">
+          <div className="text-sm font-medium text-foreground">{title}</div>
+          <div className="text-xs text-muted-foreground">Poäng: {score}</div>
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
     <div className="space-y-5">
       <h4 className="text-sm font-medium text-muted-foreground">
         Resultat från dina senaste 10 quiz
       </h4>
       <ChartContainer config={chartConfig}>
-        <BarChart data={scores} margin={{ top: 30 }}>
+        <BarChart data={data} margin={{ top: 30 }}>
           <CartesianGrid vertical={false} />
           <XAxis
             dataKey="index"
-            tick={({ x, y, payload }) => {
-              return (
-                <text x={x} y={y + 20} textAnchor="middle">
-                  {payload.index + 1}
-                </text>
-              );
-            }}
+            tick={({ x, y, payload }) => (
+              <text x={x} y={y + 20} textAnchor="middle">
+                {payload.value + 1}
+              </text>
+            )}
           />
-          <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
+          <ChartTooltip cursor={false} content={<CustomTooltip />} />
           <Bar dataKey="score" radius={8}>
-            {scores.map((entry, index) => (
+            {data.map((entry, index) => (
               <Cell key={index} fill={getColorForValue(entry.score)} />
             ))}
             <LabelList
