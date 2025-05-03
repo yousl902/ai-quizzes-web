@@ -6,7 +6,6 @@ import { useRouter, useParams } from "next/navigation";
 export function useQuizData() {
   const { id: quizId } = useParams(); // getting the id from the URL
   const [quiz, setQuiz] = useState<QuizWithQuestionsAndAlternatives | null>(null);
-  const [numberCorrectAnswers, setNumberCorrectAnswers] = useState(0);
   const [pickedAnswers, setPickedAnswers] = useState<Alternative[]>([]);
   const [pickedAnswer, setPickedAnswer] = useState<Alternative | null>(null);
   const [questionNumber, setQuestionNumber] = useState(0);
@@ -36,8 +35,13 @@ export function useQuizData() {
 
   const saveResults = async () => {
     if (!quiz) return;
+    const correctCount = pickedAnswers.reduce((count, answer) => {
+      return answer?.is_correct ? count + 1 : count;
+    }, 0);
+    console.log("Correct answers:", correctCount);
+    console.log("Picked answers:", pickedAnswers);
     const score = {
-      numberCorrectAnswers,
+      numberCorrectAnswers: correctCount,
     };
     try {
       const res = await fetch(`/api/quiz/${quiz.id}/result`, {
@@ -60,19 +64,15 @@ export function useQuizData() {
       alert("Please select an answer before proceeding.");
       return;
     }
-
-    if (pickedAnswer.is_correct) {
-      setNumberCorrectAnswers((prev) => prev + 1);
-    }
-
+  
     const nextQuestionNumber = questionNumber + 1;
-
+  
     if (nextQuestionNumber >= totalQuestionNumber) {
       saveResults();
       router.push("/");
       return;
     }
-
+  
     setQuestionNumber(nextQuestionNumber);
     setPickedAnswer(pickedAnswers[nextQuestionNumber] || null);
   };
