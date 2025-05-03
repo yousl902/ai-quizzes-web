@@ -38,8 +38,6 @@ export function useQuizData() {
     const correctCount = pickedAnswers.reduce((count, answer) => {
       return answer?.is_correct ? count + 1 : count;
     }, 0);
-    console.log("Correct answers:", correctCount);
-    console.log("Picked answers:", pickedAnswers);
     const score = {
       numberCorrectAnswers: correctCount,
     };
