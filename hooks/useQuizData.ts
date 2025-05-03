@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { Quiz, Alternative } from "@prisma/client";
+import { Alternative } from "@prisma/client";
 import { QuizWithQuestionsAndAlternatives } from "@/lib/prismaTypes";
 import { useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 
 export function useQuizData() {
-  const [quizzes, setQuizzes] = useState<Quiz[] | null>(null);
+  const { id: quizId } = useParams(); // getting the id from the URL
   const [quiz, setQuiz] = useState<QuizWithQuestionsAndAlternatives | null>(
     null
   );
@@ -15,26 +16,8 @@ export function useQuizData() {
   const router = useRouter();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch("/api/quiz");
-        const data = await res.json();
-        setQuizzes(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    // TODO: quizzes[1] is the quiz we want to fetch for testing only, change it later
-    if (!quizzes || !quizzes[1]) return;
     const fetchQuiz = async () => {
       try {
-        // TODO: dynamically get quizId from quizzes, this is only for testing
-        const quizId = quizzes[1].id;
         const res = await fetch(`/api/quiz/${quizId}`);
         const data = await res.json();
         setQuiz(data);
@@ -44,7 +27,7 @@ export function useQuizData() {
       }
     };
     fetchQuiz();
-  }, [quizzes]);
+  }, []);
 
   const handleAnswerSelect = (answer: Alternative) => {
     setPickedAnswer(answer);
