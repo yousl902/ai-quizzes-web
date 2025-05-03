@@ -16,7 +16,8 @@ export default function Home() {
           </p>
 
           <Link
-            href="/start-now"
+            // href="/start-now"
+            href="/quizMenu"
             className="mb-16 bg-yellow-500 text-orange-50 rounded-full flex items-center justify-center w-40 h-40 md:w-56 md:h-56
              hover:scale-110 transition-transform duration-300 border-4 border-orange-200 hover:border-orange-50 shadow-md"
           >
