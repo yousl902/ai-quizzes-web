@@ -12,6 +12,7 @@ import StatusBar from "@/components/quizPage/ProgressBar";
 import { Alternative } from "@prisma/client";
 import { useQuizData } from "@/hooks/useQuizData";
 
+// quiz id props
 export default function QuizCard() {
   const {
     currentQuestion,
@@ -77,7 +78,9 @@ export default function QuizCard() {
               : "bg-yellow-200 text-black"
           }`}
         >
-          {questionNumber === totalQuestionNumber-1 ? "Finish" : "Next Question"}
+          {questionNumber === totalQuestionNumber - 1
+            ? "Finish"
+            : "Next Question"}
         </Button>
       </CardContent>
     </Card>
