@@ -21,6 +21,7 @@ export default function QuizCard() {
     pickedAnswer,
     handleAnswerSelect,
     handleNext,
+    handlePrev,
     quizCategory,
     isLoading,
   } = useQuizData();
@@ -69,19 +70,29 @@ export default function QuizCard() {
             />
           ))}
         </div>
-        <Button
-          disabled={!pickedAnswer}
-          onClick={handleNext}
-          className={`w-full py-1.5 font-bold transition ${
-            pickedAnswer
-              ? "bg-yellow-300 text-black hover:bg-amber-400"
-              : "bg-yellow-200 text-black"
-          }`}
-        >
-          {questionNumber === totalQuestionNumber - 1
-            ? "Finish"
-            : "Next Question"}
-        </Button>
+        <div className="flex justify-between py-1.5">
+          <Button
+            variant="outline"
+            onClick={handlePrev}
+            disabled={questionNumber === 0}
+            className="w-1/2 mr-0.5"
+          >
+            Previous
+          </Button>
+          <Button
+            disabled={!pickedAnswer}
+            onClick={handleNext}
+            className={`w-1/2 ml-0.5 font-bold transition ${
+              pickedAnswer
+                ? "bg-yellow-300 text-black hover:bg-amber-400"
+                : "bg-yellow-200 text-black"
+            }`}
+          >
+            {questionNumber === totalQuestionNumber - 1
+              ? "Finish"
+              : "Next Question"}
+          </Button>
+        </div>
       </CardContent>
     </Card>
   );
