@@ -60,7 +60,9 @@ export async function updateSession(request: NextRequest) {
       request.nextUrl.pathname === '/login' ||
       request.nextUrl.pathname === '/signup' ||
       request.nextUrl.pathname === '/forgot-password' ||
-      request.nextUrl.pathname === '/reset-password'
+      request.nextUrl.pathname === '/reset-password' ||
+      // this will be handled by a secret key in the env variables, which should match the one in the quiz-upload repository
+      request.nextUrl.pathname === '/api/quiz'
     )
   ) {
     const url = request.nextUrl.clone();
