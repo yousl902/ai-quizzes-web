@@ -14,13 +14,14 @@ export async function GET() {
 
     const quizzes: Quiz[] = await prisma.quiz.findMany();
 
+    if (!quizzes) {
+        return NextResponse.json({ error: "No quiz available" }, { status: 404 });
+    }
+
     if (quizzes.length === 0) {
         return NextResponse.json({ error: "No quiz available" }, { status: 200 });
     }
 
-    if (!quizzes) {
-        return NextResponse.json({ error: "No quiz available" }, { status: 404 });
-    }
     return NextResponse.json(quizzes, { status: 200 });
 }
 
