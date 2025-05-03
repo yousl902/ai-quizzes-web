@@ -30,7 +30,7 @@ export function ProfileButton({
       .join("")
       .toUpperCase();
 
-  const [quizResults, setQuizResults] = useState<{ score: number }[]>([]);
+  const [quizResults, setQuizResults] = useState<{ quizId: string; score: number; title: string }[]>([]);
 
   useEffect(() => {
     const lastTenResults = async () => {
@@ -69,7 +69,7 @@ export function ProfileButton({
 
           {/* Diagram */}
           <div className="pt-2">
-            <ProfileChart scores={quizResults} />
+            <ProfileChart quizResults={quizResults} />
           </div>
 
           {/* Log-out */}
