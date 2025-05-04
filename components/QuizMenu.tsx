@@ -116,7 +116,7 @@ export default function QuizMenu() {
                     className="border-b hover:bg-yellow-100 rounded-lg transition"
                   >
                     <Link
-                      href={`/${quiz.id}`}
+                      href={`/quiz/${quiz.id}`}
                       className="py-2 px-1 text-left w-full block text-sm font-medium truncate"
                     >
                       {quiz.title}
