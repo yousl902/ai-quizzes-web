@@ -8,27 +8,27 @@ describe('account creation', () => {
         }
 
         const sameEmailUser = {
-            email: "test.user.runberg@gmail.com",
+            email: "testuser.runberg@gmail.com",
             password: "Password1234",
             fullName: "test user"
         }
 
         const shortPassUser = {
-            email: "test.user.runberg.two@gmail.com",
+            email: "testuser.runbergtwo@gmail.com",
             password: "Pas3",
             fullName: "test user"
         }
 
-        const noNameUser = {
-            email: "test.user.runberg.three@gmail.com",
+        const badNameUser = {
+            email: "testuser.runbergthree@gmail.com",
             password: "Password123",
             fullName: "testuser"
         }
 
-        const noEmailUser = {
-            email: "test@test.test",
+        const badEmailUser = {
+            email: "test.test@test.test",
             password: "Password123",
-            fullName: "testuser"
+            fullName: "test user"
         }
     })
 
@@ -55,22 +55,30 @@ describe('account creation', () => {
 
     it('allows you to enter your details', () => {
         cy.get(`[id=name]`).type("test testerson")
-        cy.get(`[id=email]`).type("test.test.runberg@gmail.com")
+        cy.get(`[id=email]`).type("testnew.runberg@gmail.com")
         cy.get(`[id=password]`).type("Password123")
         cy.get(`[id=terms]`).click()
-        // cy.contains("Sign up").click()
-        // cy.url().should('equal', "http://localhost:3000")
+        cy.contains("Sign up").click()
+        cy.url().should('equal', "http://localhost:3000/")
     })
 
-    // it('should not allow duplicate users', () => {
-    //     cy.get(`[id=name]`).type("test testersdotter")
-    //     cy.get(`[id=email]`).type("test.test.runberg@gmail.com")
-    //     cy.get(`[id=password]`).type("Password321")
-    //     cy.get(`[id=terms]`).click()
-    //     cy.contains("Sign up").click()
-    //     cy.url().should('equal', "http://localhost:3000/error")
+    it('should not allow duplicate users', () => {
+        cy.get(`[id=name]`).type("test testersdotter")
+        cy.get(`[id=email]`).type("testersdottir.runberg@gmail.com")
+        cy.get(`[id=password]`).type("Password321")
+        cy.get(`[id=terms]`).click()
+        cy.contains("Sign up").click()
 
-    // })
+        cy.visit("http://localhost:3000/signup")
+        cy.get(`[id=name]`).type("test testersdotter")
+        cy.get(`[id=email]`).type("testersdottir.runberg@gmail.com")
+        cy.get(`[id=password]`).type("Password321")
+        cy.get(`[id=terms]`).click()
+        cy.contains("Sign up").click()
+
+        cy.url().should('equal', "http://localhost:3000/signup/error")
+
+    })
 
 })
 
