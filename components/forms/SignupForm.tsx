@@ -150,7 +150,7 @@ export default function SignupForm() {
       <div className="text-center text-sm">
         Already have an account?{" "}
         <Link
-          href="/auth/login"
+          href="/login"
           className="hover:underline"
         >
           Log in

@@ -25,7 +25,7 @@ export default function QuizMenuPage() {
         </motion.h1>
 
         <div>
-          <QuizMenu quizMenuContent={siteInfo.quizMenuContent} />
+          <QuizMenu />
         </div>
       </div>
     </div>

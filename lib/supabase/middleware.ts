@@ -38,12 +38,36 @@ export async function updateSession(request: NextRequest) {
   } = await supabase.auth.getUser()
 
   if (
-    !user &&
-    request.nextUrl.pathname === '/start-now'
+    user &&
+    (
+      // Redirect logged-in users to the home page if they try to access login or signup pages
+      request.nextUrl.pathname === '/login' ||
+      request.nextUrl.pathname === '/signup' ||
+      request.nextUrl.pathname === '/forgot-password' ||
+      request.nextUrl.pathname === '/reset-password'
+    )
   ) {
-    const url = request.nextUrl.clone()
-    url.pathname = '/auth/login'
-    return NextResponse.redirect(url)
+    const url = request.nextUrl.clone();
+    url.pathname = '/';
+    return NextResponse.redirect(url);
+  }
+
+  if (
+    !user &&
+    !(
+      // Redirect logged-out users to the login page if they try to access protected pages
+      request.nextUrl.pathname === '/' ||
+      request.nextUrl.pathname === '/login' ||
+      request.nextUrl.pathname === '/signup' ||
+      request.nextUrl.pathname === '/forgot-password' ||
+      request.nextUrl.pathname === '/reset-password' ||
+      // this will be handled by a secret key in the env variables, which should match the one in the quiz-upload repository
+      request.nextUrl.pathname === '/api/quiz'
+    )
+  ) {
+    const url = request.nextUrl.clone();
+    url.pathname = '/login';
+    return NextResponse.redirect(url);
   }
 
   // IMPORTANT: You *must* return the supabaseResponse object as it is.

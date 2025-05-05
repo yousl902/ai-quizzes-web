@@ -84,7 +84,7 @@ export default function SigninForm() {
       <CardFooter className="flex flex-col space-y-4">
         <div className="text-center text-sm">
           Don&apos;t have an account?{" "}
-          <Link href="/auth/signup" className="hover:underline">
+          <Link href="/signup" className="hover:underline">
             Sign up
           </Link>
         </div>

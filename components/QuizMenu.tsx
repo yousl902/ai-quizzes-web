@@ -1,35 +1,45 @@
 "use client";
+
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Accordion,
-  AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Quiz } from "@prisma/client";
 
-// The format of the input from the config file
-type QuizMenuContent = {
-  [key: string]: {
-    label: string;
-    items: {
-      title: string;
-      content?: string;
-      link?: string;
-    }[];
-  };
-};
+type GroupedQuizzes = Record<string, Quiz[]>;
 
-// For convenience
-type QuizMenuProps = {
-  quizMenuContent: QuizMenuContent;
-};
-
-export default function QuizMenu({ quizMenuContent }: QuizMenuProps) {
+export default function QuizMenu() {
   const [activeItem, setActiveItem] = useState<string | null>(null);
+  const [groupedQuizzes, setGroupedQuizzes] = useState<GroupedQuizzes>({});
 
-  const nestedItems = activeItem ? quizMenuContent[activeItem]?.items : null;
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch("/api/quiz");
+        const data: Quiz[] = await res.json();
+
+        const grouped: GroupedQuizzes = {};
+        data.forEach((quiz) => {
+          if (!grouped[quiz.category]) {
+            grouped[quiz.category] = [];
+          }
+          grouped[quiz.category].push(quiz);
+        });
+
+        setGroupedQuizzes(grouped);
+      } catch (error) {
+        console.error("Failed to fetch quizzes:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const nestedItems = activeItem ? groupedQuizzes[activeItem] : null;
 
   return (
     <motion.section
@@ -48,9 +58,8 @@ export default function QuizMenu({ quizMenuContent }: QuizMenuProps) {
           transition={{ duration: 0.3 }}
           className="text-xl font-semibold text-center mb-4"
         >
-          {/* Header texten måste ändras efter för att matcha vilken meny som är öppen */}
-          {activeItem && quizMenuContent[activeItem]
-            ? `${quizMenuContent[activeItem].label}, välj ett quiz`
+          {activeItem
+            ? `Välj quiz i kategorin "${activeItem}"`
             : "Välj Quiz-kategori"}
         </motion.h2>
       </AnimatePresence>
@@ -63,9 +72,9 @@ export default function QuizMenu({ quizMenuContent }: QuizMenuProps) {
         {/* Main Accordion */}
         <motion.div
           layout
-          className={`transition-all duration-500 mb-4 lg:mb-0
-                    ${nestedItems ? "lg:w-1/2" : "w-full"}
-                     flex flex-col justify-start min-h-0`}
+          className={`transition-all duration-500 mb-4 lg:mb-0 ${
+            nestedItems ? "lg:w-1/2" : "w-full"
+          } flex flex-col justify-start min-h-0`}
         >
           <Accordion
             type="single"
@@ -74,10 +83,10 @@ export default function QuizMenu({ quizMenuContent }: QuizMenuProps) {
               setActiveItem(value ?? null)
             }
           >
-            {Object.entries(quizMenuContent).map(([key, section]) => (
-              <AccordionItem key={key} value={key}>
+            {Object.keys(groupedQuizzes).map((category) => (
+              <AccordionItem key={category} value={category}>
                 <AccordionTrigger className="py-2 min-h-[unset] text-left text-sm font-medium truncate">
-                  {section.label}
+                  {category}
                 </AccordionTrigger>
               </AccordionItem>
             ))}
@@ -97,39 +106,21 @@ export default function QuizMenu({ quizMenuContent }: QuizMenuProps) {
               className="lg:w-1/2 lg:pl-2 flex flex-col justify-start min-h-0"
             >
               <Accordion type="single" collapsible>
-                {nestedItems.map((item, index) => (
+                {nestedItems.map((quiz, index) => (
                   <motion.div
-                    key={index}
+                    key={quiz.id}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 20 }}
                     transition={{ delay: index * 0.05 }}
+                    className="border-b hover:bg-yellow-100 rounded-lg transition"
                   >
-                    {/* Länken skall endast visas om link finns i siteConfig */}
-                    {item.link ? (
-                      <div
-                        key={index}
-                        className="border-b hover:bg-yellow-100 rounded-lg transition"
-                      >
-                        <Link
-                          href={item.link}
-                          className="py-2 px-1 text-left w-full block text-sm font-medium truncate"
-                        >
-                          {item.title}
-                        </Link>
-                      </div>
-                    ) : (
-                      <AccordionItem key={index} value={`nested-${index}`}>
-                        <AccordionTrigger className="py-2 min-h-[unset] text-left text-sm font-medium truncate">
-                          {item.title}
-                        </AccordionTrigger>
-                        <AccordionContent>
-                          {item.content
-                            ? item.content
-                            : "Error: inget content givet"}
-                        </AccordionContent>
-                      </AccordionItem>
-                    )}
+                    <Link
+                      href={`/quiz/${quiz.id}`}
+                      className="py-2 px-1 text-left w-full block text-sm font-medium truncate"
+                    >
+                      {quiz.title}
+                    </Link>
                   </motion.div>
                 ))}
               </Accordion>

@@ -78,7 +78,7 @@ export default function ForgotPasswordForm() {
 
           <div className="text-center">
             <Link
-              href="/auth/login"
+              href="/login"
               className="text-sm hover:underline transition-colors"
             >
               Back to Login

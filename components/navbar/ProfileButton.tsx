@@ -1,3 +1,5 @@
+"use client";
+
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { logout } from "@/app/actions/auth";
 import { Button } from "@/components/ui/button";
@@ -6,7 +8,8 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { ProfileChart } from "@/components/ProfileChart";
+import { ProfileChart } from "@/components/navbar/ProfileChart";
+import { useEffect, useState } from "react";
 
 interface ProfileButtonProps {
   email: string;
@@ -27,6 +30,25 @@ export function ProfileButton({
       .join("")
       .toUpperCase();
 
+  const [quizResults, setQuizResults] = useState<{ quizId: string; score: number; title: string }[]>([]);
+
+  useEffect(() => {
+    const lastTenResults = async () => {
+      const res = await fetch(`/api/quiz/last-results?numberOfQuizzes=10`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (!res.ok) {
+        throw new Error("Failed to fetch quiz results");
+      }
+      const quizResults = await res.json();
+      setQuizResults(quizResults);
+    };
+    lastTenResults();
+  }, []);
+
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -41,15 +63,13 @@ export function ProfileButton({
       <PopoverContent className="w-80 backdrop-blur-sm bg-white/90 border border-orange-200">
         <div className="space-y-4">
           <div className="space-y-2">
-            <h4 className="font-medium leading-none">
-              {fullName}
-            </h4>
+            <h4 className="font-medium leading-none">{fullName}</h4>
             <p className="text-sm text-muted-foreground">{email}</p>
           </div>
 
           {/* Diagram */}
           <div className="pt-2">
-            <ProfileChart />
+            <ProfileChart quizResults={quizResults} />
           </div>
 
           {/* Log-out */}

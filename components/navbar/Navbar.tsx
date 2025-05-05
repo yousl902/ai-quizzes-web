@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { LogIn, UserPlus } from "lucide-react";
-import { ProfileButton } from "@/components/ProfileButton";
+import { ProfileButton } from "@/components/navbar/ProfileButton";
 import { PrismaUser } from "@/lib/auth/types";
 
 const NavBar = ({
@@ -67,12 +67,12 @@ const NavBar = ({
             />
           ) : (
             <>
-              <Link href="/auth/login">
+              <Link href="/login">
                 <Button variant="outline">
                   <LogIn className="h-4 w-4 mr-1" /> Login
                 </Button>
               </Link>
-              <Link href="/auth/signup">
+              <Link href="/signup">
                 <Button>
                   <UserPlus className="h-4 w-4 mr-1" /> Sign Up
                 </Button>
@@ -94,12 +94,12 @@ const NavBar = ({
               />
             ) : (
               <>
-                <Link href="/auth/login">
+                <Link href="/login">
                   <Button variant="outline" className="w-full">
                     <LogIn className="mr-2 h-4 w-4" /> Login
                   </Button>
                 </Link>
-                <Link href="/auth/signup">
+                <Link href="/signup">
                   <Button className="w-full">
                     <UserPlus className="mr-2 h-4 w-4" /> Sign Up
                   </Button>
