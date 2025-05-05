@@ -14,65 +14,79 @@ export default function Home() {
           <p className="text-sm text-center text-gray-500 mb-12">
             powered by Mindswarm
           </p>
-
-          <Link
-            // href="/start-now"
-            href="/quizMenu"
-            className="mb-16 bg-yellow-500 text-orange-50 rounded-full flex items-center justify-center w-40 h-40 md:w-56 md:h-56
-             hover:scale-110 transition-transform duration-300 border-4 border-orange-200 hover:border-orange-50 shadow-md"
-          >
-            <div className="flex flex-col items-center justify-center">
-              <CirclePlay className="h-16 w-16 md:h-24 md:w-24" />
-              {siteInfo.startButton.showText && (
-                <span className="font-semibold text-lg md:text-xl mt-2">
-                  {siteInfo.startButton.text}
-                </span>
-              )}
-            </div>
-          </Link>
-
+          <StartButton />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-4xl">
-            {/* Kontakt */}
-            <Link
-              href="/info#kontakt"
-              className="bg-white rounded-xl p-6 shadow-md 
-                         hover:shadow-lg hover:scale-105 transition-all duration-300 block"
-            >
-              <h3 className="text-xl font-semibold mb-2">Kontakt</h3>
-              <p className="text-gray-600">
-                Tveka inte att höra av dig till oss om du har frågor eller
-                funderingar.
-              </p>
-            </Link>
-
-            {/* FAQ */}
-            <Link
-              href="/info#faq"
-              className="bg-white rounded-xl p-6 shadow-md 
-                         hover:shadow-lg hover:scale-105 transition-all duration-300 block"
-            >
-              <h3 className="text-xl font-semibold mb-2">FAQ</h3>
-              <p className="text-gray-600">
-                Kolla in vår FAQ-sektion för svar på vanliga frågor och
-                funderingar.
-              </p>
-            </Link>
-
-            {/* Om oss */}
-            <Link
-              href="/info#om-oss"
-              className="bg-white rounded-xl p-6 shadow-md 
-                         hover:shadow-lg hover:scale-105 transition-all duration-300 block"
-            >
-              <h3 className="text-xl font-semibold mb-2">Om oss</h3>
-              <p className="text-gray-600">
-                Vi är ett team av passionerade individer som gör lärande roligt
-                och effektivt.
-              </p>
-            </Link>
+            <Kontakt />
+            <FAQ />
+            <AboutUs />
           </div>
         </div>
       </main>
     </div>
   );
 }
+
+const StartButton = () => {
+  return (
+    <Link
+      href="/quizMenu"
+      className="bg-yellow-500 text-orange-50 rounded-full flex items-center justify-center w-40 h-40 md:w-56 md:h-56
+               hover:scale-110 transition-transform duration-300 border-4 border-orange-200 hover:border-orange-50 shadow-md"
+    >
+      <div className="flex flex-col items-center justify-center">
+        <CirclePlay className="h-16 w-16 md:h-24 md:w-24" />
+        {siteInfo.startButton.showText && (
+          <span className="font-semibold text-lg md:text-xl mt-2">
+            {siteInfo.startButton.text}
+          </span>
+        )}
+      </div>
+    </Link>
+  );
+};
+
+const Kontakt = () => {
+  return (
+    <Link
+      href="/info#kontakt"
+      className="bg-white rounded-xl p-6 shadow-md 
+               hover:shadow-lg hover:scale-105 transition-all duration-300 block"
+    >
+      <h3 className="text-xl font-semibold mb-2">Kontakt</h3>
+      <p className="text-gray-600">
+        Tveka inte att höra av dig till oss om du har frågor eller funderingar.
+      </p>
+    </Link>
+  );
+};
+
+const FAQ = () => {
+  return (
+    <Link
+      href="/info#faq"
+      className="bg-white rounded-xl p-6 shadow-md 
+               hover:shadow-lg hover:scale-105 transition-all duration-300 block"
+    >
+      <h3 className="text-xl font-semibold mb-2">FAQ</h3>
+      <p className="text-gray-600">
+        Kolla in vår FAQ-sektion för svar på vanliga frågor och funderingar.
+      </p>
+    </Link>
+  );
+};
+
+const AboutUs = () => {
+  return (
+    <Link
+      href="/info#om-oss"
+      className="bg-white rounded-xl p-6 shadow-md 
+               hover:shadow-lg hover:scale-105 transition-all duration-300 block"
+    >
+      <h3 className="text-xl font-semibold mb-2">Om oss</h3>
+      <p className="text-gray-600">
+        Vi är ett team av passionerade individer som gör lärande roligt och
+        effektivt.
+      </p>
+    </Link>
+  );
+};
