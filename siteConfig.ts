@@ -1,5 +1,5 @@
 const siteInfo = {
-  title: "HögskoleprovetQuizes",
+  title: "HPQuizes",
   logo: "/Mind_Swarm_Logo.png", // path relative to /public
   errorGif: {
     src: "https://media.giphy.com/media/1NQ7m0gqsah1XS4vG1/giphy.gif",
