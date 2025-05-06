@@ -53,6 +53,13 @@ export async function signup(formData: FormData) {
   redirect("/");
 }
 
+/**
+ * Initiates the password reset process for a user.
+ * It sends a password reset email to the user's email address with a reset link.
+ * 
+ * @param formData - Form data containing the user's email address
+ * @returns Promise<boolean> - Returns true if the reset email was sent successfully, false otherwise
+ */
 export async function resetPassword(formData: FormData) {
   const email = formData.get("email") as string;
   if (!email) {
@@ -63,10 +70,19 @@ export async function resetPassword(formData: FormData) {
   return await auth.resetPassword(email);
 }
 
+/**
+ * Updates a user's password using a reset code.
+ * The reset code is obtained from the URL parameters when the user clicks the reset link.
+ * 
+ * @param formData - Form data containing:
+ *   - password: The new password to set
+ *   - code: The reset code from the email link
+ * @returns Promise<boolean> - Returns true if the password was updated successfully, false otherwise
+ */
 export async function updatePassword(formData: FormData) {
   const password = formData.get("password") as string;
   const code = formData.get("code") as string;
-
+  
   if (!password || !code) {
     return false;
   }

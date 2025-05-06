@@ -16,6 +16,23 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { updatePassword } from "@/app/actions/auth";
 
+/**
+ * ResetPasswordForm Component
+ * 
+ * This component renders a form that allows users to set a new password after clicking
+ * the reset link in their email. It handles the following functionality:
+ * 
+ * 1. Password Validation:
+ *    - Ensures password is at least 8 characters long
+ *    - Verifies that password and confirm password match
+ * 
+ * 2. Reset Process:
+ *    - Extracts the reset code from URL parameters
+ *    - Calls the updatePassword server action with the new password and code
+ *    - Shows appropriate success/error messages using toast notifications
+ *    - Redirects to login page after successful password update
+ **/
+
 export default function ResetPasswordForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [password, setPassword] = useState("");

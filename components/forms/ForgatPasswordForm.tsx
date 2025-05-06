@@ -15,6 +15,12 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { resetPassword } from "@/app/actions/auth";
 
+/**
+ * ForgotPasswordForm Component
+ * 
+ * This component renders a form that allows users to request a password reset.
+ * 
+ */
 export default function ForgotPasswordForm() {
   const [isLoading, setIsLoading] = useState(false);
   return (
