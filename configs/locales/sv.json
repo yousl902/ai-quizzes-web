@@ -1,0 +1,157 @@
+{
+  "title": "HPQuizes",
+  "logo": "/Mind_Swarm_Logo.png",
+  "errorGif": {
+    "src": "https://media.giphy.com/media/1NQ7m0gqsah1XS4vG1/giphy.gif",
+    "alt": "Animated bee"
+  },
+  "startButton": {
+    "text": "",
+    "showText": false
+  },
+  "colors": {},
+  "info": {
+    "title": "Välkommen till HPQuizes",
+    "contact": {
+      "title": "Kontakt",
+      "email": "info@studycomb.se",
+      "telephoneTimes": "Telefontid vardagar",
+      "timeStamp": "09:00 - 17:00",
+      "more": "Vi strävar efter att besvara alla förfrågningar inom 24 timmar. Tveka inte att höra av dig om du har några frågor eller funderingar."
+    },
+    "FAQ": {
+      "faqItems": {
+        "0": {
+          "question": "Kan jag använda era quiz offline?",
+          "answer": "Just nu är våra quizer enbart tillgängliga online."
+        },
+        "1": {
+          "question": "Vad kostar tjänsten?",
+          "answer": "Tjänsten är kostnadsfri."
+        },
+        "2": {
+          "question": "Har ni olika delar från Högskoleprovet?",
+          "answer": "Ja, vi har quizer från alla delar av Högskoleprovet."
+        }
+      }
+    },
+    "about": {
+      "title": "Om oss",
+      "0": "Vi är ett team av passionerade individer som strävar efter att göra lärande roligt och effektivt. Vår resa började i ett litet studentrum, där vi insåg att studier ibland kan vara monotona.",
+      "1": "Därför skapade vi en plattform som kombinerar interaktivt lärande med den senaste AI-tekniken för att generera quizfrågor.",
+      "2": "Vår ambition är att låta varje användare personifiera sin studieupplevelse, dela material med andra och tillsammans göra lärandet mer dynamiskt. Med ett starkt community i ryggen fortsätter vi att utveckla nya funktioner och förbättra vår tjänst."
+    }
+  },
+  "notFound": {
+    "title": "Oops, sidan kunde inte hittas",
+    "description": "Tyvärr kunde vi inte hitta sidan du letade efter. Kolla gärna in vår startsida eller kontakta oss för mer hjälp.",
+    "buttonText": "Till startsidan"
+  },
+  "loginFailed": {
+    "title": "Inloggning misslyckades",
+    "description": "Tyvärr kunde vi inte logga in dig. Kontrollera dina inloggningsuppgifter och försök igen.",
+    "buttonText": "Försök igen"
+  },
+  "signupFailed": {
+    "title": "Oops! Något gick fel",
+    "description": "Tyvärr kunde vi inte skapa ditt konto. Kontrollera dina uppgifter och försök igen.",
+    "buttonText": "Försök igen"
+  },
+
+  "home": {
+    "title": "HPQuizes",
+    "company": "Drivs av Studycomb",
+    "contact": {
+      "title": "Kontakt",
+      "description": "Tveka inte att höra av dig till oss om du har frågor eller funderingar."
+    },
+    "faq": {
+      "title": "FAQ",
+      "description": "Kolla in vår FAQ-sektion för svar på vanliga frågor och funderingar."
+    },
+    "about": {
+      "title": "Om oss",
+      "description": "Vi är ett team av passionerade individer som gör lärande roligt och effektivt."
+    }
+  },
+
+  "resetPassword": {
+    "title": "Återställ ditt lösenord",
+    "description": "Ange ditt nya lösenord",
+    "success": "Lösenordet har uppdaterats",
+    "successDescription": "Du kan nu logga in med ditt nya lösenord.",
+    "error": "Kunde inte uppdatera lösenordet",
+    "errorDescription": "Försök igen eller kontakta supporten.",
+    "errorOccurred": "Ett fel inträffade",
+    "errorOccurredDescription": "Försök igen eller kontakta supporten om problemet kvarstår.",
+    "newPassword": "Nytt lösenord",
+    "confirmNewPassword": "Bekräfta nytt lösenord",
+    "passwordHint": "Måste vara minst 8 tecken",
+    "backToLogin": "Tillbaka till inloggningen"
+  },
+
+  "forgotPassword": {
+    "title": "Återställ ditt lösenord",
+    "description": "Ange din e-postadress så skickar vi en länk för att återställa ditt lösenord.",
+    "emailSent": "E-post för lösenordsåterställning skickad",
+    "emailSentDescription": "Kontrollera din e-post för vidare instruktioner.",
+    "emailError": "Kunde inte skicka återställningslänk",
+    "emailErrorDescription": "Kontrollera din e-postadress och försök igen.",
+    "error": "Ett fel inträffade",
+    "errorDescription": "Försök igen eller kontakta supporten om problemet kvarstår.",
+    "backToLogin": "Tillbaka till inloggningen"
+  },
+
+  "login": {
+    "welcomeBack": "Välkommen tillbaka",
+    "loginDescription": "Logga in på ditt Mindswarm-konto",
+    "password": "Lösenord",
+    "rememberMe": "Kom ihåg mig",
+    "forgotPassword": "Glömt lösenord?",
+    "logIn": "Logga in",
+    "noAccount": "Har du inget konto? ",
+    "signUp": "Skapa konto"
+  },
+
+  "signup": {
+    "title": "Skapa ett konto",
+    "description": "Gå med i Mindswarm för att förbättra ditt lärande",
+    "fullName": "Fullständigt namn",
+    "invalidEmail": "Vänligen ange en giltig e-postadress.",
+    "password": "Lösenord",
+    "termsAgreement": "Jag godkänner ",
+    "termsOfService": "Användarvillkoren",
+    "and": " och ",
+    "privacyPolicy": "Integritetspolicyn",
+    "signUp": "Skapa konto",
+    "alreadyHaveAccount": "Har du redan ett konto? ",
+    "logIn": "Logga in"
+  },
+
+  "navbar": {
+    "login": "Logga in",
+    "signup": "Skapa konto",
+    "logout": "Logga ut",
+    "chartLabel": "Antal rätt",
+    "points": "Poäng",
+    "chartTitle": "Resultat från dina senaste 10 quiz"
+  },
+
+  "buttons": {
+    "finish": "Avsluta",
+    "next": "Nästa",
+    "prev": "Föregående",
+    "goHome": "Gå till startsidan",
+    "tryAgain": "Försök igen"
+  },
+
+  "quizMenu": {
+    "title": "Quiz Meny",
+    "selectQuizInCategory": "Välj quiz i kategorin",
+    "selectQuizCategory": "Välj quiz-kategori"
+  },
+
+  "footer": {
+    "allRightsReserved": "Alla rättigheter förbehållna"
+  }
+}

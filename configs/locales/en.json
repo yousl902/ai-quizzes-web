@@ -1,0 +1,170 @@
+{
+  "title": "HPQuizes",
+
+  "logo": "/Mind_Swarm_Logo.png",
+
+  "errorGif": {
+    "src": "https://media.giphy.com/media/1NQ7m0gqsah1XS4vG1/giphy.gif",
+    "alt": "Animated bee"
+  },
+
+  "startButton": {
+    "text": "",
+    "showText": false
+  },
+
+  "colors": {},
+
+  "info": {
+    "title": "Welcome to HPQuizes",
+
+    "contact": {
+      "title": "Contact",
+      "email": "info@studycomb.se",
+      "telephoneTimes": "Telephone hours on weekdays",
+      "timeStamp": "09:00 - 17:00",
+      "more": "We strive to respond to all inquiries within 24 hours. Don’t hesitate to reach out if you have any questions or concerns."
+    },
+
+    "FAQ": {
+      "faqItems": {
+        "0": {
+          "question": "Can I use your quizzes offline?",
+          "answer": "Right now, our quizzes are only available online."
+        },
+        "1": {
+          "question": "What does the service cost?",
+          "answer": "The service is free of charge."
+        },
+        "2": {
+          "question": "Do you cover different sections of the Swedish Scholastic Aptitude Test (Högskoleprovet)?",
+          "answer": "Yes, we have quizzes from all sections of the Högskoleprovet."
+        }
+      }
+    },
+
+    "about": {
+      "title": "About us",
+      "0": "We are a team of passionate individuals striving to make learning fun and effective. Our journey began in a small student room, where we realized that studying can sometimes be monotonous.",
+      "1": "That's why we created a platform that combines interactive learning with the latest AI technology to generate quiz questions.",
+      "2": "Our ambition is to let every user personalize their study experience, share material with others, and together make learning more dynamic. With a strong community behind us, we continue to develop new features and improve our service."
+    }
+  },
+
+  "notFound": {
+    "title": "Oops! Page not found",
+    "description": "Our busy bee couldn't find what you'r looking for! Please try again.",
+    "buttonText": "Till startsidan"
+  },
+
+  "loginFailed": {
+    "title": "Login failed",
+    "description": "Unfortunately, we couldn't log you in. Please check your login credentials and try again.",
+    "buttonText": "Try again"
+  },
+
+  "signupFailed": {
+    "title": "Oops! Something went wrong",
+    "description": "Our busy bee couldn't create your account! Please try again.",
+    "buttonText": "Try again"
+  },
+
+  "quizMenu": {
+    "title": "Quiz Menu",
+    "selectQuizInCategory": "Select a quiz in the category",
+    "selectQuizCategory": "Select a quiz category"
+  },
+
+  "home": {
+    "title": "HPQuizes",
+
+    "company": "Powered by Studycomb",
+
+    "contact": {
+      "title": "Contact",
+      "description": "Don’t hesitate to reach out to us if you have any questions or concerns."
+    },
+    "faq": {
+      "title": "FAQ",
+      "description": "Check out our FAQ section for answers to common questions and concerns."
+    },
+    "about": {
+      "title": "About us",
+      "description": "We are a team of passionate individuals making learning fun and effective."
+    }
+  },
+
+  "resetPassword": {
+    "title": "Reset your password",
+    "description": "Please enter your new password",
+    "success": "Password updated successfully",
+    "successDescription": "You can now log in with your new password.",
+    "error": "Failed to update password",
+    "errorDescription": "Please try again or contact support.",
+    "errorOccurred": "An error occurred",
+    "errorOccurredDescription": "Please try again or contact support if the problem persists.",
+    "newPassword": "New Password",
+    "confirmNewPassword": "Confirm New Password",
+    "passwordHint": "Must be at least 8 characters",
+    "backToLogin": "Back to Login"
+  },
+
+  "forgotPassword": {
+    "title": "Reset your password",
+    "description": "Enter your email address and we'll send you a link to reset your password.",
+    "emailSent": "Password reset email sent",
+    "emailSentDescription": "Please check your email for further instructions.",
+    "emailError": "Failed to send reset email",
+    "emailErrorDescription": "Please check your email address and try again.",
+    "error": "An error occurred",
+    "errorDescription": "Please try again or contact support if the problem persists.",
+    "backToLogin": "Back to Login"
+  },
+
+  "login": {
+    "welcomeBack": "Welcome back",
+    "loginDescription": "Login to your Mindswarm account",
+    "password": "Password",
+    "rememberMe": "Remember me",
+    "forgotPassword": "Forgot password?",
+    "logIn": "Log in",
+    "noAccount": "Don't have an account? ",
+    "signUp": "Sign up"
+  },
+
+  "signup": {
+    "title": "Create an account",
+    "description": "Join Mindswarm to enhance your learning",
+    "fullName": "Full Name",
+    "invalidEmail": "Please enter a valid email address.",
+    "password": "Password",
+    "termsAgreement": "I agree to the ",
+    "termsOfService": "Terms of Service",
+    "and": " and ",
+    "privacyPolicy": "Privacy Policy",
+    "signUp": "Sign up",
+    "alreadyHaveAccount": "Already have an account? ",
+    "logIn": "Log in"
+  },
+
+  "buttons": {
+    "finish": "Finish",
+    "next": "Next Question",
+    "prev": "Previous",
+    "goHome": "Go home",
+    "tryAgain": "Try again"
+  },
+
+  "navbar": {
+    "login": "Login",
+    "signup": "Sign up",
+    "logout": "Logout",
+    "chartLabel": "Number correct",
+    "points": "Points",
+    "chartTitle": "Results from your last 10 quizzes"
+  },
+
+  "footer": {
+    "allRightsReserved": "All rights reserved"
+  }
+}
