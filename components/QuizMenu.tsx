@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import {
@@ -9,10 +9,12 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Quiz } from "@prisma/client";
+import { useTranslations } from "next-intl";
 
 type GroupedQuizzes = Record<string, Quiz[]>;
 
 export default function QuizMenu() {
+  const t = useTranslations("quizMenu");
   const [activeItem, setActiveItem] = useState<string | null>(null);
   const [groupedQuizzes, setGroupedQuizzes] = useState<GroupedQuizzes>({});
 
@@ -59,8 +61,8 @@ export default function QuizMenu() {
           className="text-xl font-semibold text-center mb-4"
         >
           {activeItem
-            ? `Välj quiz i kategorin "${activeItem}"`
-            : "Välj Quiz-kategori"}
+            ? t("selectQuizInCategory", { category: activeItem })
+            : t("selectQuizCategory")}
         </motion.h2>
       </AnimatePresence>
 
