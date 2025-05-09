@@ -1,9 +1,10 @@
 "use client";
-import siteInfo from "@/siteConfig";
 import QuizMenu from "@/components/QuizMenu";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 export default function QuizMenuPage() {
+  const t = useTranslations("quizMenu");
   return (
     <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-yellow-100 to-yellow-200 pt-16 pb-12 relative">
       {/* Decorative Elements */}
@@ -21,7 +22,7 @@ export default function QuizMenuPage() {
           className="text-3xl sm:text-4x1 font-bold leading-relaxed mb-16 text-center bg-clip-text text-transparent 
                      bg-gradient-to-r from-amber-600 to-yellow-600"
         >
-          Quiz meny
+          {t("title")}
         </motion.h1>
 
         <div>
