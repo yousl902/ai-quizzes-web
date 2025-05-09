@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { Alternative } from "@prisma/client";
 import { QuizWithQuestionsAndAlternatives } from "@/lib/prismaTypes";
-import { useRouter, useParams } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
+import { useParams } from "next/navigation";
 
 export function useQuizData() {
   const { id: quizId } = useParams(); // getting the id from the URL
-  const [quiz, setQuiz] = useState<QuizWithQuestionsAndAlternatives | null>(null);
+  const [quiz, setQuiz] = useState<QuizWithQuestionsAndAlternatives | null>(
+    null
+  );
   const [pickedAnswers, setPickedAnswers] = useState<Alternative[]>([]);
   const [pickedAnswer, setPickedAnswer] = useState<Alternative | null>(null);
   const [questionNumber, setQuestionNumber] = useState(0);
@@ -62,15 +65,15 @@ export function useQuizData() {
       alert("Please select an answer before proceeding.");
       return;
     }
-  
+
     const nextQuestionNumber = questionNumber + 1;
-  
+
     if (nextQuestionNumber >= totalQuestionNumber) {
       saveResults();
       router.push("/");
       return;
     }
-  
+
     setQuestionNumber(nextQuestionNumber);
     setPickedAnswer(pickedAnswers[nextQuestionNumber] || null);
   };
