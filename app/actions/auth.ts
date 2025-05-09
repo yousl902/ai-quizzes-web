@@ -1,8 +1,9 @@
 "use server";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
+import { redirect } from "@/i18n/navigation";
 import { syncUser } from "@/lib/auth/syncUser";
 import { getServerAuthProvider } from "@/lib/auth/factory/getServerProvider";
+import { getLocale } from "next-intl/server";
 
 export async function login(formData: FormData) {
   const data = {
@@ -12,20 +13,22 @@ export async function login(formData: FormData) {
 
   const auth = getServerAuthProvider();
   const result = await auth.signIn(data.email, data.password);
+  const locale = await getLocale();
   if (!result) {
-    redirect("/login/error");
+    redirect({href: "/login/error", locale});
   }
 
   revalidatePath("/", "layout");
-  redirect("/");
+    redirect({href: "/", locale});
 }
 
 export async function logout() {
   const auth = getServerAuthProvider();
   const result = await auth.signOut();
+  const locale = await getLocale();
 
   revalidatePath("/", "layout");
-  redirect("/");
+  redirect({href: "/", locale});
 }
 
 export async function signup(formData: FormData) {
@@ -36,8 +39,9 @@ export async function signup(formData: FormData) {
   };
 
   const result = await auth.signUp(data.email, data.password);
+  const locale = await getLocale();
   if (!result) {
-    redirect("/signup/error");
+    redirect({href: "/signup/error", locale});
   }
 
   const name = formData.get("name");
@@ -50,7 +54,7 @@ export async function signup(formData: FormData) {
   await syncUser(result);
 
   revalidatePath("/", "layout");
-  redirect("/");
+  redirect({href: "/", locale});
 }
 
 /**
