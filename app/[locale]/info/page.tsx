@@ -4,9 +4,18 @@ import { ContactSection } from "@/components/InfoPage/ContactSection";
 import { FAQSection } from "@/components/InfoPage/FAQSection";
 import { AboutSection } from "@/components/InfoPage/AboutSection";
 import { motion } from "framer-motion";
-import siteInfo from "@/siteConfig";
+import { useTranslations } from "next-intl";
 
 export default function InfoPage() {
+  const t = useTranslations("info");
+
+  const KEYS = ['0', '1', '2'] as const;
+  const faqItems = KEYS.map((key) => ({
+    question: t(`FAQ.faqItems.${key}.question`),
+    answer: t(`FAQ.faqItems.${key}.answer`)
+  }));
+  const aboutItems = KEYS.map((key) => t(`about.${key}`));
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-yellow-100 to-yellow-200 pt-16 pb-12 relative overflow-hidden">
       {/* Decorative Elements */}
@@ -24,7 +33,7 @@ export default function InfoPage() {
           className="text-4xl font-bold mb-16 text-center bg-clip-text text-transparent 
                      bg-gradient-to-r from-amber-600 to-yellow-600"
         >
-          Allmän information
+        {t("title")}
         </motion.h1>
 
         <div className="space-y-20">
@@ -32,25 +41,21 @@ export default function InfoPage() {
           {/* scroll-mt-28 => när vi navigerar till #kontakt hamnar rubriken nedanför nav-baren */}
           <section id="kontakt" className="scroll-mt-28">
             <ContactSection
-              email={siteInfo.info.contact.email}
-              telephoneTimes={siteInfo.info.contact.telephoneTimes}
-              timeStamp={siteInfo.info.contact.timeStamp}
-              more={siteInfo.info.contact.more}
+              email={t('contact.email')}
+              telephoneTimes={t('contact.telephoneTimes')}
+              timeStamp={t('contact.timeStamp')}
+              more={t('contact.more')}
             />
           </section>
 
           {/* FAQ */}
           <section id="faq" className="scroll-mt-24">
-            <FAQSection
-              faq={siteInfo.info.FAQ.faqItems}
-            />
+            <FAQSection faq={faqItems} />
           </section>
 
           {/* Om oss */}
           <section id="om-oss" className="scroll-mt-20">
-            <AboutSection
-              about={siteInfo.info.about}
-            />
+            <AboutSection about={aboutItems} />
           </section>
         </div>
       </div>
