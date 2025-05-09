@@ -11,6 +11,7 @@ import AnswerOption from "@/components/quizPage/AnswerOption";
 import StatusBar from "@/components/quizPage/ProgressBar";
 import { Alternative } from "@prisma/client";
 import { useQuizData } from "@/hooks/useQuizData";
+import { useTranslations } from "next-intl";
 
 // quiz id props
 export default function QuizCard() {
@@ -25,6 +26,7 @@ export default function QuizCard() {
     quizCategory,
     isLoading,
   } = useQuizData();
+  const t = useTranslations("buttons");
 
   if (isLoading || !currentQuestion) {
     // loading state
@@ -78,7 +80,7 @@ export default function QuizCard() {
             disabled={questionNumber === 0}
             className="w-1/2 mr-0.5"
           >
-            Previous
+          {t("prev")}
           </Button>
           <Button
             disabled={!pickedAnswer}
@@ -90,8 +92,8 @@ export default function QuizCard() {
             }`}
           >
             {questionNumber === totalQuestionNumber - 1
-              ? "Finish"
-              : "Next Question"}
+              ? t("finish")
+              : t("next")}
           </Button>
         </div>
       </CardContent>
