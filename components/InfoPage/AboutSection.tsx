@@ -1,11 +1,9 @@
 import { Users } from "lucide-react";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
-export const AboutSection = (
-  { about }: {
-    about: string[];
-  }
-) => {
+export const AboutSection = ({ about }: { about: string[] }) => {
+  const t = useTranslations("info");
   return (
     <motion.section
       initial={{ opacity: 0, y: 20 }}
@@ -16,14 +14,14 @@ export const AboutSection = (
     >
       <h2 className="text-2xl font-bold mb-6 text-yellow-800 flex items-center gap-2">
         <Users className="w-6 h-6" />
-        Om oss
+        {t("about.title")}
       </h2>
       <div className="bg-white/80 backdrop-blur-lg rounded-2xl p-6 shadow-lg">
         <div className="prose max-w-none">
           {about.map((item, index) => (
             <p
               key={index}
-              className={`text-gray-800 ${index !== 0 ? 'mt-4' : ''}`}
+              className={`text-gray-800 ${index !== 0 ? "mt-4" : ""}`}
             >
               {item}
             </p>
