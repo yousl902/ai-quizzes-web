@@ -1,8 +1,10 @@
-import Link from "next/link";
+// import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { getTranslations } from "next-intl/server";
 
-export default function ErrorPage({
+export default async function ErrorPage({
   title,
   description,
   redirectTo = "",
@@ -13,6 +15,7 @@ export default function ErrorPage({
   redirectTo?: string;
   gif?: { src: string; alt: string };
 }) {
+  const t = await getTranslations("buttons");
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-[#f5eedb] p-4">
       <div className="text-center space-y-8">
@@ -34,11 +37,11 @@ export default function ErrorPage({
         <div className="space-x-4">
           {redirectTo && (
             <Button asChild variant="default">
-              <Link href={redirectTo}>Try Again</Link>
+              <Link href={redirectTo}>{t("tryAgain")}</Link>
             </Button>
           )}
           <Button asChild variant="outline">
-            <Link href="/">Go Home</Link>
+            <Link href="/">{t("goHome")}</Link>
           </Button>
         </div>
       </div>
