@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { LogIn, UserPlus } from "lucide-react";
 import { ProfileButton } from "@/components/navbar/ProfileButton";
 import { PrismaUser } from "@/lib/auth/types";
+import { useTranslations } from "next-intl";
+import LanguageSwitcher from "../LanguageSwitcher";
 
 const NavBar = ({
   title,
@@ -16,6 +18,7 @@ const NavBar = ({
   logo?: string;
   user: PrismaUser | null;
 }) => {
+  const t = useTranslations("navbar");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -28,7 +31,7 @@ const NavBar = ({
           {title}
         </Link>
 
-        {/* Mobilmeny-knapp */}
+        {/* Mobile Menu Button */}
         <div className="md:hidden">
           <Button
             variant="ghost"
@@ -57,7 +60,7 @@ const NavBar = ({
           </Button>
         </div>
 
-        {/* Desktop */}
+        {/* Desktop User Actions */}
         <div className="hidden md:flex md:items-center md:space-x-4">
           {user ? (
             <ProfileButton
@@ -69,20 +72,21 @@ const NavBar = ({
             <>
               <Link href="/login">
                 <Button variant="outline">
-                  <LogIn className="h-4 w-4 mr-1" /> Login
+                  <LogIn className="h-4 w-4 mr-1" /> {t("login")}
                 </Button>
               </Link>
               <Link href="/signup">
                 <Button>
-                  <UserPlus className="h-4 w-4 mr-1" /> Sign Up
+                  <UserPlus className="h-4 w-4 mr-1" /> {t("signup")}
                 </Button>
               </Link>
             </>
           )}
+          <LanguageSwitcher />
         </div>
       </div>
 
-      {/* Mobilmeny */}
+      {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="md:hidden bg-white border-b px-4 py-3 shadow-md">
           <div className="flex flex-col space-y-3">
@@ -96,16 +100,17 @@ const NavBar = ({
               <>
                 <Link href="/login">
                   <Button variant="outline" className="w-full">
-                    <LogIn className="mr-2 h-4 w-4" /> Login
+                    <LogIn className="mr-2 h-4 w-4" /> {t("login")}
                   </Button>
                 </Link>
                 <Link href="/signup">
                   <Button className="w-full">
-                    <UserPlus className="mr-2 h-4 w-4" /> Sign Up
+                    <UserPlus className="mr-2 h-4 w-4" /> {t("signup")}
                   </Button>
                 </Link>
               </>
             )}
+            <LanguageSwitcher />
           </div>
         </div>
       )}

@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/popover";
 import { ProfileChart } from "@/components/navbar/ProfileChart";
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 
 interface ProfileButtonProps {
   email: string;
@@ -30,7 +31,10 @@ export function ProfileButton({
       .join("")
       .toUpperCase();
 
-  const [quizResults, setQuizResults] = useState<{ quizId: string; score: number; title: string }[]>([]);
+  const t = useTranslations("navbar");
+  const [quizResults, setQuizResults] = useState<
+    { quizId: string; score: number; title: string }[]
+  >([]);
 
   useEffect(() => {
     const lastTenResults = async () => {
@@ -79,7 +83,7 @@ export function ProfileButton({
                 formAction={logout}
                 className="mt-5 bg-black text-white hover:bg-gray-800 hover:scale-105 transition-colors duration-200"
               >
-                Logga ut
+                {t("logout")}
               </Button>
             </div>
           </form>

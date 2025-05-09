@@ -1,20 +1,28 @@
 "use client";
 
+import { ChartContainer, ChartTooltip } from "@/components/ui/chart";
+import { useTranslations } from "next-intl";
 import {
-  ChartContainer,
-  ChartTooltip,
-} from "@/components/ui/chart";
-import { BarChart, Bar, CartesianGrid, XAxis, LabelList, Cell, TooltipProps } from "recharts";
-import { ValueType, NameType } from "recharts/types/component/DefaultTooltipContent";
+  BarChart,
+  Bar,
+  CartesianGrid,
+  XAxis,
+  LabelList,
+  Cell,
+  TooltipProps,
+} from "recharts";
+import {
+  ValueType,
+  NameType,
+} from "recharts/types/component/DefaultTooltipContent";
 
-import siteInfo from "@/siteConfig";
+import { colors } from "@/configs/colors";
 
 type QuizResult = { quizId: string; score: number; title: string };
 
 export function ProfileChart({ quizResults }: { quizResults: QuizResult[] }) {
-  const { chart } = siteInfo;
-  const chartLabel = chart.label;
-  const colorScale = chart.colorScale;
+  const t = useTranslations("navbar");
+  const chartLabel = t("chartLabel");
 
   const chartConfig = {
     correct: {
@@ -24,7 +32,7 @@ export function ProfileChart({ quizResults }: { quizResults: QuizResult[] }) {
   };
 
   const getColorForValue = (value: number) => {
-    for (const rule of colorScale) {
+    for (const rule of colors.colorScale) {
       if (value <= rule.max) return rule.color;
     }
     return "#ccc";
@@ -46,7 +54,9 @@ export function ProfileChart({ quizResults }: { quizResults: QuizResult[] }) {
       return (
         <div className="rounded-md border bg-background px-3 py-2 shadow-sm">
           <div className="text-sm font-medium text-foreground">{title}</div>
-          <div className="text-xs text-muted-foreground">Poäng: {score}</div>
+          <div className="text-xs text-muted-foreground">
+            {t("points")}: {score}
+          </div>
         </div>
       );
     }
@@ -56,7 +66,8 @@ export function ProfileChart({ quizResults }: { quizResults: QuizResult[] }) {
   return (
     <div className="space-y-5">
       <h4 className="text-sm font-medium text-muted-foreground">
-        Resultat från dina senaste 10 quiz
+        {/* Resultat från dina senaste 10 quiz */}
+        {t("chartTitle")}
       </h4>
       <ChartContainer config={chartConfig}>
         <BarChart data={data} margin={{ top: 30 }}>
