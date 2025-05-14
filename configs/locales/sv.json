@@ -1,5 +1,5 @@
 {
-  "title": "HPQuizes",
+  "title": "Database Technology",
   "logo": "/Mind_Swarm_Logo.png",
   "errorGif": {
     "src": "https://media.giphy.com/media/1NQ7m0gqsah1XS4vG1/giphy.gif",
@@ -11,7 +11,7 @@
   },
   "colors": {},
   "info": {
-    "title": "Välkommen till HPQuizes",
+    "title": "Välkommen till Database Technology",
     "contact": {
       "title": "Kontakt",
       "email": "info@studycomb.se",
@@ -59,7 +59,7 @@
   },
 
   "home": {
-    "title": "HPQuizes",
+    "title": "DB Technology",
     "company": "Drivs av Studycomb",
     "contact": {
       "title": "Kontakt",

@@ -1,7 +1,7 @@
 {
-  "logo": "/Mind_Swarm_Logo.png",
+  "logo": "/liu_logga.png",
   "errorGif": {
-    "src": "https://media.giphy.com/media/1NQ7m0gqsah1XS4vG1/giphy.gif",
-    "alt": "Animated bee"
+    "src": "/liu_error.jpg",
+    "alt": "Linköping University Logo"
   }
 }
