@@ -17,7 +17,7 @@ export default async function ErrorPage({
 }) {
   const t = await getTranslations("buttons");
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-[#f5eedb] p-4">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-bg p-4">
       <div className="text-center space-y-8">
         <div className="relative w-[200px] h-[200px] mx-auto">
           {gif && gif.src && (
@@ -36,11 +36,11 @@ export default async function ErrorPage({
         </div>
         <div className="space-x-4">
           {redirectTo && (
-            <Button asChild variant="default">
+            <Button asChild variant="default" className="bg-btn-try-again hover:bg-btn-try-again-hover">
               <Link href={redirectTo}>{t("tryAgain")}</Link>
             </Button>
           )}
-          <Button asChild variant="outline">
+          <Button asChild variant="outline" className="bg-btn-go-home hover:bg-btn-go-home-hover">
             <Link href="/">{t("goHome")}</Link>
           </Button>
         </div>

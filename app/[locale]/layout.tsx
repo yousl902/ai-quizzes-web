@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import assets from "@/configs/assets.json";
 import "./globals.css";
 
 // 1. Importera Toaster från sonner
@@ -47,7 +48,7 @@ export default async function RootLayout({
       >
         <NextIntlClientProvider locale={locale}>
           <Toaster position="bottom-right" />
-          <NavBar title={t("title")} logo={t("logo")} user={user} />
+          <NavBar title={t("title")} logo={assets.logo} user={user} />
           {children}
           <Footer title={t("title")} />
         </NextIntlClientProvider>

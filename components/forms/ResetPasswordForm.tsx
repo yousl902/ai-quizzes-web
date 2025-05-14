@@ -152,7 +152,7 @@ export default function ResetPasswordForm() {
 
           <Button
             type="submit"
-            className="w-full text-white bg-black"
+            className="w-full text-white bg-btn-reset-password hover:bg-btn-reset-password/90"
             disabled={isLoading}
           >
             {isLoading ? "Updating..." : "Update Password"}

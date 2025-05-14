@@ -22,7 +22,7 @@ const NavBar = ({
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm bg-opacity-90 border-b shadow-sm">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-navbar backdrop-blur-sm bg-opacity-90 border-b shadow-sm">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         <Link href="/" className="text-2xl font-bold flex items-center gap-2">
           {logo && logo.trim() !== "" && (
@@ -71,12 +71,12 @@ const NavBar = ({
           ) : (
             <>
               <Link href="/login">
-                <Button variant="outline">
+                <Button className="bg-btn-login-navbar hover:bg-btn-login-navbar/90 text-black">
                   <LogIn className="h-4 w-4 mr-1" /> {t("login")}
                 </Button>
               </Link>
               <Link href="/signup">
-                <Button>
+                <Button className="bg-btn-create-account hover:bg-btn-create-account/90 text-white">
                   <UserPlus className="h-4 w-4 mr-1" /> {t("signup")}
                 </Button>
               </Link>
@@ -99,12 +99,12 @@ const NavBar = ({
             ) : (
               <>
                 <Link href="/login">
-                  <Button variant="outline" className="w-full">
+                  <Button variant="outline" className="w-full bg-btn-login-navbar hover:bg-btn-login-navbar/90 text-black">
                     <LogIn className="mr-2 h-4 w-4" /> {t("login")}
                   </Button>
                 </Link>
                 <Link href="/signup">
-                  <Button className="w-full">
+                  <Button className="w-full bg-btn-create-account hover:bg-btn-create-account/90 text-white">
                     <UserPlus className="mr-2 h-4 w-4" /> {t("signup")}
                   </Button>
                 </Link>

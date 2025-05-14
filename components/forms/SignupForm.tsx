@@ -136,7 +136,7 @@ export default function SignupForm() {
 
           <Button
             formAction={signup}
-            className="w-full bg-black text-white transition-colors"
+            className="w-full bg-btn-create-account bg-btn-create-account/90 text-white transition-colors"
             disabled={
               !isEmailValid(email) ||
               !isPasswordValid(password) ||

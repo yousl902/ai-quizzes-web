@@ -78,7 +78,7 @@ export default function SigninForm() {
             </Link>
           </div>
 
-          <Button formAction={login} className="w-full text-white bg-black">
+          <Button formAction={login} className="w-full text-white bg-btn-login-form  hover:bg-btn-login-form/90">
             <LogIn className="mr-2 h-4 w-4" />
             {/* Log in */}
             {t("logIn")}

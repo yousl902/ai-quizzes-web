@@ -40,7 +40,7 @@ export default function QuizCard() {
               <div key={i} className="h-4 bg-gray-200 rounded" />
             ))}
           </div>
-          <div className="h-10 bg-yellow-200 rounded w-full" />
+          <div className="h-10 bg-btn-next rounded w-full" />
         </div>
       </Card>
     );
@@ -78,7 +78,7 @@ export default function QuizCard() {
             variant="outline"
             onClick={handlePrev}
             disabled={questionNumber === 0}
-            className="w-1/2 mr-0.5"
+            className="w-1/2 mr-0.5 bg-btn-prev text-black hover:bg-btn-prev-hover"
           >
           {t("prev")}
           </Button>
@@ -87,8 +87,8 @@ export default function QuizCard() {
             onClick={handleNext}
             className={`w-1/2 ml-0.5 font-bold transition ${
               pickedAnswer
-                ? "bg-yellow-300 text-black hover:bg-amber-400"
-                : "bg-yellow-200 text-black"
+                ? "bg-btn-next text-black hover:bg-btn-next-hover"
+                : "bg-btn-next text-black hover:bg-btn-next-hover"
             }`}
           >
             {questionNumber === totalQuestionNumber - 1

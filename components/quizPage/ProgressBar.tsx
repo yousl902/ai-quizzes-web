@@ -14,7 +14,7 @@ export default function StatusBar({
   return (
     <Progress
       value={progress}
-      className="h-3 bg-gray-200 [&>div]:bg-yellow-400"
+      className="h-3 bg-gray-200 [&>div]:bg-progress"
     />
   );
 }

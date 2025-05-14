@@ -22,11 +22,11 @@ export const FAQSection = (
       transition={{ duration: 0.6, delay: 0.2 }}
       className="mb-20 w-full lg:w-2/3 lg:ml-auto"
     >
-      <h2 className="text-2xl font-bold mb-6 text-yellow-800 flex items-center gap-2">
+      <h2 className="text-2xl font-bold mb-6 text-info-subheader flex items-center gap-2">
         <HelpCircle className="w-6 h-6" />
         FAQ
       </h2>
-      <div className="bg-white/80 backdrop-blur-lg rounded-2xl p-6 shadow-lg">
+      <div className="bg-info-sections backdrop-blur-lg rounded-2xl p-6 shadow-lg">
         <Accordion type="single" collapsible className="w-full">
           {faq.map((item, index) => (
             <AccordionItem key={index} value={`item-${index}`}>

@@ -16,8 +16,6 @@ import {
   NameType,
 } from "recharts/types/component/DefaultTooltipContent";
 
-import { colors } from "@/configs/colors";
-
 type QuizResult = { quizId: string; score: number; title: string };
 
 export function ProfileChart({ quizResults }: { quizResults: QuizResult[] }) {
@@ -31,20 +29,17 @@ export function ProfileChart({ quizResults }: { quizResults: QuizResult[] }) {
     },
   };
 
-  const getColorForValue = (value: number) => {
-    for (const rule of colors.colorScale) {
-      if (value <= rule.max) return rule.color;
-    }
-    return "#ccc";
+  const getColorClassForValue = (value: number) => {
+    if (value <= 4) return "fill-chart-low";
+    if (value <= 14) return "fill-chart-average";
+    return "fill-chart-high";
   };
 
-  // Add index for display
   const data = quizResults.map((item, index) => ({
     ...item,
     index,
   }));
 
-  // Custom tooltip
   const CustomTooltip = ({
     active,
     payload,
@@ -66,7 +61,6 @@ export function ProfileChart({ quizResults }: { quizResults: QuizResult[] }) {
   return (
     <div className="space-y-5">
       <h4 className="text-sm font-medium text-muted-foreground">
-        {/* Resultat från dina senaste 10 quiz */}
         {t("chartTitle")}
       </h4>
       <ChartContainer config={chartConfig}>
@@ -83,7 +77,10 @@ export function ProfileChart({ quizResults }: { quizResults: QuizResult[] }) {
           <ChartTooltip cursor={false} content={<CustomTooltip />} />
           <Bar dataKey="score" radius={8}>
             {data.map((entry, index) => (
-              <Cell key={index} fill={getColorForValue(entry.score)} />
+              <Cell
+                key={index}
+                className={getColorClassForValue(entry.score)}
+              />
             ))}
             <LabelList
               dataKey="score"

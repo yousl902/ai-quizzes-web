@@ -57,8 +57,8 @@ export function ProfileButton({
     <Popover>
       <PopoverTrigger asChild>
         <Button variant="ghost" className="relative h-10 w-10 rounded-full">
-          <Avatar className="h-10 w-10 border-2 border-orange-300 hover:border-orange-400 transition-colors">
-            <AvatarFallback className="bg-yellow-100">
+          <Avatar className="h-10 w-10 border-2 border-btn-profile-circle hover:border-btn-profile-hover transition-colors">
+            <AvatarFallback className="bg-btn-profile">
               {getInitials(fullName)}
             </AvatarFallback>
           </Avatar>
@@ -81,7 +81,7 @@ export function ProfileButton({
             <div className="flex justify-center">
               <Button
                 formAction={logout}
-                className="mt-5 bg-black text-white hover:bg-gray-800 hover:scale-105 transition-colors duration-200"
+                className="mt-5 bg-btn-logout text-white hover:bg-btn-logout/90 hover:scale-105 transition-colors duration-200"
               >
                 {t("logout")}
               </Button>

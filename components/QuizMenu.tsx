@@ -115,7 +115,7 @@ export default function QuizMenu() {
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 20 }}
                     transition={{ delay: index * 0.05 }}
-                    className="border-b hover:bg-yellow-100 rounded-lg transition"
+                    className="border-b hover:bg-quiz-hover rounded-lg transition"
                   >
                     <Link
                       href={`/quiz/${quiz.id}`}
