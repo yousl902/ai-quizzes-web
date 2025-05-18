@@ -66,11 +66,18 @@ export async function POST(
         return NextResponse.json({ error: "Score must be a number" }, { status: 400 });
     }
 
-    // now we are creating a record in the userQuiz table even if it already exists
-    // TODO: may need to look if it exists and update it instead
     try {
-        await prisma.userQuiz.create({
-            data: {
+        await prisma.userQuiz.upsert({
+            where: {
+                user_id_quiz_id: {
+                    user_id: userId,
+                    quiz_id: quizId,
+                }
+            },
+            update: {
+                score,
+            },
+            create: {
                 user_id: userId,
                 quiz_id: quizId,
                 score,
