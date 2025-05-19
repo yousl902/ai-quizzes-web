@@ -102,7 +102,6 @@ export default function QuizCard() {
           </CardTitle>
           <CardDescription className="text-center">
             {/* TODO: this has to be changed based on config file and data frpm the database */}
-            Pröva din förmåga att förstå ord och begrepp
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
