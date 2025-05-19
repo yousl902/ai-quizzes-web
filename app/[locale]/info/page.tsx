@@ -9,12 +9,15 @@ import { useTranslations } from "next-intl";
 export default function InfoPage() {
   const t = useTranslations("info");
 
-  const KEYS = ["0", "1", "2"] as const;
-  const faqItems = KEYS.map((key) => ({
-    question: t(`FAQ.faqItems.${key}.question`),
-    answer: t(`FAQ.faqItems.${key}.answer`),
-  }));
-  const aboutItems = KEYS.map((key) => t(`about.${key}`));
+  const faqItems = Array.from(Array(Number(t(`FAQ.length`))).keys()).map(
+    (item: number) => ({
+      question: t(`FAQ.faqItems.${item}.question`),
+      answer: t(`FAQ.faqItems.${item}.answer`),
+    })
+  );
+  const aboutItems = Array.from(Array(Number(t(`about.length`))).keys()).map(
+    (item: number) => t(`about.${item}`)
+  );
 
   return (
     <div className="min-h-screen bg-bg pt-16 pb-12 relative overflow-hidden">
@@ -27,10 +30,7 @@ export default function InfoPage() {
         >
           {t("title")}
         </motion.h1>
-
         <div className="space-y-20">
-          {/* Kontakt */}
-          {/* scroll-mt-28 => när vi navigerar till #kontakt hamnar rubriken nedanför nav-baren */}
           <section id="kontakt" className="scroll-mt-28">
             <ContactSection
               email={t("contact.email")}
@@ -40,12 +40,10 @@ export default function InfoPage() {
             />
           </section>
 
-          {/* FAQ */}
           <section id="faq" className="scroll-mt-24">
             <FAQSection faq={faqItems} />
           </section>
 
-          {/* Om oss */}
           <section id="om-oss" className="scroll-mt-20">
             <AboutSection about={aboutItems} />
           </section>
