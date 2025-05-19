@@ -1,0 +1,168 @@
+{
+  "title": "Database Technology",
+
+  "startButton": {
+    "text": "",
+    "showText": false
+  },
+
+  "info": {
+    "title": "Welcome to Database Technology",
+
+    "contact": {
+      "title": "Contact",
+      "email": "younes.sleibi2000@gmail.com",
+      "telephone": "Phone number",
+      "timeStamp": "09:00 - 17:00",
+      "more": "This project was developed by Younes Sleibi. For questions, suggestions, or collaboration opportunities, feel free to reach out via email."
+    },
+
+    "FAQ": {
+      "length": "4",
+      "faqItems": {
+        "0": {
+          "question": "Can I reuse this project?",
+          "answer": "Yes! This project is open-source and intended for reuse. You’re welcome to adapt it to your own needs."
+        },
+        "1": {
+          "question": "What can I customize?",
+          "answer": "You can easily change the text, colors, and branding by editing the JSON files. No deep coding knowledge is required."
+        },
+        "2": {
+          "question": "Is the current version final?",
+          "answer": "The deployed version is just one instance of the platform, specifically themed around database technology. You can modify it for other subjects as well."
+        },
+        "3": {
+          "question": "Do I need a backend to run it?",
+          "answer": "We use Supabase as the database, and Prisma makes it easy to switch to other solutions. Authentication is handled through a factory pattern, if you want to change the auth provider, you’ll need to implement your own strategy. Using Supabase works out of the box with minimal setup."
+        }
+      }
+    },
+
+    "about": {
+      "title": "About the Project",
+      "length": "4",
+      "0": "This project was developed as part of a Bachelor's thesis in collaboration with a real-world customer: StudyComb.",
+      "1": "StudyComb approached us with a vision to create a quiz platform that is modern, customizable, and easy to use for learners.",
+      "2": "As an open-source initiative, the platform can be reused and modified. All texts, branding, and features are driven by simple JSON configurations.",
+      "3": "Note that the deployed version is just an example setup focusing on the subject of database technology. You are free to adapt it to other academic topics or training areas."
+    }
+  },
+
+  "notFound": {
+    "title": "Oops! Page not found",
+    "description": "Our busy bee couldn't find what you'r looking for! Please try again.",
+    "buttonText": "Till startsidan"
+  },
+
+  "loginFailed": {
+    "title": "Login failed",
+    "description": "Unfortunately, we couldn't log you in. Please check your login credentials and try again.",
+    "buttonText": "Try again"
+  },
+
+  "signupFailed": {
+    "title": "Oops! Something went wrong",
+    "description": "Our busy bee couldn't create your account! Please try again.",
+    "buttonText": "Try again"
+  },
+
+  "quizMenu": {
+    "title": "Quiz Menu",
+    "selectQuizInCategory": "Select a quiz in the category",
+    "selectQuizCategory": "Select a quiz category"
+  },
+
+  "home": {
+    "title": "DB Technology",
+
+    "company": "",
+
+    "contact": {
+      "title": "Contact",
+      "description": "This project was developed by a group of students as part of a Bachelor's thesis. Feel free to reach out if you have any questions or feedback."
+    },
+    "faq": {
+      "title": "FAQ",
+      "description": "Learn how to reuse, customize, and extend this open-source platform."
+    },
+    "about": {
+      "title": "About the project",
+      "description": "An open and customizable quiz platform developed as a bachelor's thesis project in collaboration with StudyComb."
+    }
+  },
+
+  "resetPassword": {
+    "title": "Reset your password",
+    "description": "Please enter your new password",
+    "success": "Password updated successfully",
+    "successDescription": "You can now log in with your new password.",
+    "error": "Failed to update password",
+    "errorDescription": "Please try again or contact support.",
+    "errorOccurred": "An error occurred",
+    "errorOccurredDescription": "Please try again or contact support if the problem persists.",
+    "newPassword": "New Password",
+    "confirmNewPassword": "Confirm New Password",
+    "passwordHint": "Must be at least 8 characters",
+    "backToLogin": "Back to Login"
+  },
+
+  "forgotPassword": {
+    "title": "Reset your password",
+    "description": "Enter your email address and we'll send you a link to reset your password.",
+    "emailSent": "Password reset email sent",
+    "emailSentDescription": "Please check your email for further instructions.",
+    "emailError": "Failed to send reset email",
+    "emailErrorDescription": "Please check your email address and try again.",
+    "error": "An error occurred",
+    "errorDescription": "Please try again or contact support if the problem persists.",
+    "backToLogin": "Back to Login"
+  },
+
+  "login": {
+    "welcomeBack": "Welcome back",
+    "loginDescription": "Login to your account",
+    "password": "Password",
+    "rememberMe": "Remember me",
+    "forgotPassword": "Forgot password?",
+    "logIn": "Log in",
+    "noAccount": "Don't have an account? ",
+    "signUp": "Sign up"
+  },
+
+  "signup": {
+    "title": "Create an account",
+    "description": "Join us to enhance your learning",
+    "fullName": "Full Name",
+    "invalidEmail": "Please enter a valid email address.",
+    "password": "Password",
+    "termsAgreement": "I agree to the ",
+    "termsOfService": "Terms of Service",
+    "and": " and ",
+    "privacyPolicy": "Privacy Policy",
+    "signUp": "Sign up",
+    "alreadyHaveAccount": "Already have an account? ",
+    "logIn": "Log in"
+  },
+
+  "buttons": {
+    "finish": "Finish",
+    "next": "Next Question",
+    "prev": "Previous",
+    "goHome": "Go home",
+    "tryAgain": "Try again"
+  },
+
+  "navbar": {
+    "login": "Login",
+    "signup": "Sign up",
+    "logout": "Logout",
+    "chartLabel": "Number correct",
+    "points": "Points",
+    "chartTitle": "Highest score on 10 quizzes you have taken"
+  },
+
+  "footer": {
+    "allRightsReserved": "All rights reserved"
+  }
+}

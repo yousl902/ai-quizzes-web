@@ -1,0 +1,164 @@
+{
+  "title": "Databasteknik",
+  "startButton": {
+    "text": "",
+    "showText": false
+  },
+  "info": {
+    "title": "Välkommen till Databasteknik",
+
+    "contact": {
+      "title": "Kontakt",
+      "email": "younes.sleibi2000@gmail.com",
+      "telephone": "Telefonnummer",
+      "timeStamp": "09:00 - 17:00",
+      "more": "Detta projekt är utvecklat av en grupp studenter. Vid frågor, idéer eller samarbetsförslag är du välkommen att kontakta mig via e-post."
+    },
+
+    "FAQ": {
+      "length": "4",
+      "faqItems": {
+        "0": {
+          "question": "Kan jag återanvända detta projekt?",
+          "answer": "Ja! Projektet är öppen källkod och tänkt att återanvändas. Du får gärna anpassa det efter dina behov."
+        },
+        "1": {
+          "question": "Vad kan jag anpassa?",
+          "answer": "Du kan enkelt ändra texter, färger och varumärke genom att redigera JSON-filerna. Ingen avancerad programmering krävs."
+        },
+        "2": {
+          "question": "Är den nuvarande versionen slutgiltig?",
+          "answer": "Den publicerade versionen är bara ett exempel, med fokus på databasteknik. Du kan enkelt anpassa den för andra ämnen."
+        },
+        "3": {
+          "question": "Behöver jag ett backend-system?",
+          "answer": "Vi använder Supabase som databas och Prisma gör det enkelt att byta till andra lösningar. Autentisering hanteras via ett factory-mönster, vill du byta auth-leverantör måste du skriva en egen strategi. Med Supabase fungerar allt direkt med minimal konfiguration."
+        }
+      }
+    },
+
+    "about": {
+      "title": "Om projektet",
+      "length": "4",
+      "0": "Detta projekt utvecklades som en del av ett kandidatarbete i samarbete med en riktig kund: StudyComb.",
+      "1": "StudyComb ville ha en modern, anpassningsbar och användarvänlig quizplattform för lärande.",
+      "2": "Plattformen är öppen källkod och kan återanvändas eller anpassas. Allt innehåll, design och funktionalitet styrs via JSON-konfigurationer.",
+      "3": "Observera att den publicerade versionen endast är ett exempel som fokuserar på databasteknik. Du kan använda den för andra ämnen också."
+    }
+  },
+
+  "notFound": {
+    "title": "Oops, sidan kunde inte hittas",
+    "description": "Tyvärr kunde vi inte hitta sidan du letade efter. Kolla gärna in vår startsida eller kontakta oss för mer hjälp.",
+    "buttonText": "Till startsidan"
+  },
+  "loginFailed": {
+    "title": "Inloggning misslyckades",
+    "description": "Tyvärr kunde vi inte logga in dig. Kontrollera dina inloggningsuppgifter och försök igen.",
+    "buttonText": "Försök igen"
+  },
+  "signupFailed": {
+    "title": "Oops! Något gick fel",
+    "description": "Tyvärr kunde vi inte skapa ditt konto. Kontrollera dina uppgifter och försök igen.",
+    "buttonText": "Försök igen"
+  },
+
+  "home": {
+    "title": "Databasteknik",
+
+    "company": "",
+
+    "contact": {
+      "title": "Kontakt",
+      "description": "Detta projekt utvecklades av en grupp studenter som en del av ett kandidatarbete. Tveka inte att höra av dig vid frågor eller feedback."
+    },
+    "faq": {
+      "title": "FAQ",
+      "description": "Lär dig hur du kan återanvända, anpassa och vidareutveckla denna plattform med öppen källkod."
+    },
+    "about": {
+      "title": "Om projektet",
+      "description": "En öppen och anpassningsbar quizplattform utvecklad som kandidatarbete i samarbete med StudyComb."
+    }
+  },
+
+  "resetPassword": {
+    "title": "Återställ ditt lösenord",
+    "description": "Ange ditt nya lösenord",
+    "success": "Lösenordet har uppdaterats",
+    "successDescription": "Du kan nu logga in med ditt nya lösenord.",
+    "error": "Kunde inte uppdatera lösenordet",
+    "errorDescription": "Försök igen eller kontakta supporten.",
+    "errorOccurred": "Ett fel inträffade",
+    "errorOccurredDescription": "Försök igen eller kontakta supporten om problemet kvarstår.",
+    "newPassword": "Nytt lösenord",
+    "confirmNewPassword": "Bekräfta nytt lösenord",
+    "passwordHint": "Måste vara minst 8 tecken",
+    "backToLogin": "Tillbaka till inloggningen"
+  },
+
+  "forgotPassword": {
+    "title": "Återställ ditt lösenord",
+    "description": "Ange din e-postadress så skickar vi en länk för att återställa ditt lösenord.",
+    "emailSent": "E-post för lösenordsåterställning skickad",
+    "emailSentDescription": "Kontrollera din e-post för vidare instruktioner.",
+    "emailError": "Kunde inte skicka återställningslänk",
+    "emailErrorDescription": "Kontrollera din e-postadress och försök igen.",
+    "error": "Ett fel inträffade",
+    "errorDescription": "Försök igen eller kontakta supporten om problemet kvarstår.",
+    "backToLogin": "Tillbaka till inloggningen"
+  },
+
+  "login": {
+    "welcomeBack": "Välkommen tillbaka",
+    "loginDescription": "Logga in på ditt konto",
+    "password": "Lösenord",
+    "rememberMe": "Kom ihåg mig",
+    "forgotPassword": "Glömt lösenord?",
+    "logIn": "Logga in",
+    "noAccount": "Har du inget konto? ",
+    "signUp": "Skapa konto"
+  },
+
+  "signup": {
+    "title": "Skapa ett konto",
+    "description": "Gå med för att förbättra ditt lärande",
+    "fullName": "Fullständigt namn",
+    "invalidEmail": "Vänligen ange en giltig e-postadress.",
+    "password": "Lösenord",
+    "termsAgreement": "Jag godkänner ",
+    "termsOfService": "Användarvillkoren",
+    "and": " och ",
+    "privacyPolicy": "Integritetspolicyn",
+    "signUp": "Skapa konto",
+    "alreadyHaveAccount": "Har du redan ett konto? ",
+    "logIn": "Logga in"
+  },
+
+  "navbar": {
+    "login": "Logga in",
+    "signup": "Skapa konto",
+    "logout": "Logga ut",
+    "chartLabel": "Antal rätt",
+    "points": "Poäng",
+    "chartTitle": "Hösgta poäng på 10 quiz du har gjort"
+  },
+
+  "buttons": {
+    "finish": "Avsluta",
+    "next": "Nästa",
+    "prev": "Föregående",
+    "goHome": "Gå till startsidan",
+    "tryAgain": "Försök igen"
+  },
+
+  "quizMenu": {
+    "title": "Quiz Meny",
+    "selectQuizInCategory": "Välj quiz i kategorin",
+    "selectQuizCategory": "Välj quiz-kategori"
+  },
+
+  "footer": {
+    "allRightsReserved": "Alla rättigheter förbehållna"
+  }
+}

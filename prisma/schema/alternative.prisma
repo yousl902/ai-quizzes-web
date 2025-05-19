@@ -1,0 +1,7 @@
+model Alternative {
+    id          String   @id @default(uuid())
+    option_text String
+    is_correct  Boolean
+    question_id String
+    question    Question @relation(fields: [question_id], references: [id])
+}

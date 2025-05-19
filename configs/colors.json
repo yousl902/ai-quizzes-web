@@ -1,0 +1,63 @@
+{
+  "background": "#e8f4f3",
+  "navbar": "#02b9e7",
+  "quizAlternative": "#02b9e7",
+  "progressBar": "#02b9e7",
+  "quizMenuHeader": "#000",
+  "infoPageHeader": "#000",
+  "infoPageSubheaders": "#02b9e7",
+  "infoSections": "#e9eff4",
+  "icons": "#02b9e7",
+  "email": "#02b9e7",
+  "emailHover": "#0195ba",
+  "footer": "#98e5ea",
+  "loadingSpinner": "#02b9e7",
+  "quizHover": "#98e5ea",
+  "result": {
+    "bg": "#98e5ea",
+    "darkCorrect": "#009966",
+    "lightCorrect": "#ecfdf5",
+    "darkIncorrect": "#ec003f",
+    "lightIncorrect": "#fff1f2"
+  },
+  "buttons": {
+    "start": {
+      "background": "#98e5ea",
+      "circle": "#fff",
+      "circleHover": "#02b9e7"
+    },
+    "profile": {
+      "background": "#98e5ea",
+      "circle": "#fff",
+      "circleHover": "#02b9e7"
+    },
+    "loginNavbar": "#fff",
+    "logout": "#000",
+    "createAccount": "#000",
+    "loginForm": "#000",
+
+    "next": {
+      "background": "#98e5ea",
+      "hover": "#02b9e7"
+    },
+    "prev": {
+      "background": "#fff",
+      "hover": "#f7f7f9"
+    },
+    "resetPassword": "#000000",
+
+    "goHome": {
+      "background": "#fff",
+      "hover": "#f7f7f9"
+    },
+    "tryAgain": {
+      "background": "#000",
+      "hover": "#02b9e7"
+    }
+  },
+  "chart": {
+    "low": "#FF531A",
+    "high": "#FF8000",
+    "average": "#FFBF00"
+  }
+}

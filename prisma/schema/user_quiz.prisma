@@ -1,0 +1,13 @@
+model UserQuiz {
+  id         String   @id @default(uuid())
+  user_id    String
+  quiz_id    String
+  score      Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  user       User     @relation(fields: [user_id], references: [id])
+  quiz       Quiz     @relation(fields: [quiz_id], references: [id])
+
+  @@unique([user_id, quiz_id])
+}
