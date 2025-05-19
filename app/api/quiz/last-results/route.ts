@@ -39,7 +39,7 @@ export async function GET(req: NextRequest) {
   }
 
   const quizIds = scores.map((score) => score.quiz_id);
-  const quizzes = await prisma.quiz.findMany({
+  const quizzes: { id: string; title: string; }[] = await prisma.quiz.findMany({
     where: {
       id: {
         in: quizIds,
@@ -57,10 +57,10 @@ export async function GET(req: NextRequest) {
 
   // map quiz title to scores
   const scoresWithTitles = scores.map((score) => {
-    const quiz = quizzes.find((quiz) => quiz.id === score.quiz_id);
+    const quiz: { id: string; title: string; } | undefined = quizzes.find((quiz) => quiz.id === score.quiz_id);
     return {
       ...score,
-      title: quiz ? quiz.title : "Unknown Quiz",
+      title: quiz? quiz.title : "Unknown Quiz",
     };
   });
 
