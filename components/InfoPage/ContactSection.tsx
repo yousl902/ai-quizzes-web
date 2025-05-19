@@ -31,7 +31,7 @@ export const ContactSection = ({
           <p className="flex items-center gap-2 text-gray-800">
             <Mail className="w-5 h-5 text-icons" />
             <a
-              href="mailto:info@studycomb.se"
+              href={`mailto:${email}`}
               className="text-email hover:text-email-hover transition-colors"
             >
               {email}
