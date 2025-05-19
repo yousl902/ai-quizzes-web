@@ -173,6 +173,7 @@ next-env.d.ts
 
 # prisma
 prisma/migrations
+prisma/schema/migrations
 
 # vim
 *~
