@@ -1,47 +1,52 @@
 {
-  "title": "Database Technology",
-  "logo": "/Mind_Swarm_Logo.png",
-  "errorGif": {
-    "src": "https://media.giphy.com/media/1NQ7m0gqsah1XS4vG1/giphy.gif",
-    "alt": "Animated bee"
-  },
+  "title": "Databasteknik",
   "startButton": {
     "text": "",
     "showText": false
   },
-  "colors": {},
   "info": {
-    "title": "Välkommen till Database Technology",
+    "title": "Välkommen till Databasteknik",
+
     "contact": {
       "title": "Kontakt",
-      "email": "info@studycomb.se",
-      "telephoneTimes": "Telefontid vardagar",
+      "email": "younes.sleibi2000@gmail.com",
+      "telephone": "Telefonnummer",
       "timeStamp": "09:00 - 17:00",
-      "more": "Vi strävar efter att besvara alla förfrågningar inom 24 timmar. Tveka inte att höra av dig om du har några frågor eller funderingar."
+      "more": "Detta projekt är utvecklat av en grupp studenter. Vid frågor, idéer eller samarbetsförslag är du välkommen att kontakta mig via e-post."
     },
+
     "FAQ": {
+      "length": "4",
       "faqItems": {
         "0": {
-          "question": "Kan jag använda era quiz offline?",
-          "answer": "Just nu är våra quizer enbart tillgängliga online."
+          "question": "Kan jag återanvända detta projekt?",
+          "answer": "Ja! Projektet är öppen källkod och tänkt att återanvändas. Du får gärna anpassa det efter dina behov."
         },
         "1": {
-          "question": "Vad kostar tjänsten?",
-          "answer": "Tjänsten är kostnadsfri."
+          "question": "Vad kan jag anpassa?",
+          "answer": "Du kan enkelt ändra texter, färger och varumärke genom att redigera JSON-filerna. Ingen avancerad programmering krävs."
         },
         "2": {
-          "question": "Har ni olika delar från Högskoleprovet?",
-          "answer": "Ja, vi har quizer från alla delar av Högskoleprovet."
+          "question": "Är den nuvarande versionen slutgiltig?",
+          "answer": "Den publicerade versionen är bara ett exempel, med fokus på databasteknik. Du kan enkelt anpassa den för andra ämnen."
+        },
+        "3": {
+          "question": "Behöver jag ett backend-system?",
+          "answer": "Vi använder Supabase som databas och Prisma gör det enkelt att byta till andra lösningar. Autentisering hanteras via ett factory-mönster, vill du byta auth-leverantör måste du skriva en egen strategi. Med Supabase fungerar allt direkt med minimal konfiguration."
         }
       }
     },
+
     "about": {
-      "title": "Om oss",
-      "0": "Vi är ett team av passionerade individer som strävar efter att göra lärande roligt och effektivt. Vår resa började i ett litet studentrum, där vi insåg att studier ibland kan vara monotona.",
-      "1": "Därför skapade vi en plattform som kombinerar interaktivt lärande med den senaste AI-tekniken för att generera quizfrågor.",
-      "2": "Vår ambition är att låta varje användare personifiera sin studieupplevelse, dela material med andra och tillsammans göra lärandet mer dynamiskt. Med ett starkt community i ryggen fortsätter vi att utveckla nya funktioner och förbättra vår tjänst."
+      "title": "Om projektet",
+      "length": "4",
+      "0": "Detta projekt utvecklades som en del av ett kandidatarbete i samarbete med en riktig kund: StudyComb.",
+      "1": "StudyComb ville ha en modern, anpassningsbar och användarvänlig quizplattform för lärande.",
+      "2": "Plattformen är öppen källkod och kan återanvändas eller anpassas. Allt innehåll, design och funktionalitet styrs via JSON-konfigurationer.",
+      "3": "Observera att den publicerade versionen endast är ett exempel som fokuserar på databasteknik. Du kan använda den för andra ämnen också."
     }
   },
+
   "notFound": {
     "title": "Oops, sidan kunde inte hittas",
     "description": "Tyvärr kunde vi inte hitta sidan du letade efter. Kolla gärna in vår startsida eller kontakta oss för mer hjälp.",
@@ -59,19 +64,21 @@
   },
 
   "home": {
-    "title": "DB Technology",
-    "company": "Drivs av Studycomb",
+    "title": "Databasteknik",
+
+    "company": "",
+
     "contact": {
       "title": "Kontakt",
-      "description": "Tveka inte att höra av dig till oss om du har frågor eller funderingar."
+      "description": "Detta projekt utvecklades av en grupp studenter som en del av ett kandidatarbete. Tveka inte att höra av dig vid frågor eller feedback."
     },
     "faq": {
       "title": "FAQ",
-      "description": "Kolla in vår FAQ-sektion för svar på vanliga frågor och funderingar."
+      "description": "Lär dig hur du kan återanvända, anpassa och vidareutveckla denna plattform med öppen källkod."
     },
     "about": {
-      "title": "Om oss",
-      "description": "Vi är ett team av passionerade individer som gör lärande roligt och effektivt."
+      "title": "Om projektet",
+      "description": "En öppen och anpassningsbar quizplattform utvecklad som kandidatarbete i samarbete med StudyComb."
     }
   },
 
@@ -104,7 +111,7 @@
 
   "login": {
     "welcomeBack": "Välkommen tillbaka",
-    "loginDescription": "Logga in på ditt Mindswarm-konto",
+    "loginDescription": "Logga in på ditt konto",
     "password": "Lösenord",
     "rememberMe": "Kom ihåg mig",
     "forgotPassword": "Glömt lösenord?",
@@ -115,7 +122,7 @@
 
   "signup": {
     "title": "Skapa ett konto",
-    "description": "Gå med i Mindswarm för att förbättra ditt lärande",
+    "description": "Gå med för att förbättra ditt lärande",
     "fullName": "Fullständigt namn",
     "invalidEmail": "Vänligen ange en giltig e-postadress.",
     "password": "Lösenord",
@@ -134,7 +141,7 @@
     "logout": "Logga ut",
     "chartLabel": "Antal rätt",
     "points": "Poäng",
-    "chartTitle": "Resultat från dina senaste 10 quiz"
+    "chartTitle": "Hösgta poäng på 10 quiz du har gjort"
   },
 
   "buttons": {

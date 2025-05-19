@@ -1,53 +1,51 @@
 {
   "title": "Database Technology",
 
-  "logo": "/Mind_Swarm_Logo.png",
-
-  "errorGif": {
-    "src": "https://media.giphy.com/media/1NQ7m0gqsah1XS4vG1/giphy.gif",
-    "alt": "Animated bee"
-  },
-
   "startButton": {
     "text": "",
     "showText": false
   },
-
-  "colors": {},
 
   "info": {
     "title": "Welcome to Database Technology",
 
     "contact": {
       "title": "Contact",
-      "email": "info@studycomb.se",
-      "telephoneTimes": "Telephone hours on weekdays",
+      "email": "younes.sleibi2000@gmail.com",
+      "telephone": "Phone number",
       "timeStamp": "09:00 - 17:00",
-      "more": "We strive to respond to all inquiries within 24 hours. Don’t hesitate to reach out if you have any questions or concerns."
+      "more": "This project was developed by Younes Sleibi. For questions, suggestions, or collaboration opportunities, feel free to reach out via email."
     },
 
     "FAQ": {
+      "length": "4",
       "faqItems": {
         "0": {
-          "question": "Can I use your quizzes offline?",
-          "answer": "Right now, our quizzes are only available online."
+          "question": "Can I reuse this project?",
+          "answer": "Yes! This project is open-source and intended for reuse. You’re welcome to adapt it to your own needs."
         },
         "1": {
-          "question": "What does the service cost?",
-          "answer": "The service is free of charge."
+          "question": "What can I customize?",
+          "answer": "You can easily change the text, colors, and branding by editing the JSON files. No deep coding knowledge is required."
         },
         "2": {
-          "question": "Do you cover different sections of the Swedish Scholastic Aptitude Test (Högskoleprovet)?",
-          "answer": "Yes, we have quizzes from all sections of the Högskoleprovet."
+          "question": "Is the current version final?",
+          "answer": "The deployed version is just one instance of the platform, specifically themed around database technology. You can modify it for other subjects as well."
+        },
+        "3": {
+          "question": "Do I need a backend to run it?",
+          "answer": "We use Supabase as the database, and Prisma makes it easy to switch to other solutions. Authentication is handled through a factory pattern, if you want to change the auth provider, you’ll need to implement your own strategy. Using Supabase works out of the box with minimal setup."
         }
       }
     },
 
     "about": {
-      "title": "About us",
-      "0": "We are a team of passionate individuals striving to make learning fun and effective. Our journey began in a small student room, where we realized that studying can sometimes be monotonous.",
-      "1": "That's why we created a platform that combines interactive learning with the latest AI technology to generate quiz questions.",
-      "2": "Our ambition is to let every user personalize their study experience, share material with others, and together make learning more dynamic. With a strong community behind us, we continue to develop new features and improve our service."
+      "title": "About the Project",
+      "length": "4",
+      "0": "This project was developed as part of a Bachelor's thesis in collaboration with a real-world customer: StudyComb.",
+      "1": "StudyComb approached us with a vision to create a quiz platform that is modern, customizable, and easy to use for learners.",
+      "2": "As an open-source initiative, the platform can be reused and modified. All texts, branding, and features are driven by simple JSON configurations.",
+      "3": "Note that the deployed version is just an example setup focusing on the subject of database technology. You are free to adapt it to other academic topics or training areas."
     }
   },
 
@@ -78,19 +76,19 @@
   "home": {
     "title": "DB Technology",
 
-    "company": "Powered by Studycomb",
+    "company": "",
 
     "contact": {
       "title": "Contact",
-      "description": "Don’t hesitate to reach out to us if you have any questions or concerns."
+      "description": "This project was developed by a group of students as part of a Bachelor's thesis. Feel free to reach out if you have any questions or feedback."
     },
     "faq": {
       "title": "FAQ",
-      "description": "Check out our FAQ section for answers to common questions and concerns."
+      "description": "Learn how to reuse, customize, and extend this open-source platform."
     },
     "about": {
-      "title": "About us",
-      "description": "We are a team of passionate individuals making learning fun and effective."
+      "title": "About the project",
+      "description": "An open and customizable quiz platform developed as a bachelor's thesis project in collaboration with StudyComb."
     }
   },
 
@@ -123,7 +121,7 @@
 
   "login": {
     "welcomeBack": "Welcome back",
-    "loginDescription": "Login to your Mindswarm account",
+    "loginDescription": "Login to your account",
     "password": "Password",
     "rememberMe": "Remember me",
     "forgotPassword": "Forgot password?",
@@ -134,7 +132,7 @@
 
   "signup": {
     "title": "Create an account",
-    "description": "Join Mindswarm to enhance your learning",
+    "description": "Join us to enhance your learning",
     "fullName": "Full Name",
     "invalidEmail": "Please enter a valid email address.",
     "password": "Password",
@@ -161,7 +159,7 @@
     "logout": "Logout",
     "chartLabel": "Number correct",
     "points": "Points",
-    "chartTitle": "Results from your last 10 quizzes"
+    "chartTitle": "Highest score on 10 quizzes you have taken"
   },
 
   "footer": {
