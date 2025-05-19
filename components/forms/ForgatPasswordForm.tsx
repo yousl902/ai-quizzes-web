@@ -29,12 +29,9 @@ export default function ForgotPasswordForm() {
     <Card className="max-w-md w-full shadow-xl">
       <CardHeader className="space-y-1">
         <CardTitle className="text-2xl font-bold text-center">
-          {/* Reset your password */}
           {t("title")}
         </CardTitle>
         <CardDescription className="text-center">
-          {/* Enter your email address and we'll send you a link to reset your */}
-          {/* password */}
           {t("description")}
         </CardDescription>
       </CardHeader>
@@ -46,26 +43,16 @@ export default function ForgotPasswordForm() {
             try {
               const success = await resetPassword(formData);
               if (success) {
-                // toast.success("Password reset email sent", {
-                //   description:
-                //     "Please check your email for further instructions.",
-                // });
                 toast.success(t("emailSent"), {
                   description: t("emailSentDescription"),
                 });
               } else {
-                // toast.error("Failed to send reset email", {
-                //   description: "Please check your email address and try again.",
-                // });
                 toast.error(t("emailError"), {
                   description: t("emailErrorDescription"),
                 });
               }
             } catch (error) {
-              // toast.error("An error occurred", {
-              //   description:
-              //     "Please try again or contact support if the problem persists.",
-              // });
+              console.error(error);
               toast.error(t("error"), {
                 description: t("errorDescription"),
               });

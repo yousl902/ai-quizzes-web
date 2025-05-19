@@ -24,7 +24,6 @@ export default function QuizCard() {
   const { quiz, saveResults, isLoading } = useQuizData();
   const currentQuestion = quiz?.questions?.[questionNumber];
   const totalQuestionNumber = quiz?.questions?.length || 0;
-  const quizCategory = quiz?.category || "";
   const quizTitle = quiz?.title || "";
   const [showResults, setShowResults] = useState(false);
   const [results, setResults] = useState<QuizResult[]>([]);

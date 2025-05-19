@@ -107,6 +107,8 @@ export async function POST(
       { status: 200 }
     );
   } catch (error) {
+    // use the error object to get more information about the error
+    console.error("Error saving score:", error);
     return NextResponse.json(
       { error: "Failed to save score" },
       { status: 500 }

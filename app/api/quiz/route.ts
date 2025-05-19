@@ -4,6 +4,17 @@ import { AuthProvider } from "@/lib/auth/types";
 import { getServerAuthProvider } from "@/lib/auth/factory/getServerProvider";
 import { Quiz } from "@prisma/client";
 
+interface AlternativeInput {
+  option_text: string;
+  is_correct: boolean;
+}
+
+interface QuestionInput {
+  question: string;
+  image?: string | null;
+  alternatives: AlternativeInput[];
+}
+
 export async function GET() {
     const authProvider: AuthProvider = getServerAuthProvider();
     const user = await authProvider.getCurrentUser();
@@ -37,16 +48,16 @@ export async function POST(req: NextRequest) {
         const body = await req.json();
         const { title, category, questions } = body;
 
-        const quiz = await prisma.quiz.create({
+        await prisma.quiz.create({
             data: {
                 title,
                 category,
                 questions: {
-                    create: questions.map((q: any) => ({
+                    create: questions.map((q: QuestionInput) => ({
                         question: q.question,
                         image: q.image ?? null,
                         alternatives: {
-                            create: q.alternatives.map((alt: any) => ({
+                            create: q.alternatives.map((alt: AlternativeInput) => ({
                                 option_text: alt.option_text,
                                 is_correct: alt.is_correct,
                             })),

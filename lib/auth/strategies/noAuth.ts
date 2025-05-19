@@ -1,4 +1,4 @@
-import { AuthProvider, AuthUser } from '../types';
+import { AuthProvider } from '../types';
 
 export const noAuth: AuthProvider = {
   async signIn() {

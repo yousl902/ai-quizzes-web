@@ -24,7 +24,7 @@ export async function login(formData: FormData) {
 
 export async function logout() {
   const auth = getServerAuthProvider();
-  const result = await auth.signOut();
+  await auth.signOut();
   const locale = await getLocale();
 
   revalidatePath("/", "layout");

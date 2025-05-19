@@ -2,6 +2,7 @@
 
 import { useLocale } from 'next-intl';
 import { Link, usePathname } from '@/i18n/navigation';
+import Image from 'next/image';
 
 export default function LanguageSwitcher() {
   const currentLocale = useLocale();
@@ -11,7 +12,7 @@ export default function LanguageSwitcher() {
 
   return (
     <Link href={pathname} locale={otherLocale}>
-      <img src={flagSrc} alt={`Switch to ${otherLocale === 'en' ? 'English' : 'Swedish'}`} width={35} height={35} />
+      <Image src={flagSrc} alt={`Switch to ${otherLocale === 'en' ? 'English' : 'Swedish'}`} width={35} height={35} />
     </Link>
   );
 }

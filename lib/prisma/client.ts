@@ -1,16 +1,25 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from "@prisma/client";
 
-declare global {
-  // Allow global `prisma` to persist across module reloads in development
-  var prisma: PrismaClient | undefined;
-}
+// PrismaClient is attached to the `global` object in development to prevent
+// exhausting your database connection limit.
+//
+// Learn more: 
+// https://pris.ly/d/help/next-js-best-practices
 
-// Initialize Prisma Client
-const prisma = global.prisma || new PrismaClient();
+let prisma: PrismaClient
 
-// In development, store the client in globalThis to reuse it
-if (process.env.NODE_ENV !== 'production') {
-  global.prisma = prisma;
+if (typeof window === "undefined") {
+  if (process.env.NODE_ENV === "production") {
+    prisma = new PrismaClient();
+  } else {
+    let globalWithPrisma = global as typeof globalThis & {
+      prisma: PrismaClient;
+    };
+    if (!globalWithPrisma.prisma) {
+      globalWithPrisma.prisma = new PrismaClient();
+    }
+    prisma = globalWithPrisma.prisma;
+  }
 }
 
 export { prisma };

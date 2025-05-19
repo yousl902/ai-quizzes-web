@@ -90,24 +90,19 @@ export default function ResetPasswordForm() {
             try {
               const success = await updatePassword(formData);
               if (success) {
-                // toast.success("Password updated successfully", {
                 toast.success(t("success"), {
-                  // description: "You can now log in with your new password.",
                   description: t("successDescription"),
                 });
                 setTimeout(() => router.push("/login"), 2000);
               } else {
-                // toast.error("Failed to update password", {
                 toast.error(t("error"), {
-                  // description: "Please try again or contact support.",
                   description: t("errorDescription"),
                 });
               }
             } catch (error) {
-              // toast.error("An error occurred", {
+              console.error(error);
               toast.error(t("errorOccurred"), {
                 description:
-                  // "Please try again or contact support if the problem persists.",
                   t("errorOccurredDescription"),
               });
             } finally {
@@ -117,7 +112,6 @@ export default function ResetPasswordForm() {
           className="space-y-4"
         >
           <div className="space-y-2">
-            {/* <Label htmlFor="password">New Password</Label> */}
             <Label htmlFor="password">{t("newPassword")}</Label>
             <Input
               id="password"
@@ -131,13 +125,11 @@ export default function ResetPasswordForm() {
               minLength={8}
             />
             <p className="text-xs text-muted-foreground">
-              {/* Must be at least 8 characters */}
               {t("passwordHint")}
             </p>
           </div>
 
           <div className="space-y-2">
-            {/* <Label htmlFor="confirmPassword">Confirm New Password</Label> */}
             <Label htmlFor="confirmPassword">{t("confirmNewPassword")}</Label>
             <Input
               id="confirmPassword"
