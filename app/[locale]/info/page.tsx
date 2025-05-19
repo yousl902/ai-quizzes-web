@@ -34,7 +34,7 @@ export default function InfoPage() {
           <section id="kontakt" className="scroll-mt-28">
             <ContactSection
               email={t("contact.email")}
-              telephoneTimes={t("contact.telephoneTimes")}
+              telephoneTimes={t("contact.telephone")}
               timeStamp={t("contact.timeStamp")}
               more={t("contact.more")}
             />
