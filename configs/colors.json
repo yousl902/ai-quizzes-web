@@ -13,6 +13,13 @@
   "footer": "#98e5ea",
   "loadingSpinner": "#02b9e7",
   "quizHover": "#98e5ea",
+  "result": {
+    "bg": "#98e5ea",
+    "darkCorrect": "#009966",
+    "lightCorrect": "#ecfdf5",
+    "darkIncorrect": "#ec003f",
+    "lightIncorrect": "#fff1f2"
+  },
   "buttons": {
     "start": {
       "background": "#98e5ea",

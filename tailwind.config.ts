@@ -19,6 +19,11 @@ module.exports = {
         loadingSpinner: customColors.loadingSpinner,
         quizHover: customColors.quizHover,
         infoSections: customColors.infoSections,
+        resultBg: customColors.result.bg,
+        resultDarkCorrect: customColors.result.darkCorrect,
+        resultDarkIncorrect: customColors.result.darkIncorrect,
+        resultLightCorrect: customColors.result.lightCorrect,
+        resultLightIncorrect: customColors.result.lightIncorrect,
 
         btnStart: customColors.buttons.start.background,
         btnStartCircle: customColors.buttons.start.circle,
