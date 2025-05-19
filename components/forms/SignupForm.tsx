@@ -60,7 +60,7 @@ export default function SignupForm() {
               id="name"
               name="name"
               type="text"
-              placeholder="younes"
+              placeholder="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
