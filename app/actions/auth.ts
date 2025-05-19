@@ -47,11 +47,11 @@ export async function signup(formData: FormData) {
   const name = formData.get("name");
   const first_name = (name as string).split(" ")[0];
   const last_name = (name as string).split(" ")[1];
-  result.first_name = first_name;
-  result.last_name = last_name;
+  result!.first_name = first_name;
+  result!.last_name = last_name;
 
   // Sync user between authprovider (supabasae in our case) and prisma database
-  await syncUser(result);
+  await syncUser(result!);
 
   revalidatePath("/", "layout");
   redirect({href: "/", locale});

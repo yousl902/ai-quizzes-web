@@ -47,7 +47,7 @@ export default function QuizCard() {
     if (nextQuestionNumber >= totalQuestionNumber) {
       saveResults(pickedAnswers);
 
-      const all: QuizResult[] = quiz.questions.map((q, idx) => {
+      const all: QuizResult[] = quiz!.questions.map((q, idx) => {
         const picked = pickedAnswers[idx];
         const correctAlt = q.alternatives.find((a) => a.is_correct);
         return {
