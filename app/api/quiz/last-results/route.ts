@@ -20,7 +20,7 @@ export async function GET(req: NextRequest) {
     quizzesToFetch = parseInt(quizzesParam, 10) || quizzesToFetch;
   }
 
-  const scores = await prisma.userQuiz.findMany({
+  const scores: { quiz_id: string; score: number }[] = await prisma.userQuiz.findMany({
     where: {
       user_id: userId,
     },
