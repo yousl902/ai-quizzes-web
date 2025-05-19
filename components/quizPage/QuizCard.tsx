@@ -25,6 +25,7 @@ export default function QuizCard() {
   const currentQuestion = quiz?.questions?.[questionNumber];
   const totalQuestionNumber = quiz?.questions?.length || 0;
   const quizCategory = quiz?.category || "";
+  const quizTitle = quiz?.title || "";
   const [showResults, setShowResults] = useState(false);
   const [results, setResults] = useState<QuizResult[]>([]);
   const t = useTranslations("buttons");
@@ -98,7 +99,7 @@ export default function QuizCard() {
       <Card className="w-full max-w-xl shadow-xl">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl text-center font-bold">
-            {quizCategory}
+            {quizTitle}
           </CardTitle>
           <CardDescription className="text-center">
             {/* TODO: this has to be changed based on config file and data frpm the database */}
