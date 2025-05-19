@@ -8,6 +8,7 @@ import { ProfileButton } from "@/components/navbar/ProfileButton";
 import { PrismaUser } from "@/lib/auth/types";
 import { useTranslations } from "next-intl";
 import LanguageSwitcher from "../LanguageSwitcher";
+import Image from "next/image";
 
 const NavBar = ({
   title,
@@ -26,7 +27,7 @@ const NavBar = ({
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         <Link href="/" className="text-2xl font-bold flex items-center gap-2">
           {logo && logo.trim() !== "" && (
-            <img src={logo} alt="Logo" className="h-8 w-8 inline-block" />
+            <Image src={logo} alt="Logo" className="h-8 w-8 inline-block" width={32} height={32} />
           )}
           {title}
         </Link>

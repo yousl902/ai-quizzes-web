@@ -5,7 +5,7 @@ import { AuthProvider } from "@/lib/auth/types";
 
 export async function GET(
   _req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const authProvider: AuthProvider = getServerAuthProvider();
   const user = await authProvider.getCurrentUser();
@@ -42,7 +42,7 @@ export async function GET(
 
 export async function POST(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const authProvider: AuthProvider = getServerAuthProvider();
   const user = await authProvider.getCurrentUser();
@@ -107,6 +107,8 @@ export async function POST(
       { status: 200 }
     );
   } catch (error) {
+    // use the error object to get more information about the error
+    console.error("Error saving score:", error);
     return NextResponse.json(
       { error: "Failed to save score" },
       { status: 500 }

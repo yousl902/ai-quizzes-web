@@ -24,7 +24,6 @@ export default function QuizCard() {
   const { quiz, saveResults, isLoading } = useQuizData();
   const currentQuestion = quiz?.questions?.[questionNumber];
   const totalQuestionNumber = quiz?.questions?.length || 0;
-  const quizCategory = quiz?.category || "";
   const quizTitle = quiz?.title || "";
   const [showResults, setShowResults] = useState(false);
   const [results, setResults] = useState<QuizResult[]>([]);
@@ -48,7 +47,7 @@ export default function QuizCard() {
     if (nextQuestionNumber >= totalQuestionNumber) {
       saveResults(pickedAnswers);
 
-      const all: QuizResult[] = quiz.questions.map((q, idx) => {
+      const all: QuizResult[] = quiz!.questions.map((q, idx) => {
         const picked = pickedAnswers[idx];
         const correctAlt = q.alternatives.find((a) => a.is_correct);
         return {

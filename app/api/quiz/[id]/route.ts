@@ -2,12 +2,11 @@ import { prisma } from "@/lib/prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import { AuthProvider } from "@/lib/auth/types";
 import { getServerAuthProvider } from "@/lib/auth/factory/getServerProvider";
-import { UserQuiz } from "@prisma/client";
 import { QuizWithQuestionsAndAlternatives } from "@/lib/prismaTypes";
 
 export async function GET(
     _req: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     const authProvider: AuthProvider = getServerAuthProvider();
     const user = await authProvider.getCurrentUser();
@@ -16,7 +15,6 @@ export async function GET(
         return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
     }
 
-    const userId: string = user.id;
     const routeParams: { id: string } = await params;
     const quizId: string = routeParams.id;
 

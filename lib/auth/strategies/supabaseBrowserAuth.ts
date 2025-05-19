@@ -82,16 +82,20 @@ export const supabaseClientAuth: AuthProvider = {
     },
 
     async updatePassword(code: string, password: string) {
+        void code;
+        void password;
         console.error('updatePassword is not implemented for a Browser client');
         return false;
     },
 
     async verifyCode(code: string) {
+        void code;
         console.error('verifyCode is not implemented for a Browser client');
         return false;
     },
 
     async resetPassword(email: string) {
+        void email;
         console.error('resetPassword is not implemented for a Browser client');
         return false;
     },

@@ -1,4 +1,4 @@
-import { AuthProvider, AuthUser } from '../types';
+import { AuthProvider } from '../types';
 
 export const noAuth: AuthProvider = {
   async signIn() {
@@ -12,5 +12,18 @@ export const noAuth: AuthProvider = {
   },
   async getCurrentUser() {
     return null;
+  },
+  async resetPassword(email: string) {
+    void email;
+    throw new Error('Authentication not implemented');
+  },
+  async updatePassword(code: string, password: string) {
+    void code;
+    void password;
+    throw new Error('Authentication not implemented');
+  },
+  async verifyCode(code: string) {
+    void code;
+    throw new Error('Authentication not implemented');
   },
 };
