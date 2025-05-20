@@ -2,7 +2,6 @@
 
 import { Link } from "@/i18n/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
 import {
   Accordion,
   AccordionItem,
@@ -10,36 +9,20 @@ import {
 } from "@/components/ui/accordion";
 import { Quiz } from "@prisma/client";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
 
 type GroupedQuizzes = Record<string, Quiz[]>;
 
-export default function QuizMenu() {
+export default function QuizMenu({ quizzes }: { quizzes: Quiz[] }) {
   const t = useTranslations("quizMenu");
   const [activeItem, setActiveItem] = useState<string | null>(null);
-  const [groupedQuizzes, setGroupedQuizzes] = useState<GroupedQuizzes>({});
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch("/api/quiz");
-        const data: Quiz[] = await res.json();
-
-        const grouped: GroupedQuizzes = {};
-        data.forEach((quiz) => {
-          if (!grouped[quiz.category]) {
-            grouped[quiz.category] = [];
-          }
-          grouped[quiz.category].push(quiz);
-        });
-
-        setGroupedQuizzes(grouped);
-      } catch (error) {
-        console.error("Failed to fetch quizzes:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
+  const groupedQuizzes: GroupedQuizzes = {};
+  quizzes.forEach((quiz) => {
+    if (!groupedQuizzes[quiz.category]) {
+      groupedQuizzes[quiz.category] = [];
+    }
+    groupedQuizzes[quiz.category].push(quiz);
+  });
 
   const nestedItems = activeItem ? groupedQuizzes[activeItem] : null;
 
