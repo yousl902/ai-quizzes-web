@@ -1,13 +1,10 @@
-"use client";
-
 import { ContactSection } from "@/components/InfoPage/ContactSection";
 import { FAQSection } from "@/components/InfoPage/FAQSection";
 import { AboutSection } from "@/components/InfoPage/AboutSection";
-import { motion } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
-export default function InfoPage() {
-  const t = useTranslations("info");
+export default async function InfoPage() {
+  const t = await getTranslations("info");
 
   const faqItems = Array.from(Array(Number(t(`FAQ.length`))).keys()).map(
     (item: number) => ({
@@ -22,14 +19,9 @@ export default function InfoPage() {
   return (
     <div className="min-h-screen bg-bg pt-16 pb-12 relative overflow-hidden">
       <div className="max-w-5xl mx-auto px-4 relative">
-        <motion.h1
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-3xl sm:text-4xl font-bold leading-relaxed mb-16 text-center text-quiz-menu-header"
-        >
+        <h1 className="text-3xl sm:text-4xl font-bold leading-relaxed mb-16 text-center text-quiz-menu-header">
           {t("title")}
-        </motion.h1>
+        </h1>
         <div className="space-y-20">
           <section id="kontakt" className="scroll-mt-28">
             <ContactSection
