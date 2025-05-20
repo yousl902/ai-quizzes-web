@@ -16,7 +16,7 @@ import {
   NameType,
 } from "recharts/types/component/DefaultTooltipContent";
 
-type QuizResult = { quizId: string; score: number; title: string };
+type QuizResult = { title: string, quiz_id: string; score: number; };
 
 export function ProfileChart({ quizResults }: { quizResults: QuizResult[] }) {
   const t = useTranslations("navbar");
@@ -30,8 +30,8 @@ export function ProfileChart({ quizResults }: { quizResults: QuizResult[] }) {
   };
 
   const getColorClassForValue = (value: number) => {
-    if (value <= 4) return "fill-chart-low";
-    if (value <= 14) return "fill-chart-average";
+    if (value <= 7) return "fill-chart-low";
+    if (value <= 12) return "fill-chart-average";
     return "fill-chart-high";
   };
 

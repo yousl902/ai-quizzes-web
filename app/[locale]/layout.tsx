@@ -12,6 +12,8 @@ import NavBar from "@/components/navbar/Navbar";
 import { getServerAuthProvider } from "@/lib/auth/factory/getServerProvider";
 import Footer from "@/components/Footer";
 import { getTranslations } from "next-intl/server";
+import { ProfileButton } from "@/components/navbar/ProfileButton";
+import { ProfileSection } from "@/components/navbar/ProfileSection";
 
 // Dina valfria Google-fonts
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
@@ -44,11 +46,31 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-bg`}
       >
         <NextIntlClientProvider locale={locale}>
           <Toaster position="bottom-right" />
-          <NavBar title={t("title")} logo={assets.logo} user={user} />
+          <NavBar
+            title={t("title")}
+            logo={assets.logo}
+            user={user}
+            ProfileButton={
+              <ProfileButton
+                firstName={user?.first_name}
+                lastName={user?.last_name}
+                email={user!.email}
+                userId={user!.id}
+              />
+            }
+            ProfileSection={
+              <ProfileSection
+                firstName={user?.first_name}
+                lastName={user?.last_name}
+                email={user!.email}
+                userId={user!.id}
+              />
+            }
+          />
           {children}
           <Footer title={t("title")} />
         </NextIntlClientProvider>
