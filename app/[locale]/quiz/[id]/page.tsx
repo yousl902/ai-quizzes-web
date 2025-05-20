@@ -1,9 +1,29 @@
 import QuizCard from "@/components/quizPage/QuizCard";
+import { prisma } from "@/lib/prisma/client";
+import { QuizWithQuestionsAndAlternatives } from "@/lib/prismaTypes";
 
-export default function QuizPage() {
+export default async function QuizPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id: quizId } = await params;
+
+  const quiz: QuizWithQuestionsAndAlternatives | null =
+    await prisma.quiz.findUnique({
+      where: { id: quizId },
+      include: {
+        questions: {
+          include: {
+            alternatives: true,
+          },
+        },
+      },
+    });
+
   return (
     <div className="bg-bg min-h-screen flex flex-col items-center justify-center">
-      <QuizCard />
+      <QuizCard quiz={quiz} />
     </div>
   );
 }
