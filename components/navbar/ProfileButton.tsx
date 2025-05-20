@@ -8,10 +8,10 @@ import {
 import { ProfileSection } from "@/components/navbar/ProfileSection";
 
 interface ProfileButtonProps {
-  email: string;
+  email?: string;
   firstName?: string;
   lastName?: string;
-  userId: string;
+  userId?: string;
 }
 
 export async function ProfileButton({

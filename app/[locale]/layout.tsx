@@ -58,16 +58,16 @@ export default async function RootLayout({
               <ProfileButton
                 firstName={user?.first_name}
                 lastName={user?.last_name}
-                email={user!.email}
-                userId={user!.id}
+                email={user?.email}
+                userId={user?.id}
               />
             }
             ProfileSection={
               <ProfileSection
                 firstName={user?.first_name}
                 lastName={user?.last_name}
-                email={user!.email}
-                userId={user!.id}
+                email={user?.email}
+                userId={user?.id}
               />
             }
           />

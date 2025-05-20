@@ -5,10 +5,10 @@ import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma/client";
 
 interface ProfileSectionProps {
-  email: string;
+  email?: string;
   firstName?: string;
   lastName?: string;
-  userId: string;
+  userId?: string;
 }
 
 export async function ProfileSection({
