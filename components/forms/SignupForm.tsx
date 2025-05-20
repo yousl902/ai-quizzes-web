@@ -12,7 +12,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
 import { UserPlus } from "lucide-react";
 import { signup } from "@/app/actions/auth";
 import { useTranslations } from "next-intl";
@@ -22,7 +21,7 @@ export default function SignupForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [termsAccepted, setTermsAccepted] = useState(false);
+  //const [termsAccepted, setTermsAccepted] = useState(false);
 
   const isEmailValid = (email: string) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -38,15 +37,18 @@ export default function SignupForm() {
     );
   };
 
+  const isValidFullName = (name: string) => {
+    const nameParts = name.trim().split(" ");
+    return nameParts.length >= 2 && nameParts.every((part) => part.length > 0);
+  };
+
   return (
     <Card className="max-w-md w-full shadow-xl">
       <CardHeader className="space-y-1">
         <CardTitle className="text-2xl font-bold text-center">
-          {/* Create an account */}
           {t("title")}
         </CardTitle>
         <CardDescription className="text-center">
-          {/* Join Mindswarm to enhance your learning */}
           {t("description")}
         </CardDescription>
       </CardHeader>
@@ -54,13 +56,12 @@ export default function SignupForm() {
       <CardContent>
         <form className="space-y-4">
           <div className="space-y-2">
-            {/* <Label htmlFor="name">Full Name</Label> */}
             <Label htmlFor="name">{t("fullName")}</Label>
             <Input
               id="name"
               name="name"
               type="text"
-              placeholder="name"
+              placeholder="Full name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
@@ -79,15 +80,11 @@ export default function SignupForm() {
               required
             />
             {email.length > 0 && !isEmailValid(email) && (
-              <p className="text-xs text-red-500">
-                {/* Please enter a valid email address. */}
-                {t("invalidEmail")}
-              </p>
+              <p className="text-xs text-red-500">{t("invalidEmail")}</p>
             )}
           </div>
 
           <div className="space-y-2">
-            {/* <Label htmlFor="password">Password</Label> */}
             <Label htmlFor="password">{t("password")}</Label>
             <Input
               id="password"
@@ -111,7 +108,7 @@ export default function SignupForm() {
             )}
           </div>
 
-          <div className="flex items-center space-x-2">
+          {/* <div className="flex items-center space-x-2">
             <Checkbox
               id="terms"
               checked={termsAccepted}
@@ -119,20 +116,16 @@ export default function SignupForm() {
               required
             />
             <Label htmlFor="terms" className="text-sm cursor-pointer">
-              {/* I agree to the{" "} */}
               {t("termsAgreement")}
               <Link href="/terms" className="hover:underline">
-                {/* Terms of Service */}
                 {t("termsOfService")}
               </Link>{" "}
-              {/* and{" "} */}
               {t("and")}
               <Link href="/privacy" className="hover:underline">
-                {/* Privacy Policy */}
                 {t("privacyPolicy")}
               </Link>
             </Label>
-          </div>
+          </div> */}
 
           <Button
             formAction={signup}
@@ -140,11 +133,11 @@ export default function SignupForm() {
             disabled={
               !isEmailValid(email) ||
               !isPasswordValid(password) ||
-              !termsAccepted
+              !isValidFullName(name)
+              //!termsAccepted
             }
           >
             <UserPlus className="mr-2 h-4 w-4" />
-            {/* Sign up */}
             {t("signUp")}
           </Button>
         </form>
@@ -152,10 +145,8 @@ export default function SignupForm() {
 
       <CardFooter className="flex flex-col space-y-4">
         <div className="text-center text-sm">
-          {/* Already have an account?{" "} */}
           {t("alreadyHaveAccount")}
           <Link href="/login" className="hover:underline">
-            {/* Log in */}
             {t("logIn")}
           </Link>
         </div>

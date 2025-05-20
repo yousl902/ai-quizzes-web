@@ -87,7 +87,6 @@ export default function ForgotPasswordForm() {
               href="/login"
               className="text-sm hover:underline transition-colors"
             >
-              {/* Back to Login */}
               {t("backToLogin")}
             </Link>
           </div>

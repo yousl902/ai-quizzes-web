@@ -62,11 +62,9 @@ export default function ResetPasswordForm() {
     <Card className="max-w-md w-full shadow-xl">
       <CardHeader className="space-y-1">
         <CardTitle className="text-2xl font-bold text-center text-mindswarm-700">
-          {/* Reset your password */}
           {t("title")}
         </CardTitle>
         <CardDescription className="text-center">
-          {/* Please enter your new password */}
           {t("description")}
         </CardDescription>
       </CardHeader>
@@ -155,7 +153,6 @@ export default function ResetPasswordForm() {
               href="/login"
               className="text-sm hover:underline transition-colors"
             >
-              {/* Back to Login */}
               {t("backToLogin")}
             </Link>
           </div>

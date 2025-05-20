@@ -25,11 +25,9 @@ export default function SigninForm() {
     <Card className="max-w-md w-full shadow-xl">
       <CardHeader className="space-y-1">
         <CardTitle className="text-2xl font-bold text-center">
-          {/* Welcome back */}
           {t("welcomeBack")}
         </CardTitle>
         <CardDescription className="text-center">
-          {/* Login to your Mindswarm account */}
           {t("loginDescription")}
         </CardDescription>
       </CardHeader>
@@ -48,7 +46,6 @@ export default function SigninForm() {
           </div>
 
           <div className="space-y-2">
-            {/* <Label htmlFor="password">Password</Label> */}
             <Label htmlFor="password">{t("password")}</Label>
             <Input
               id="password"
@@ -67,20 +64,17 @@ export default function SigninForm() {
                 onCheckedChange={(checked) => setRememberMe(!!checked)}
               />
               <Label htmlFor="remember-me" className="text-sm cursor-pointer">
-                {/* Remember me */}
                 {t("rememberMe")}
               </Label>
             </div>
 
             <Link href="/forgot-password" className="text-sm hover:underline">
-              {/* Forgot password? */}
               {t("forgotPassword")}
             </Link>
           </div>
 
           <Button formAction={login} className="w-full text-white bg-btn-login-form  hover:bg-btn-login-form/90">
             <LogIn className="mr-2 h-4 w-4" />
-            {/* Log in */}
             {t("logIn")}
           </Button>
         </form>
@@ -88,10 +82,8 @@ export default function SigninForm() {
 
       <CardFooter className="flex flex-col space-y-4">
         <div className="text-center text-sm">
-          {/* Don&apos;t have an account?{" "} */}
           {t("noAccount")}
           <Link href="/signup" className="hover:underline">
-            {/* Sign up */}
             {t("signUp")}
           </Link>
         </div>
