@@ -15,7 +15,7 @@ export default function AnswerOption({
         type="radio"
         checked={isSelected}
         onChange={onClick}
-        className="appearance-none w-5 h-5 rounded-full border-2 border-alt checked:bg-alt transition-colors"
+        className="appearance-none w-5 h-5 rounded-full shrink-0 border-2 border-alt checked:bg-alt transition-colors"
       />
       <span>{answer.option_text}</span>
     </label>
