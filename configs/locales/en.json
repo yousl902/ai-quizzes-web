@@ -150,7 +150,8 @@
     "next": "Next Question",
     "prev": "Previous",
     "goHome": "Go home",
-    "tryAgain": "Try again"
+    "tryAgain": "Try again",
+    "goToQuizMenu": "Go to Quiz Menu"
   },
 
   "navbar": {

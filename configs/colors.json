@@ -57,7 +57,7 @@
   },
   "chart": {
     "low": "#FF531A",
-    "high": "#FF8000",
-    "average": "#FFBF00"
+    "high": "#FFBF00",
+    "average": "#FF8000"
   }
 }

@@ -149,7 +149,8 @@
     "next": "Nästa",
     "prev": "Föregående",
     "goHome": "Gå till startsidan",
-    "tryAgain": "Försök igen"
+    "tryAgain": "Försök igen",
+    "goToQuizMenu": "Gå till quizmeny"
   },
 
   "quizMenu": {
