@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useEffect, useState } from "react";
+import { useActionState } from "react";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,7 +15,6 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { resetPassword } from "@/app/actions/auth";
 import { useTranslations } from "next-intl";
-import { use } from "chai";
 
 /**
  * ForgotPasswordForm Component
@@ -25,7 +24,6 @@ import { use } from "chai";
  */
 export default function ForgotPasswordForm() {
   const t = useTranslations("forgotPassword");
-  //const [isLoading, setIsLoading] = useState(false);
   const [state, formAction, pending] = useActionState(resetPassword, false);
 
   const handleSubmit = async () => {
@@ -39,7 +37,7 @@ export default function ForgotPasswordForm() {
       });
     }
   };
-  
+
   return (
     <Card className="max-w-md w-full shadow-xl">
       <CardHeader className="space-y-1">

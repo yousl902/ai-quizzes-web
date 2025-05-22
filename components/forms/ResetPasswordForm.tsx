@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useEffect, useState } from "react";
+import { useActionState, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
