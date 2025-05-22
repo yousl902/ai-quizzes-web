@@ -100,11 +100,12 @@
     "error": "Failed to update password",
     "errorDescription": "Please try again or contact support.",
     "errorOccurred": "An error occurred",
-    "errorOccurredDescription": "Please try again or contact support if the problem persists.",
     "newPassword": "New Password",
     "confirmNewPassword": "Confirm New Password",
     "passwordHint": "Must be at least 8 characters",
-    "backToLogin": "Back to Login"
+    "backToLogin": "Back to Login",
+    "updatePassword": "Update Password",
+    "loading": "loading..."
   },
 
   "forgotPassword": {
@@ -116,7 +117,9 @@
     "emailErrorDescription": "Please check your email address and try again.",
     "error": "An error occurred",
     "errorDescription": "Please try again or contact support if the problem persists.",
-    "backToLogin": "Back to Login"
+    "backToLogin": "Back to Login",
+    "sendResetLink": "Reset Password",
+    "loading": "Sending..."
   },
 
   "login": {
@@ -127,7 +130,8 @@
     "forgotPassword": "Forgot password?",
     "logIn": "Log in",
     "noAccount": "Don't have an account? ",
-    "signUp": "Sign up"
+    "signUp": "Sign up",
+    "LoggingIn": "Logging in..."
   },
 
   "signup": {
@@ -142,7 +146,8 @@
     "privacyPolicy": "Privacy Policy",
     "signUp": "Sign up",
     "alreadyHaveAccount": "Already have an account? ",
-    "logIn": "Log in"
+    "logIn": "Log in",
+    "creatingAccount": "Creating your account..."
   },
 
   "buttons": {
@@ -165,5 +170,13 @@
 
   "footer": {
     "allRightsReserved": "All rights reserved"
+  },
+
+  "quizResult": {
+    "title": "Quiz Result",
+    "result": "Results",
+    "correctAnswers": "Correct answers",
+    "incorrectAnswers": "Incorrect answers",
+    "close": "Close"
   }
 }

@@ -90,11 +90,12 @@
     "error": "Kunde inte uppdatera lösenordet",
     "errorDescription": "Försök igen eller kontakta supporten.",
     "errorOccurred": "Ett fel inträffade",
-    "errorOccurredDescription": "Försök igen eller kontakta supporten om problemet kvarstår.",
     "newPassword": "Nytt lösenord",
     "confirmNewPassword": "Bekräfta nytt lösenord",
     "passwordHint": "Måste vara minst 8 tecken",
-    "backToLogin": "Tillbaka till inloggningen"
+    "backToLogin": "Tillbaka till inloggningen",
+    "updatePassword": "Uppdatera lösenord",
+    "loading": "Loading..."
   },
 
   "forgotPassword": {
@@ -106,7 +107,9 @@
     "emailErrorDescription": "Kontrollera din e-postadress och försök igen.",
     "error": "Ett fel inträffade",
     "errorDescription": "Försök igen eller kontakta supporten om problemet kvarstår.",
-    "backToLogin": "Tillbaka till inloggningen"
+    "backToLogin": "Tillbaka till inloggningen",
+    "sendResetLink": "Återställ lösenord",
+    "loading": "Skickar..."
   },
 
   "login": {
@@ -117,7 +120,8 @@
     "forgotPassword": "Glömt lösenord?",
     "logIn": "Logga in",
     "noAccount": "Har du inget konto? ",
-    "signUp": "Skapa konto"
+    "signUp": "Skapa konto",
+    "LoggingIn": "Loggar in..."
   },
 
   "signup": {
@@ -132,7 +136,8 @@
     "privacyPolicy": "Integritetspolicyn",
     "signUp": "Skapa konto",
     "alreadyHaveAccount": "Har du redan ett konto? ",
-    "logIn": "Logga in"
+    "logIn": "Logga in",
+    "creatingAccount": "Skapar ditt konto..."
   },
 
   "navbar": {
@@ -161,5 +166,13 @@
 
   "footer": {
     "allRightsReserved": "Alla rättigheter förbehållna"
+  },
+
+  "quizResult": {
+    "title": "Quizresultat",
+    "result": "Resultat",
+    "correctAnswers": "Rätt svar",
+    "incorrectAnswers": "Fel asvarnswers",
+    "close": "Stäng"
   }
 }
