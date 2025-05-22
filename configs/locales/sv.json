@@ -92,7 +92,8 @@
     "errorOccurred": "Ett fel inträffade",
     "newPassword": "Nytt lösenord",
     "confirmNewPassword": "Bekräfta nytt lösenord",
-    "passwordHint": "Måste vara minst 8 tecken",
+    "passwordShort": "Måste vara minst 8 tecken",
+    "passwordsDoNotMatch": "Lösenorden matchar inte",
     "backToLogin": "Tillbaka till inloggningen",
     "updatePassword": "Uppdatera lösenord",
     "loading": "Loading..."
