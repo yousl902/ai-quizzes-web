@@ -73,19 +73,18 @@ export async function signup(
   redirect({ href: "/", locale });
 }
 
-export async function resetPassword(prevState: boolean, formData: FormData) {
+export async function resetPassword(
+  prevState: boolean | null,
+  formData: FormData
+) {
   void prevState;
   const email = formData.get("email") as string;
   if (!email) {
     return false;
   }
-
   const auth = getServerAuthProvider();
   const result = await auth.resetPassword(email);
-  if (!result) {
-    return false;
-  }
-  return true;
+  return result;
 }
 
 /**
@@ -97,7 +96,11 @@ export async function resetPassword(prevState: boolean, formData: FormData) {
  *   - code: The reset code from the email link
  * @returns Promise<boolean> - Returns true if the password was updated successfully, false otherwise
  */
-export async function updatePassword( code: string | null, prevState: boolean, formData: FormData) {
+export async function updatePassword(
+  code: string | null,
+  prevState: boolean | null,
+  formData: FormData
+) {
   void prevState;
   const password = formData.get("password") as string;
 
@@ -107,8 +110,5 @@ export async function updatePassword( code: string | null, prevState: boolean, f
 
   const auth = getServerAuthProvider();
   const result = await auth.updatePassword(code, password);
-  if (!result) {
-    return false;
-  }
-  return true;
+  return result;
 }

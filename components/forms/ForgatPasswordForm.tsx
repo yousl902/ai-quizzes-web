@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -24,19 +24,21 @@ import { useTranslations } from "next-intl";
  */
 export default function ForgotPasswordForm() {
   const t = useTranslations("forgotPassword");
-  const [state, formAction, pending] = useActionState(resetPassword, false);
+  const [state, formAction, pending] = useActionState(resetPassword, null);
 
-  const handleSubmit = async () => {
-    if (!state) {
-      toast.error(t("emailError"), {
-        description: t("emailErrorDescription"),
-      });
-    } else {
+  useEffect(() => {
+    if (pending || state === null) return;
+    console.log("state:", state);
+    if (state) {
       toast.success(t("emailSent"), {
         description: t("emailSentDescription"),
       });
+    } else {
+      toast.error(t("emailError"), {
+        description: t("emailErrorDescription"),
+      });
     }
-  };
+  }, [state, pending]);
 
   return (
     <Card className="max-w-md w-full shadow-xl">
@@ -50,32 +52,7 @@ export default function ForgotPasswordForm() {
       </CardHeader>
 
       <CardContent>
-        <form
-          action={formAction}
-          // action={async (formData) => {
-          //   setIsLoading(true);
-          //   try {
-          //     const success = await resetPassword(formData);
-          //     if (success) {
-          //       toast.success(t("emailSent"), {
-          //         description: t("emailSentDescription"),
-          //       });
-          //     } else {
-          //       toast.error(t("emailError"), {
-          //         description: t("emailErrorDescription"),
-          //       });
-          //     }
-          //   } catch (error) {
-          //     console.error(error);
-          //     toast.error(t("error"), {
-          //       description: t("errorDescription"),
-          //     });
-          //   } finally {
-          //     setIsLoading(false);
-          //   }
-          // }}
-          className="space-y-4"
-        >
+        <form action={formAction} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
             <Input
@@ -84,15 +61,12 @@ export default function ForgotPasswordForm() {
               type="email"
               placeholder="name@example.com"
               required
-              //disabled={isLoading}
             />
           </div>
 
           <Button
             type="submit"
-            onClick={handleSubmit}
             className="w-full text-white bg-btn-reset-password hover:bg-btn-reset-password/90"
-            //disabled={isLoading}
           >
             {pending ? t("loading") : t("sendResetLink")}
           </Button>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useState } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
@@ -28,22 +28,18 @@ export default function ResetPasswordForm() {
   const updatePasswordWithCode = updatePassword.bind(null, code);
   const [state, formAction, pending] = useActionState(
     updatePasswordWithCode,
-    false
+    null
   );
 
-  const handleSubmit = async () => {
-    if (password.length < 8) {
-      toast.error("Password is too short", {
-        description: "Password must be at least 8 characters long.",
-      });
+  const isValidPassword = () => {
+    if (password.length < 8 || password !== confirmPassword) {
       return false;
     }
-    if (password !== confirmPassword) {
-      toast.error("Passwords do not match", {
-        description: "Please ensure both passwords are identical.",
-      });
-      return false;
-    }
+    return true;
+  };
+
+  useEffect(() => {
+    if (pending || state === null) return;
     if (!state) {
       toast.error(t("error"), {
         description: t("errorDescription"),
@@ -54,7 +50,7 @@ export default function ResetPasswordForm() {
       });
       router.push("/login");
     }
-  };
+  }, [state, pending]);
 
   return (
     <Card className="max-w-md w-full shadow-xl">
@@ -81,7 +77,9 @@ export default function ResetPasswordForm() {
               required
               minLength={8}
             />
-            <p className="text-xs text-muted-foreground">{t("passwordHint")}</p>
+            <p className="text-xs text-muted-foreground">
+              {password.length < 8 ? t("passwordShort") : ""}
+            </p>
           </div>
 
           <div className="space-y-2">
@@ -94,11 +92,14 @@ export default function ResetPasswordForm() {
               placeholder="••••••••"
               required
             />
+            <p className="text-xs text-muted-foreground">
+              {password !== confirmPassword ? t("passwordsDoNotMatch") : ""}
+            </p>
           </div>
 
           <Button
             type="submit"
-            onClick={handleSubmit}
+            disabled={!isValidPassword()}
             className="w-full text-white bg-btn-reset-password hover:bg-btn-reset-password/90"
           >
             {pending ? t("loading") : t("updatePassword")}
