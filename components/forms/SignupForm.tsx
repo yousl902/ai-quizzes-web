@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,9 +15,11 @@ import { Label } from "@/components/ui/label";
 import { UserPlus } from "lucide-react";
 import { signup } from "@/app/actions/auth";
 import { useTranslations } from "next-intl";
+import { toast } from "sonner";
 
 export default function SignupForm() {
   const t = useTranslations("signup");
+  const [state, formAction, pending] = useActionState(signup, { message: "" });
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,20 +29,26 @@ export default function SignupForm() {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
-  const isPasswordValid = (password: string) => {
-    return (
-      password.length >= 8 &&
-      /[A-Z]/.test(password) &&
-      /[a-z]/.test(password) &&
-      /[0-9]/.test(password) &&
-      /[^A-Za-z0-9]/.test(password)
-    );
-  };
+  // const isPasswordValid = (password: string) => {
+  //   return (
+  //     password.length >= 8 &&
+  //     /[A-Z]/.test(password) &&
+  //     /[a-z]/.test(password) &&
+  //     /[0-9]/.test(password) &&
+  //     /[^A-Za-z0-9]/.test(password)
+  //   );
+  // };
 
   const isValidFullName = (name: string) => {
     const nameParts = name.trim().split(" ");
     return nameParts.length >= 2 && nameParts.every((part) => part.length > 0);
   };
+
+  useEffect(() => {
+    if (state?.message) {
+      toast.error(state.message);
+    }
+  }, [state]);
 
   return (
     <Card className="max-w-md w-full shadow-xl">
@@ -54,7 +62,7 @@ export default function SignupForm() {
       </CardHeader>
 
       <CardContent>
-        <form className="space-y-4">
+        <form className="space-y-4" action={formAction}>
           <div className="space-y-2">
             <Label htmlFor="name">{t("fullName")}</Label>
             <Input
@@ -95,7 +103,7 @@ export default function SignupForm() {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            {password.length > 0 && (
+            {/* {password.length > 0 && (
               <p
                 className={`text-xs ${
                   isPasswordValid(password) ? "text-green-500" : "text-red-500"
@@ -105,7 +113,7 @@ export default function SignupForm() {
                   ? "Strong password!"
                   : "Use at least 8 characters, uppercase, lowercase, numbers, and symbols."}
               </p>
-            )}
+            )} */}
           </div>
 
           {/* <div className="flex items-center space-x-2">
@@ -128,17 +136,24 @@ export default function SignupForm() {
           </div> */}
 
           <Button
-            formAction={signup}
+            //formAction={signup}
+            type="submit"
             className="w-full bg-btn-create-account bg-btn-create-account/90 text-white transition-colors"
             disabled={
               !isEmailValid(email) ||
-              !isPasswordValid(password) ||
+              //!isPasswordValid(password) ||
               !isValidFullName(name)
               //!termsAccepted
             }
           >
-            <UserPlus className="mr-2 h-4 w-4" />
-            {t("signUp")}
+            {pending ? (
+              t("creatingAccount")
+            ) : (
+              <>
+                <UserPlus className="mr-2 h-4 w-4" />
+                {t("signUp")}
+              </>
+            )}
           </Button>
         </form>
       </CardContent>

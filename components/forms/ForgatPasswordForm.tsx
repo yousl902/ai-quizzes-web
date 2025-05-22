@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,6 +15,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { resetPassword } from "@/app/actions/auth";
 import { useTranslations } from "next-intl";
+import { use } from "chai";
 
 /**
  * ForgotPasswordForm Component
@@ -24,7 +25,21 @@ import { useTranslations } from "next-intl";
  */
 export default function ForgotPasswordForm() {
   const t = useTranslations("forgotPassword");
-  const [isLoading, setIsLoading] = useState(false);
+  //const [isLoading, setIsLoading] = useState(false);
+  const [state, formAction, pending] = useActionState(resetPassword, false);
+
+  const handleSubmit = async () => {
+    if (!state) {
+      toast.error(t("emailError"), {
+        description: t("emailErrorDescription"),
+      });
+    } else {
+      toast.success(t("emailSent"), {
+        description: t("emailSentDescription"),
+      });
+    }
+  };
+  
   return (
     <Card className="max-w-md w-full shadow-xl">
       <CardHeader className="space-y-1">
@@ -38,28 +53,29 @@ export default function ForgotPasswordForm() {
 
       <CardContent>
         <form
-          action={async (formData) => {
-            setIsLoading(true);
-            try {
-              const success = await resetPassword(formData);
-              if (success) {
-                toast.success(t("emailSent"), {
-                  description: t("emailSentDescription"),
-                });
-              } else {
-                toast.error(t("emailError"), {
-                  description: t("emailErrorDescription"),
-                });
-              }
-            } catch (error) {
-              console.error(error);
-              toast.error(t("error"), {
-                description: t("errorDescription"),
-              });
-            } finally {
-              setIsLoading(false);
-            }
-          }}
+          action={formAction}
+          // action={async (formData) => {
+          //   setIsLoading(true);
+          //   try {
+          //     const success = await resetPassword(formData);
+          //     if (success) {
+          //       toast.success(t("emailSent"), {
+          //         description: t("emailSentDescription"),
+          //       });
+          //     } else {
+          //       toast.error(t("emailError"), {
+          //         description: t("emailErrorDescription"),
+          //       });
+          //     }
+          //   } catch (error) {
+          //     console.error(error);
+          //     toast.error(t("error"), {
+          //       description: t("errorDescription"),
+          //     });
+          //   } finally {
+          //     setIsLoading(false);
+          //   }
+          // }}
           className="space-y-4"
         >
           <div className="space-y-2">
@@ -70,16 +86,17 @@ export default function ForgotPasswordForm() {
               type="email"
               placeholder="name@example.com"
               required
-              disabled={isLoading}
+              //disabled={isLoading}
             />
           </div>
 
           <Button
             type="submit"
+            onClick={handleSubmit}
             className="w-full text-white bg-btn-reset-password hover:bg-btn-reset-password/90"
-            disabled={isLoading}
+            //disabled={isLoading}
           >
-            {isLoading ? "Sending..." : "Send Reset Link"}
+            {pending ? t("loading") : t("sendResetLink")}
           </Button>
 
           <div className="text-center">

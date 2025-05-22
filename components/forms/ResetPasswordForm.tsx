@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
@@ -17,32 +17,21 @@ import { toast } from "sonner";
 import { updatePassword } from "@/app/actions/auth";
 import { useTranslations } from "next-intl";
 
-/**
- * ResetPasswordForm Component
- *
- * This component renders a form that allows users to set a new password after clicking
- * the reset link in their email. It handles the following functionality:
- *
- * 1. Password Validation:
- *    - Ensures password is at least 8 characters long
- *    - Verifies that password and confirm password match
- *
- * 2. Reset Process:
- *    - Extracts the reset code from URL parameters
- *    - Calls the updatePassword server action with the new password and code
- *    - Shows appropriate success/error messages using toast notifications
- *    - Redirects to login page after successful password update
- **/
-
 export default function ResetPasswordForm() {
   const t = useTranslations("resetPassword");
-  const [isLoading, setIsLoading] = useState(false);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const router = useRouter();
   const searchParams = useSearchParams();
+  const router = useRouter();
 
-  const validatePasswords = () => {
+  const code = searchParams.get("code");
+  const updatePasswordWithCode = updatePassword.bind(null, code);
+  const [state, formAction, pending] = useActionState(
+    updatePasswordWithCode,
+    false
+  );
+
+  const handleSubmit = async () => {
     if (password.length < 8) {
       toast.error("Password is too short", {
         description: "Password must be at least 8 characters long.",
@@ -55,7 +44,16 @@ export default function ResetPasswordForm() {
       });
       return false;
     }
-    return true;
+    if (!state) {
+      toast.error(t("error"), {
+        description: t("errorDescription"),
+      });
+    } else {
+      toast.success(t("success"), {
+        description: t("successDescription"),
+      });
+      router.push("/login");
+    }
   };
 
   return (
@@ -70,45 +68,7 @@ export default function ResetPasswordForm() {
       </CardHeader>
 
       <CardContent>
-        <form
-          action={async (formData) => {
-            if (!validatePasswords()) {
-              return;
-            }
-
-            const code = searchParams.get("code");
-            if (!code) {
-              toast.error("Invalid reset link");
-              return;
-            }
-
-            formData.append("code", code);
-
-            setIsLoading(true);
-            try {
-              const success = await updatePassword(formData);
-              if (success) {
-                toast.success(t("success"), {
-                  description: t("successDescription"),
-                });
-                setTimeout(() => router.push("/login"), 2000);
-              } else {
-                toast.error(t("error"), {
-                  description: t("errorDescription"),
-                });
-              }
-            } catch (error) {
-              console.error(error);
-              toast.error(t("errorOccurred"), {
-                description:
-                  t("errorOccurredDescription"),
-              });
-            } finally {
-              setIsLoading(false);
-            }
-          }}
-          className="space-y-4"
-        >
+        <form action={formAction} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="password">{t("newPassword")}</Label>
             <Input
@@ -119,12 +79,9 @@ export default function ResetPasswordForm() {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
               required
-              disabled={isLoading}
               minLength={8}
             />
-            <p className="text-xs text-muted-foreground">
-              {t("passwordHint")}
-            </p>
+            <p className="text-xs text-muted-foreground">{t("passwordHint")}</p>
           </div>
 
           <div className="space-y-2">
@@ -136,16 +93,15 @@ export default function ResetPasswordForm() {
               onChange={(e) => setConfirmPassword(e.target.value)}
               placeholder="••••••••"
               required
-              disabled={isLoading}
             />
           </div>
 
           <Button
             type="submit"
+            onClick={handleSubmit}
             className="w-full text-white bg-btn-reset-password hover:bg-btn-reset-password/90"
-            disabled={isLoading}
           >
-            {isLoading ? "Updating..." : "Update Password"}
+            {pending ? t("loading") : t("updatePassword")}
           </Button>
 
           <div className="text-center">
