@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, XCircle } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export interface QuizResult {
   id: number;
@@ -31,8 +32,8 @@ export default function ResultPopup({
   onOpenChange,
   results,
   onClose,
-  title = "Quizresultat",
 }: ResultPopupProps) {
+  const t = useTranslations("quizResult");
   const correct = results.filter((r) => r.isCorrect);
   const incorrect = results.filter((r) => !r.isCorrect);
   const correctPercentage =
@@ -43,10 +44,10 @@ export default function ResultPopup({
       <DialogContent className="max-w-lg p-0 bg-white shadow-2xl rounded-xl">
         <div className="bg-result-bg text-black p-5 rounded-t-xl">
           <DialogHeader>
-            <DialogTitle className="text-xl font-bold">{title}</DialogTitle>
+            <DialogTitle className="text-xl font-bold">{t("title")}</DialogTitle>
             <DialogDescription className="mt-2 flex justify-between">
               <span className="text-sm font-semibold">
-                Resultat: {correctPercentage}%
+                {t("result")}: {correctPercentage}%
               </span>
               <span className="text-sm flex items-center gap-1">
                 <CheckCircle className="w-4 h-4" />
@@ -62,7 +63,7 @@ export default function ResultPopup({
             <div className="mb-5">
               <h4 className="text-base font-semibold text-result-dark-correct mb-2 flex items-center">
                 <CheckCircle className="h-4 w-4 mr-2" />
-                Rätt svar
+                {t("correctAnswers")}
               </h4>
               <ul className="space-y-2">
                 {correct.map((r) => (
@@ -83,7 +84,7 @@ export default function ResultPopup({
             <div>
               <h4 className="text-base font-semibold text-result-dark-incorrect mb-2 flex items-center">
                 <XCircle className="h-4 w-4 mr-2" />
-                Fel svar
+                {t("incorrectAnswers")}
               </h4>
               <ul className="space-y-2">
                 {incorrect.map((r) => (
@@ -105,7 +106,7 @@ export default function ResultPopup({
             onClick={onClose}
             className="w-full bg-result-bg hover:from-yellow-400 hover:to-yellow-500 text-black font-medium"
           >
-            Stäng
+            {t("close")}
           </Button>
         </div>
       </DialogContent>
