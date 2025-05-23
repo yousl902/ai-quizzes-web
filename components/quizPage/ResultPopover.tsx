@@ -71,7 +71,7 @@ export default function ResultPopup({
                     key={r.id}
                     className="bg-result-light-correct rounded-lg p-3 flex items-center gap-3 text-sm"
                   >
-                    <CheckCircle className="h-5 w-5 text-result-dark-correct" />
+                    <CheckCircle className="h-5 w-5 shrink-0 text-result-dark-correct" />
                     <span className="text-gray-700">{r.question}</span>
                   </li>
                 ))}
@@ -92,7 +92,7 @@ export default function ResultPopup({
                     key={r.id}
                     className="bg-result-light-incorrect rounded-lg p-3 flex items-center gap-3 text-sm"
                   >
-                    <XCircle className="h-5 w-5 text-result-dark-incorrect" />
+                    <XCircle className="h-5 w-5 shrink-0 text-result-dark-incorrect" />
                     <span className="text-gray-700">{r.question}</span>
                   </li>
                 ))}
