@@ -1,11 +1,13 @@
 import { Link } from "@/i18n/navigation";
 import { CirclePlay } from "lucide-react";
 import { getTranslations } from "next-intl/server";
+import StatusHandler from "@/components/StatusHandler";
 
 export default async function Home() {
   const t = await getTranslations("home");
   return (
     <div className="min-h-screen flex flex-col">
+      <StatusHandler />
       <main className="flex-grow flex flex-col items-center justify-center px-4 pt-16 pb-8">
         <div className="max-w-5xl w-full mx-auto flex flex-col items-center">
           <h1 className="text-5xl mt-10 md:text-7xl font-bold text-center mb-2 tracking-tight">

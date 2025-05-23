@@ -175,5 +175,11 @@
     "correctAnswers": "Rätt svar",
     "incorrectAnswers": "Fel asvarnswers",
     "close": "Stäng"
+  },
+
+    "statusHandler": {
+    "login": "Vi är glada att se dig tillbaka! 🎉",
+    "logout": "Vi är ledsen att se dig gå! 😢",
+    "signup": "Kolla din e-post för att verifiera ditt konto!"
   }
 }

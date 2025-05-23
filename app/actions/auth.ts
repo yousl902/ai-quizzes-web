@@ -27,7 +27,7 @@ export async function login(
   }
 
   revalidatePath("/", "layout");
-  redirect({ href: "/", locale });
+  redirect({ href: "/?status=loggedIn", locale });
 }
 
 export async function logout() {
@@ -36,7 +36,7 @@ export async function logout() {
   const locale = await getLocale();
 
   revalidatePath("/", "layout");
-  redirect({ href: "/", locale });
+  redirect({ href: "/?status=loggedOut", locale });
 }
 
 export async function signup(
@@ -70,7 +70,7 @@ export async function signup(
   await syncUser(result.user!);
 
   revalidatePath("/", "layout");
-  redirect({ href: "/", locale });
+  redirect({ href: "/?status=signedUp", locale });
 }
 
 export async function resetPassword(
@@ -87,15 +87,6 @@ export async function resetPassword(
   return result;
 }
 
-/**
- * Updates a user's password using a reset code.
- * The reset code is obtained from the URL parameters when the user clicks the reset link.
- *
- * @param formData - Form data containing:
- *   - password: The new password to set
- *   - code: The reset code from the email link
- * @returns Promise<boolean> - Returns true if the password was updated successfully, false otherwise
- */
 export async function updatePassword(
   code: string | null,
   prevState: boolean | null,

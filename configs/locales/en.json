@@ -14,7 +14,7 @@
       "email": "younes.sleibi2000@gmail.com",
       "telephone": "Phone number",
       "timeStamp": "09:00 - 17:00",
-      "more": "This project was developed by Younes Sleibi. For questions, suggestions, or collaboration opportunities, feel free to reach out via email."
+      "more": "This project was developed by a groub of students at Linköping University. For questions, suggestions, or collaboration opportunities, feel free to reach out via email."
     },
 
     "FAQ": {
@@ -179,5 +179,11 @@
     "correctAnswers": "Correct answers",
     "incorrectAnswers": "Incorrect answers",
     "close": "Close"
+  },
+
+  "statusHandler": {
+    "login": "Logged in successfully!",
+    "logout": "We are sad to see you go! 😢",
+    "signup": "Check your email to verify your account!"
   }
 }
