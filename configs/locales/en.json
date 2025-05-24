@@ -51,7 +51,7 @@
 
   "notFound": {
     "title": "Oops! Page not found",
-    "description": "Our busy bee couldn't find what you'r looking for! Please try again.",
+    "description": "We couldn't find what you'r looking for! Please try again.",
     "buttonText": "Till startsidan"
   },
 
@@ -63,7 +63,7 @@
 
   "signupFailed": {
     "title": "Oops! Something went wrong",
-    "description": "Our busy bee couldn't create your account! Please try again.",
+    "description": "We couldn't create your account! Please try again.",
     "buttonText": "Try again"
   },
 
