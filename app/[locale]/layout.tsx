@@ -14,6 +14,7 @@ import Footer from "@/components/Footer";
 import { getTranslations } from "next-intl/server";
 import { ProfileButton } from "@/components/navbar/ProfileButton";
 import { ProfileSection } from "@/components/navbar/ProfileSection";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 // Dina valfria Google-fonts
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
@@ -80,6 +81,7 @@ export default async function RootLayout({
           />
           {children}
           <Footer title={t("title")} />
+          <SpeedInsights />
         </NextIntlClientProvider>
       </body>
     </html>
