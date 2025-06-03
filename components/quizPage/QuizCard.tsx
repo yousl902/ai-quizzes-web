@@ -18,8 +18,9 @@ import {
   QuesionWithAlternatives,
   QuizWithQuestionsAndAlternatives,
 } from "@/lib/prismaTypes";
+import { useRouter } from "next/navigation";
 
-type QuizNotDoneProps = {
+type QuizInProgressCardProps = {
   quizTitle: string;
   questionNumber: number;
   totalQuestionNumber: number;
@@ -117,7 +118,7 @@ export default function QuizCard({
 
   if (!quizDone) {
     return (
-      <QuizNotDone
+      <QuizInProgressCard
         quizTitle={quizTitle}
         questionNumber={questionNumber}
         totalQuestionNumber={totalQuestionNumber}
@@ -132,7 +133,7 @@ export default function QuizCard({
 
   return (
     <>
-      <QuizDone quizTitle={quizTitle} />
+      <QuizCompletedCard quizTitle={quizTitle} />
       <ResultPopup
         open={showResults}
         onOpenChange={setShowResults}
@@ -143,7 +144,7 @@ export default function QuizCard({
   );
 }
 
-const QuizNotDone: React.FC<QuizNotDoneProps> = ({
+const QuizInProgressCard: React.FC<QuizInProgressCardProps> = ({
   quizTitle,
   questionNumber,
   totalQuestionNumber,
@@ -208,10 +209,11 @@ const QuizNotDone: React.FC<QuizNotDoneProps> = ({
   );
 };
 
-const QuizDone = ({ quizTitle }: { quizTitle: string }) => {
+const QuizCompletedCard = ({ quizTitle }: { quizTitle: string }) => {
   const t = useTranslations("buttons");
+  const router = useRouter();
   const goToQuizMenu = () => {
-    window.location.href = "/quizMenu";
+    router.push("/quizMenu");
   };
 
   return (
