@@ -18,7 +18,7 @@ import {
   QuesionWithAlternatives,
   QuizWithQuestionsAndAlternatives,
 } from "@/lib/prismaTypes";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 
 type QuizInProgressCardProps = {
   quizTitle: string;
