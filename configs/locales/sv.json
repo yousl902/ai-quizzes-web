@@ -138,7 +138,9 @@
     "signUp": "Skapa konto",
     "alreadyHaveAccount": "Har du redan ett konto? ",
     "logIn": "Logga in",
-    "creatingAccount": "Skapar ditt konto..."
+    "creatingAccount": "Skapar ditt konto...",
+    "invalidFullName": "Vänligen ange ett giltigt fullständigt namn (minst två ord).",
+    "invalidPassword": "Lösenordet måste vara minst 8 tecken långt."
   },
 
   "navbar": {
