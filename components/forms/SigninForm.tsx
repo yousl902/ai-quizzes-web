@@ -1,8 +1,7 @@
 "use client";
 
-import { useActionState, useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "@/i18n/navigation";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   Card,
@@ -17,19 +16,13 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { LogIn } from "lucide-react";
 import { login } from "@/app/actions/auth";
 import { useTranslations } from "next-intl";
-import { toast } from "sonner";
+import { AuthButton } from "@/components/AuthButton";
 
 export default function SigninForm() {
   const t = useTranslations("login");
+  const statusT = useTranslations("statusHandler");
   const [rememberMe, setRememberMe] = useState(false);
-  const [state, formAction, pending] = useActionState(login, { message: "" });
 
-  useEffect(() => {
-    if (state?.message) {
-      toast.error(state.message);
-    }
-  }, [state]);
-  
   return (
     <Card className="max-w-md w-full shadow-xl">
       <CardHeader className="space-y-1">
@@ -42,7 +35,7 @@ export default function SigninForm() {
       </CardHeader>
 
       <CardContent>
-        <form className="space-y-4" action={formAction}>
+        <form className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
             <Input
@@ -82,10 +75,14 @@ export default function SigninForm() {
             </Link>
           </div>
 
-          <Button type="submit" className="w-full text-white bg-btn-login-form  hover:bg-btn-login-form/90">
-            <LogIn className="mr-2 h-4 w-4" />
-            {pending ? t("LoggingIn") : t("logIn")}
-          </Button>
+          <AuthButton
+            action={login}
+            text={t("logIn")}
+            loadingText={t("LoggingIn")}
+            successMessage={statusT("login")}
+            icon={LogIn}
+            className="w-full bg-btn-login-form hover:bg-btn-login-form/90 text-white transition-colors"
+          />
         </form>
       </CardContent>
 

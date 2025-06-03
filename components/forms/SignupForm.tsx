@@ -1,7 +1,6 @@
 "use client";
-import { useActionState, useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "@/i18n/navigation";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   Card,
@@ -15,40 +14,27 @@ import { Label } from "@/components/ui/label";
 import { UserPlus } from "lucide-react";
 import { signup } from "@/app/actions/auth";
 import { useTranslations } from "next-intl";
-import { toast } from "sonner";
+import { AuthButton } from "@/components/AuthButton";
 
 export default function SignupForm() {
   const t = useTranslations("signup");
-  const [state, formAction, pending] = useActionState(signup, { message: "" });
+  const statusT = useTranslations("statusHandler");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  //const [termsAccepted, setTermsAccepted] = useState(false);
 
   const isEmailValid = (email: string) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
-
-  // const isPasswordValid = (password: string) => {
-  //   return (
-  //     password.length >= 8 &&
-  //     /[A-Z]/.test(password) &&
-  //     /[a-z]/.test(password) &&
-  //     /[0-9]/.test(password) &&
-  //     /[^A-Za-z0-9]/.test(password)
-  //   );
-  // };
 
   const isValidFullName = (name: string) => {
     const nameParts = name.trim().split(" ");
     return nameParts.length >= 2 && nameParts.every((part) => part.length > 0);
   };
 
-  useEffect(() => {
-    if (state?.message) {
-      toast.error(state.message);
-    }
-  }, [state]);
+  const isValidPassword = (password: string) => {
+    return password.length >= 8;
+  };
 
   return (
     <Card className="max-w-md w-full shadow-xl">
@@ -62,7 +48,7 @@ export default function SignupForm() {
       </CardHeader>
 
       <CardContent>
-        <form className="space-y-4" action={formAction}>
+        <form className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="name">{t("fullName")}</Label>
             <Input
@@ -75,6 +61,10 @@ export default function SignupForm() {
               required
             />
           </div>
+
+          {name.length > 0 && !isValidFullName(name) && (
+            <p className="text-xs text-red-500">{t("invalidFullName")}</p>
+          )}
 
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
@@ -103,58 +93,21 @@ export default function SignupForm() {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            {/* {password.length > 0 && (
-              <p
-                className={`text-xs ${
-                  isPasswordValid(password) ? "text-green-500" : "text-red-500"
-                }`}
-              >
-                {isPasswordValid(password)
-                  ? "Strong password!"
-                  : "Use at least 8 characters, uppercase, lowercase, numbers, and symbols."}
-              </p>
-            )} */}
           </div>
 
-          {/* <div className="flex items-center space-x-2">
-            <Checkbox
-              id="terms"
-              checked={termsAccepted}
-              onCheckedChange={(checked) => setTermsAccepted(!!checked)}
-              required
-            />
-            <Label htmlFor="terms" className="text-sm cursor-pointer">
-              {t("termsAgreement")}
-              <Link href="/terms" className="hover:underline">
-                {t("termsOfService")}
-              </Link>{" "}
-              {t("and")}
-              <Link href="/privacy" className="hover:underline">
-                {t("privacyPolicy")}
-              </Link>
-            </Label>
-          </div> */}
+          {password.length > 0 && !isValidPassword(password) && (
+            <p className="text-xs text-red-500">{t("invalidPassword")}</p>
+          )}
 
-          <Button
-            //formAction={signup}
-            type="submit"
-            className="w-full bg-btn-create-account bg-btn-create-account/90 text-white transition-colors"
-            disabled={
-              !isEmailValid(email) ||
-              //!isPasswordValid(password) ||
-              !isValidFullName(name)
-              //!termsAccepted
-            }
-          >
-            {pending ? (
-              t("creatingAccount")
-            ) : (
-              <>
-                <UserPlus className="mr-2 h-4 w-4" />
-                {t("signUp")}
-              </>
-            )}
-          </Button>
+          <AuthButton
+            action={signup}
+            text={t("signUp")}
+            loadingText={t("creatingAccount")}
+            successMessage={statusT("signup")}
+            icon={UserPlus}
+            className="w-full bg-btn-create-account hover:bg-btn-create-account/90 text-white transition-colors"
+            disabled={!isValidFullName(name) || !isEmailValid(email) || !isValidPassword(password)}
+          />
         </form>
       </CardContent>
 

@@ -1,9 +1,8 @@
 "use client";
 
-import { useActionState, useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { Link } from "@/i18n/navigation";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   Card,
@@ -13,44 +12,18 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import { toast } from "sonner";
 import { updatePassword } from "@/app/actions/auth";
 import { useTranslations } from "next-intl";
+import { AuthButton } from "@/components/AuthButton";
 
 export default function ResetPasswordForm() {
   const t = useTranslations("resetPassword");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const searchParams = useSearchParams();
-  const router = useRouter();
 
   const code = searchParams.get("code");
   const updatePasswordWithCode = updatePassword.bind(null, code);
-  const [state, formAction, pending] = useActionState(
-    updatePasswordWithCode,
-    null
-  );
-
-  const isValidPassword = () => {
-    if (password.length < 8 || password !== confirmPassword) {
-      return false;
-    }
-    return true;
-  };
-
-  useEffect(() => {
-    if (pending || state === null) return;
-    if (!state) {
-      toast.error(t("error"), {
-        description: t("errorDescription"),
-      });
-    } else {
-      toast.success(t("success"), {
-        description: t("successDescription"),
-      });
-      router.push("/login");
-    }
-  }, [state, pending]);
 
   return (
     <Card className="max-w-md w-full shadow-xl">
@@ -64,7 +37,7 @@ export default function ResetPasswordForm() {
       </CardHeader>
 
       <CardContent>
-        <form action={formAction} className="space-y-4">
+        <form className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="password">{t("newPassword")}</Label>
             <Input
@@ -97,13 +70,14 @@ export default function ResetPasswordForm() {
             </p>
           </div>
 
-          <Button
-            type="submit"
-            disabled={!isValidPassword()}
+          <AuthButton
+            action={updatePasswordWithCode}
+            text={t("updatePassword")}
+            loadingText={t("loading")}
+            successMessage={t("success")}
             className="w-full text-white bg-btn-reset-password hover:bg-btn-reset-password/90"
-          >
-            {pending ? t("loading") : t("updatePassword")}
-          </Button>
+            disabled={password.length < 8 || password !== confirmPassword}
+          />
 
           <div className="text-center">
             <Link

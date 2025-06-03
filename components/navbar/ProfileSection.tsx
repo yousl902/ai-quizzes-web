@@ -1,8 +1,8 @@
 import { logout } from "@/app/actions/auth";
-import { Button } from "@/components/ui/button";
 import { ProfileChart } from "@/components/navbar/ProfileChart";
 import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma/client";
+import { AuthButton } from "@/components/AuthButton";
 
 interface ProfileSectionProps {
   email?: string;
@@ -18,6 +18,7 @@ export async function ProfileSection({
   userId,
 }: ProfileSectionProps) {
   const t = await getTranslations("navbar");
+  const statusT = await getTranslations("statusHandler");
   const fullName = `${firstName || ""} ${lastName || ""}`.trim();
 
   const scores: { quiz_id: string; score: number }[] =
@@ -75,12 +76,13 @@ export async function ProfileSection({
       {/* Log-out */}
       <form>
         <div className="flex justify-center">
-          <Button
-            formAction={logout}
+          <AuthButton
+            action={logout}
+            text={t("logout")}
+            loadingText={t("logout")}
+            successMessage={statusT("logout")}
             className="mt-5 bg-btn-logout text-white hover:bg-btn-logout/90 hover:scale-105 transition-colors duration-200"
-          >
-            {t("logout")}
-          </Button>
+          />
         </div>
       </form>
     </div>

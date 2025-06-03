@@ -5,15 +5,20 @@ import { syncUser } from "@/lib/auth/syncUser";
 import { getServerAuthProvider } from "@/lib/auth/factory/getServerProvider";
 import { getLocale } from "next-intl/server";
 
+export interface AuthActionResponse {
+  success: boolean;
+  message?: string;
+}
+
+export type ServerActionState = {
+  success: boolean;
+  message?: string;
+} | null;
+
 export async function login(
-  prevState:
-    | {
-        message: string | undefined;
-      }
-    | undefined,
+  prevState: ServerActionState,
   formData: FormData
-) {
-  void prevState;
+): Promise<AuthActionResponse> {
   const data = {
     email: formData.get("email") as string,
     password: formData.get("password") as string,
@@ -22,32 +27,37 @@ export async function login(
   const auth = getServerAuthProvider();
   const result = await auth.signIn(data.email, data.password);
   const locale = await getLocale();
+
   if (!result?.success) {
-    return { message: result?.errorMessage };
+    return { success: false, message: result?.errorMessage };
   }
 
   revalidatePath("/", "layout");
   redirect({ href: "/?status=loggedIn", locale });
+  // This line will never be reached due to redirect
+  return { success: true };
 }
 
-export async function logout() {
+export async function logout(
+  prevState: ServerActionState,
+  formData: FormData
+): Promise<AuthActionResponse> {
+  void prevState;
+  void formData;
   const auth = getServerAuthProvider();
   await auth.signOut();
   const locale = await getLocale();
 
   revalidatePath("/", "layout");
   redirect({ href: "/?status=loggedOut", locale });
+  // This line will never be reached due to redirect
+  return { success: true };
 }
 
 export async function signup(
-  prevState:
-    | {
-        message: string | undefined;
-      }
-    | undefined,
+  prevState: ServerActionState,
   formData: FormData
-) {
-  void prevState;
+): Promise<AuthActionResponse> {
   const auth = getServerAuthProvider();
   const data = {
     email: formData.get("email") as string,
@@ -56,13 +66,14 @@ export async function signup(
 
   const result = await auth.signUp(data.email, data.password);
   const locale = await getLocale();
+
   if (!result?.success) {
-    return { message: result?.errorMessage };
+    return { success: false, message: result?.errorMessage };
   }
 
-  const name = formData.get("name");
-  const first_name = (name as string).split(" ")[0];
-  const last_name = (name as string).split(" ")[1];
+  const name = formData.get("name") as string;
+  const first_name = name.split(" ")[0];
+  const last_name = name.split(" ")[1];
   result!.user.first_name = first_name;
   result!.user.last_name = last_name;
 
@@ -71,35 +82,35 @@ export async function signup(
 
   revalidatePath("/", "layout");
   redirect({ href: "/?status=signedUp", locale });
+  // This line will never be reached due to redirect
+  return { success: true };
 }
 
 export async function resetPassword(
-  prevState: boolean | null,
+  prevState: ServerActionState,
   formData: FormData
-) {
-  void prevState;
+): Promise<AuthActionResponse> {
   const email = formData.get("email") as string;
   if (!email) {
-    return false;
+    return { success: false, message: "Email is required" };
   }
   const auth = getServerAuthProvider();
   const result = await auth.resetPassword(email);
-  return result;
+  return { success: result };
 }
 
 export async function updatePassword(
   code: string | null,
-  prevState: boolean | null,
+  prevState: ServerActionState,
   formData: FormData
-) {
-  void prevState;
+): Promise<AuthActionResponse> {
   const password = formData.get("password") as string;
 
   if (!password || !code) {
-    return false;
+    return { success: false, message: "Password and code are required" };
   }
 
   const auth = getServerAuthProvider();
   const result = await auth.updatePassword(code, password);
-  return result;
+  return { success: result };
 }
